@@ -21,11 +21,11 @@ func _init(character) -> void:
 	base_walkspeed = character.BASE_WALKSPEED
 	
 
-func SetState(new_state: String, enabled: bool):
+func SetState(new_state: String, enabled = null):
 	if not config.priority.get(new_state):
 		return
 	
-	if enabled:
+	if enabled and enabled == true:
 		active_states[new_state] = true
 	else:
 		ResetStates([new_state])
@@ -53,6 +53,13 @@ func ResetStates(states_to_remove: Array):
 		if active_states.has(state):
 			active_states.erase(state)
 			print("Removed state: ", state)    
+
+	_update_current_state()
+
+func ResetAllStates():
+	for state in active_states:
+		active_states.erase(state)
+		print("Removed state: ", state)    
 
 	_update_current_state()
 

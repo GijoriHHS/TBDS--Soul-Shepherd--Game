@@ -4,6 +4,7 @@ class_name StateConfig
 # Behaviour inner class
 @export var behaviours: Dictionary = {}
 @export var priority: Dictionary = {}
+@export var action_configs: Dictionary = {}
 
 # Behaviour structure helper - niet export maar voor type safety
 class Behaviour:
@@ -87,5 +88,17 @@ func _setup_default_config():
 		"FEINTING": 80,
 		"STUNNED": 90,
 		"DEAD": 100
+	}
+
+	action_configs = {
+		"ATTACKING": {
+			"InputType": "Press"
+		},
+		"BLOCKING": {
+			"InputType": "Hold"
+		},
+		"MOVING": {
+			"InputType": "Hold"
+		}
 	}
 	

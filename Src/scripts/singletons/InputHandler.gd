@@ -28,7 +28,7 @@ func _handle_movement():
 	if left_pressed and right_pressed:
 		print("BOTH KEYS PRESSED - IDLE")
 		CentralManager.ProcessPlayerAction({
-			"action": "IDLE"
+			"action": "IDLE",
 		})
 	elif left_pressed and not right_pressed:
 		CentralManager.ProcessPlayerAction({

@@ -1,6 +1,6 @@
 extends Node
 
-var character_states = {}  # Dictionary: character_node -> StateHandler
+var character_states = {}
 var player_character = null
 
 func add_character(character):
@@ -11,7 +11,6 @@ func add_character(character):
 	
 	if character.is_in_group("player"):
 		player_character = character
-		state_handler.SetState("STUNNED", true)
 		print("Player character set: ", character.name)
 
 func remove_character(character):
@@ -47,7 +46,6 @@ func execute_action(character, action_data: Dictionary):
 			
 			character.MOVING(direction)
 		else:
-			print("HAS FUNC FOR ACTION ", action)
 			character.call(action)
 
 func GetStateHandler(character):
