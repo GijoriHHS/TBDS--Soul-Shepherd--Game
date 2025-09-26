@@ -3,6 +3,9 @@ extends Node
 @export var stateLabel : Label
 @export var hpLabel : Label
 @export var gameOverScreen : ColorRect
+func _ready() -> void:
+	print_rich("[img]res://errors/tweakboo.png[/img]")
+
 func updateLabel(text):
 	if text:
 		stateLabel.text = "State: " + str(text)
