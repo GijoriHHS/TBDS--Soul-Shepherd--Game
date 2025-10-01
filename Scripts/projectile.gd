@@ -5,14 +5,18 @@ class_name Projectile
 @export var sprite : AnimatedSprite2D
 var direction : float
 var spawnpos : Vector2
-var turn_on : int
+var turn_on_area : Array[int]
+var turn_on_body : Array[int]
 @onready var despawn: Timer = $Despawn
 @onready var area_2d: Area2D = $Area2D
 
 func _ready() -> void:
 	direction = -1 if sprite.flip_h else 1
 	global_position = spawnpos
-	area_2d.set_collision_mask_value(turn_on, true)
+	for num in turn_on_area:
+		area_2d.set_collision_mask_value(num, true)
+	for num in turn_on_body:
+		collision_mask = (1 << (num - 1))
 	despawn.start()
 	
 func _physics_process(_delta: float) -> void:
@@ -47,7 +51,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		despawn.start()
 		direction = -direction
 		area_2d.set_collision_mask_value(2, true)
-		print("Parry")
+		area_2d.set_collision_mask_value(3, false)
+		print("Parry " + str(area.collision_layer))
 		return
 	print("Area2D Hit!")
 	var hp = area.get_node_or_null("Health")

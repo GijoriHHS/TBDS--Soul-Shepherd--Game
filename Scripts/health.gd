@@ -14,13 +14,8 @@ func take_damage(dmg : int):
 	elif(hp <= 0):
 		get_parent().queue_free()
 
-func _on_attack_1_taking_damage(dmg) -> void:
-	take_damage(dmg)
-
-
 func _on_player_player_hit(dmg) -> void:
 	take_damage(dmg)
-
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1.0

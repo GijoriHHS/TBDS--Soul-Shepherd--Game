@@ -7,7 +7,9 @@ var player : CharacterBody2D
 var sprite : AnimatedSprite2D
 var weapon: Area2D
 var shootPoint : Node2D
-@export var walk_speed : int = 120
+var holder : Node2D
+var slots : Array[Node2D]
+@export var move_speed : int = 120
 @export var jump_force : int = 300
 @export var brake_force : int = 20
 @export var can_move : bool = true
@@ -15,6 +17,7 @@ var shootPoint : Node2D
 @export var in_anim : bool = false
 @export var is_gravity : bool = true
 @export var can_shoot : bool = false
+@export var airsStrafe : int = 20
 
 func Enter():
 	var parent = get_parent()
@@ -22,6 +25,9 @@ func Enter():
 	player = parent.player
 	weapon = parent.weapon
 	shootPoint = parent.shootPoint
+	holder = parent.holder
+	for child in holder.get_children():
+		slots.append(child)
 	return
 	
 func Exit():
@@ -45,9 +51,17 @@ func movement(_delta:float):
 		weapon.position.x = -14 if direction < 0 else 14
 		shootPoint.position.x = -14 if direction < 0 else 14
 	
-	if direction and can_move:
-		player.velocity.x = direction * walk_speed
+	
+	if not player.is_on_floor() and direction and can_move:
+		player.velocity.x = move_toward(player.velocity.x, direction * move_speed, airsStrafe)
+	elif direction and can_move:
+		player.velocity.x = direction * move_speed
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, brake_force)
 
 	player.move_and_slide()
+	
+func get_item_by_name(node_name: String, array: Array[Node2D]):
+	var found = array.filter(func(n): return n.name == node_name)
+	if found.size() > 0:
+		return found[0]

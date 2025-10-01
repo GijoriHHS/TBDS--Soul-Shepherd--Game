@@ -15,16 +15,14 @@ func Update(_delta:float):
 		
 	if Input.get_axis("Left","Right") and !in_anim:
 		state_transition.emit(self, "Walking")
-	if Input.is_action_just_pressed("Shift") and !in_anim:
-		state_transition.emit(self, "Dash")
 
 func Phys_Update(_delta:float):
 	if not player.is_on_floor():
 		brake_force = initial_brake
-		walk_speed = initial_speed
+		move_speed = initial_speed
 	else:
 		brake_force = 7
-		walk_speed = 100
+		move_speed = 100
 	movement(_delta)
 
 func _on_animated_sprite_2d_animation_finished() -> void:

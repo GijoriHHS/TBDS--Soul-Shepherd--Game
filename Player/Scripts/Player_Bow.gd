@@ -22,7 +22,7 @@ func shoot():
 	var instance = projectile.instantiate()
 	instance.sprite = sprite
 	instance.spawnpos = shootPoint.global_position
-	instance.turn_on = 2
+	instance.turn_on_area.append(2)
 	main.add_child.call_deferred(instance)
 
 func Phys_Update(_delta:float):

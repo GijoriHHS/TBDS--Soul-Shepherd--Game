@@ -30,6 +30,7 @@ func shoot():
 	var instance = projectile.instantiate()
 	instance.sprite = sprite
 	instance.spawnpos = shootPoint.global_position
+	instance.turn_on_body.append(3)
 	main.add_child.call_deferred(instance)
 	
 func SetShader_BlinkIntensity(newValue: float):

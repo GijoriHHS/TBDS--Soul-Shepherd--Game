@@ -6,6 +6,7 @@ class_name FSM
 @export var player : CharacterBody2D
 @export var weapon: Area2D
 @export var shootPoint : Node2D
+@export var holder : Node2D
 
 @export var current_state : PlayerState
 var states: Dictionary = {}
