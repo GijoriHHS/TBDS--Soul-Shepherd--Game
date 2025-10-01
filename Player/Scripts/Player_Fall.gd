@@ -10,7 +10,7 @@ func Enter():
 func Update(_delta:float):
 	if player.is_on_floor():
 		state_transition.emit(self, "Idling")
-		double_jumps_left = 1
+		double_jumps_left = 0
 	if Input.is_action_just_pressed("LeftClick") and get_item_by_name("Weapon", slots).visible:
 		state_transition.emit(self, "Attack1")
 	if Input.is_action_just_pressed("Shift") and dash_cooldown.is_stopped():

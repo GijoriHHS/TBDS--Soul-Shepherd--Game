@@ -1,8 +1,9 @@
 extends Area2D
 
-@onready var main = get_tree().get_root().get_node("Level")
+@onready var main = get_tree().get_root().get_node("level1")
 @onready var projectile = load("res://Scenes/projectile.tscn")
 @export var shootPoint : Node2D
+@export var can_shoot : bool = false
 
 @onready var health: HP = $Health
 @onready var label: Label = $Label
@@ -38,4 +39,5 @@ func SetShader_BlinkIntensity(newValue: float):
 
 
 func _on_timer_timeout() -> void:
-	shoot()
+	if can_shoot:
+		shoot()

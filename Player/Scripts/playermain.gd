@@ -19,3 +19,7 @@ func _process(_delta: float) -> void:
 		collision_shape_2d.disabled = true
 		game_manager.updateGameOver()
 		
+
+
+func _on_killzone_body_entered(body: Node2D) -> void:
+	player_hit.emit(50)

@@ -16,7 +16,7 @@ func _ready() -> void:
 	for num in turn_on_area:
 		area_2d.set_collision_mask_value(num, true)
 	for num in turn_on_body:
-		collision_mask = (1 << (num - 1))
+		collision_mask = (1 << (num - 1)) | (1 << 0)
 	despawn.start()
 	
 func _physics_process(_delta: float) -> void:
