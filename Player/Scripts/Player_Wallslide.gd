@@ -10,9 +10,9 @@ func Enter():
 func Update(_delta:float):
 	if player.is_on_floor():
 		state_transition.emit(self, "Idling")
-	if player.is_on_wall() == false and not timer.time_left:
-		state_transition.emit(self, "Falling")
 	if not timer.time_left:
+		if player.is_on_wall() == false:
+			state_transition.emit(self, "Falling")
 		if Input.is_action_pressed("Left") and not sprite.flip_h:
 			state_transition.emit(self, "Falling")
 		if Input.is_action_pressed("Right") and sprite.flip_h:

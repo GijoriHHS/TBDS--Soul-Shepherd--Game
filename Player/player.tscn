@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c5ongupm07qh3"]
+[gd_scene load_steps=51 format=3 uid="uid://c5ongupm07qh3"]
 
 [ext_resource type="Script" uid="uid://bw7ujmm53vwsq" path="res://Player/Scripts/playermain.gd" id="1_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://khbs6icahh14" path="res://Player/MeleeWeapon.tscn" id="1_htcer"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d0c5idgfq6ym8" path="res://Assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier.png" id="2_xpcdj"]
 [ext_resource type="Texture2D" uid="uid://u5j8flnr1bdo" path="res://Assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Walk.png" id="3_0u5uq"]
 [ext_resource type="Script" uid="uid://d2q03jes32ygw" path="res://Scripts/FSM.gd" id="3_mtuoh"]
+[ext_resource type="Shader" uid="uid://o6ancnl5jgcr" path="res://Blink.gdshader" id="3_pisgm"]
 [ext_resource type="Script" uid="uid://bob4e3bisalwi" path="res://Player/Scripts/Player_Idle.gd" id="4_htcer"]
 [ext_resource type="Script" uid="uid://6010alpy0i3r" path="res://Player/Scripts/Player_Move.gd" id="5_htcer"]
 [ext_resource type="Script" uid="uid://fsjhyfbnjf2i" path="res://Player/Scripts/Player_Fall.gd" id="7_jlvik"]
@@ -19,6 +20,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfmf2"]
 size = Vector2(12, 18)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b1ygp"]
+resource_local_to_scene = true
+shader = ExtResource("3_pisgm")
+shader_parameter/blink_color = Color(0, 0, 0, 1)
+shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_06tpx"]
 atlas = ExtResource("2_gk6dx")
@@ -237,6 +244,28 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_pisgm"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_31h1d"]
+gradient = SubResource("Gradient_pisgm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b1ygp"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector3(0, -0.5, 0)
+spread = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+damping_min = 50.000004
+damping_max = 100.00001
+scale_min = 0.19999999
+color = Color(1, 0.07058824, 0.13333334, 1)
+color_ramp = SubResource("GradientTexture1D_31h1d")
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("finite_state_machine", "hp") groups=["Player"]]
 z_index = 5
 collision_layer = 4
@@ -251,6 +280,7 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_lfmf2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_b1ygp")
 sprite_frames = SubResource("SpriteFrames_gymyn")
 animation = &"Idle"
 autoplay = "Idle"
@@ -275,7 +305,6 @@ dash_cooldown = NodePath("../../Timers/DashCooldown")
 
 [node name="Falling" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown")]
 script = ExtResource("7_jlvik")
-double_jumps_left = 190
 dash_cooldown = NodePath("../../Timers/DashCooldown")
 brake_force = 2
 can_jump = false
@@ -328,7 +357,17 @@ damage = 10
 [node name="DashCooldown" type="Timer" parent="Timers"]
 one_shot = true
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_b1ygp")
+
 [connection signal="player_hit" from="." to="Health" method="_on_player_player_hit"]
+[connection signal="hp_changed" from="Health" to="." method="_on_health_hp_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FiniteStateMachine/Attack1" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FiniteStateMachine/AirAttack1" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FiniteStateMachine/Archery" method="_on_animated_sprite_2d_animation_finished"]
