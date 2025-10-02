@@ -95,6 +95,7 @@ shootPoint = NodePath("CollisionShape2D")
 [node name="Health" parent="." instance=ExtResource("1_3xw0u")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(9.119999, 2.6000001)
 shape = SubResource("CircleShape2D_3xw0u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -128,5 +129,7 @@ process_material = SubResource("ParticleProcessMaterial_dfwqp")
 wait_time = 5.0
 autostart = true
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="hp_changed" from="Health" to="." method="_on_health_hp_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
