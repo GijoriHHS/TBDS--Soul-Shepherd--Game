@@ -11,20 +11,21 @@ config_version=5
 [application]
 
 config/name="State Machine"
-run/main_scene="uid://be736cjab5e3w"
+run/main_scene="uid://d0aadsv0uaoyf"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/mode=3
+window/stretch/mode="canvas_items"
 
 [global_group]
 
 Player=""
 Enemy=""
 Melee=""
+hotkey_button=""
 
 [input]
 
