@@ -9,7 +9,7 @@ var turn_on_area : Array[int]
 var turn_on_body : Array[int]
 @onready var despawn: Timer = $Despawn
 @onready var area_2d: Area2D = $Area2D
-@onready var parry: AudioStreamPlayer2D = $parry
+@onready var parry: AudioStreamPlayer2D = $Parry
 
 func _ready() -> void:
 	direction = -1 if sprite.flip_h else 1

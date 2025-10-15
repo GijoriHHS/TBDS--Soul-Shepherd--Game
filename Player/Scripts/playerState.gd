@@ -9,6 +9,12 @@ var weapon: Area2D
 var shootPoint : Node2D
 var holder : Node2D
 var slots : Array[Node2D]
+var level_camera: Camera2D
+var walking_dust_particle: CPUParticles2D
+var jump_particle: GPUParticles2D
+var run_particle_timer : float
+
+@export var run_particle_offset := 0.25
 @export var move_speed : int = 120
 @export var jump_force : int = 300
 @export var brake_force : int = 20
@@ -20,6 +26,9 @@ var slots : Array[Node2D]
 @export var airsStrafe : int = 20
 @export var jumpsfx: AudioStreamPlayer2D
 
+func _ready() -> void:
+	level_camera = get_tree().current_scene.get_node("Camera2D") 
+
 func Enter():
 	var parent = get_parent()
 	sprite = parent.sprite2D
@@ -27,6 +36,8 @@ func Enter():
 	weapon = parent.weapon
 	shootPoint = parent.shootPoint
 	holder = parent.holder
+	walking_dust_particle = player.get_node("WalkingDustParticle")
+	jump_particle = player.get_node("JumpParticle")
 	for child in holder.get_children():
 		slots.append(child)
 	return
@@ -41,18 +52,32 @@ func Phys_Update(_delta:float):
 	pass
 
 func movement(_delta:float):
+	run_particle_timer += _delta
 	if Input.is_action_just_pressed("Jump") and player.is_on_floor() and can_jump:
 		jumpsfx.playing = true
 		player.velocity.y = -jump_force
+		UtilsEffect.stretch(sprite, .2, .175)
+		jump_particle.emitting = false
+		jump_particle.restart()
+		jump_particle.emitting = true
 	elif is_gravity:
 		player.velocity += player.get_gravity() * _delta
 		
 	var direction := Input.get_axis("Left", "Right")
+	
 	if !in_anim and direction:
 		sprite.flip_h = direction < 0
 		weapon.position.x = -14 if direction < 0 else 14
 		shootPoint.position.x = -14 if direction < 0 else 14
 	
+	UtilsEffect.lean_run(sprite, _delta, direction)
+	if player.is_on_floor_only() and direction:
+		if run_particle_timer >= run_particle_offset:
+			walking_dust_particle.direction = Vector2(-direction, walking_dust_particle.direction.y)
+			walking_dust_particle.emitting = true
+	else:
+		walking_dust_particle.emitting = false
+		run_particle_timer = 0
 	
 	if not player.is_on_floor() and direction and can_move:
 		player.velocity.x = move_toward(player.velocity.x, direction * move_speed, airsStrafe)

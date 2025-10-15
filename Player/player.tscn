@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://c5ongupm07qh3"]
+[gd_scene load_steps=89 format=3 uid="uid://c5ongupm07qh3"]
 
 [ext_resource type="Script" uid="uid://bw7ujmm53vwsq" path="res://Player/Scripts/playermain.gd" id="1_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://khbs6icahh14" path="res://Player/MeleeWeapon.tscn" id="1_htcer"]
@@ -15,13 +15,16 @@
 [ext_resource type="Script" uid="uid://fsjhyfbnjf2i" path="res://Player/Scripts/Player_Fall.gd" id="7_jlvik"]
 [ext_resource type="Script" uid="uid://p5k85sn5ogtw" path="res://Player/Scripts/Player_Attack1.gd" id="8_jlvik"]
 [ext_resource type="Script" uid="uid://q385houao11" path="res://Player/Scripts/Player_AirAttack1.gd" id="10_jhyir"]
-[ext_resource type="AudioStream" uid="uid://b1k81klvcnllg" path="res://Assets/Sounds/jump.wav" id="11_o28un"]
 [ext_resource type="Script" uid="uid://3282nnsu13lp" path="res://Player/Scripts/Player_Dash.gd" id="13_06tpx"]
 [ext_resource type="Script" uid="uid://75v06whe5qe4" path="res://Player/Scripts/Player_Bow.gd" id="14_7g0yx"]
 [ext_resource type="AudioStream" uid="uid://yx5u5ux7t714" path="res://Assets/Sounds/dash2.wav" id="14_b1ygp"]
 [ext_resource type="Script" uid="uid://dchumex8trwnx" path="res://Player/Scripts/arsenal.gd" id="14_dkpta"]
 [ext_resource type="Script" uid="uid://cjb2yxf6iu2g1" path="res://Player/Scripts/Player_Wallslide.gd" id="14_lfmf2"]
 [ext_resource type="AudioStream" uid="uid://bi3l61fpn0btr" path="res://Assets/Sounds/hitHurt.wav" id="20_n471f"]
+[ext_resource type="AudioStream" uid="uid://c283ary013yu8" path="res://Assets/brackeys_platformer_assets/sounds/one pice jump sfx.wav" id="21_gpjlu"]
+[ext_resource type="AudioStream" uid="uid://eb7gjbavvgb3" path="res://Assets/brackeys_platformer_assets/sounds/Landing sfx.wav" id="22_8mwp6"]
+[ext_resource type="Texture2D" uid="uid://k3lrs06wxgfa" path="res://Textures/test smoke texture.png" id="24_8mwp6"]
+[ext_resource type="Texture2D" uid="uid://c8kqnetnxng1o" path="res://Textures/test smoke texture lower res.png" id="25_qemgg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfmf2"]
 size = Vector2(12, 18)
@@ -452,6 +455,50 @@ scale_min = 0.19999999
 color = Color(1, 0.07058824, 0.13333334, 1)
 color_ramp = SubResource("GradientTexture1D_31h1d")
 
+[sub_resource type="Curve" id="Curve_gpjlu"]
+_data = [Vector2(0, 0.036308646), 0.0, 0.4345806, 0, 0, Vector2(1, 0), -0.24494608, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_qemgg"]
+colors = PackedColorArray(1, 1, 1, 1, 0.5529556, 0.55295557, 0.55295557, 1)
+
+[sub_resource type="Curve" id="Curve_8viyr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.3108628, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sm0op"]
+curve = SubResource("Curve_8viyr")
+
+[sub_resource type="Curve" id="Curve_755ss"]
+_data = [Vector2(0, 0.03), 0.0, 0.10927659, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bbimk"]
+curve = SubResource("Curve_755ss")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m0h3t"]
+lifetime_randomness = 0.35
+particle_flag_disable_z = true
+angle_min = 214.80002
+angle_max = 720.0
+direction = Vector3(1, 12, 0)
+spread = 35.0
+initial_velocity_min = 367.63998
+initial_velocity_max = 529.39
+angular_velocity_min = -275.94
+angular_velocity_max = 231.44998
+orbit_velocity_min = -0.49999994
+orbit_velocity_max = 0.5000001
+gravity = Vector3(0, -1000, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 34.559998
+damping_min = 58.087
+damping_max = 100.00001
+scale_curve = SubResource("CurveTexture_bbimk")
+alpha_curve = SubResource("CurveTexture_sm0op")
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("finite_state_machine", "hp") groups=["Player"]]
 z_index = 5
 collision_layer = 4
@@ -491,10 +538,11 @@ script = ExtResource("5_htcer")
 dash_cooldown = NodePath("../../Timers/DashCooldown")
 jumpsfx = NodePath("../../jumpsfx")
 
-[node name="Falling" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
+[node name="Falling" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "landing_sfx", "jumpsfx")]
 script = ExtResource("7_jlvik")
 extra_jumps = 0
 dash_cooldown = NodePath("../../Timers/DashCooldown")
+landing_sfx = NodePath("../../LandingSFX")
 brake_force = 2
 can_jump = false
 jumpsfx = NodePath("../../jumpsfx")
@@ -526,8 +574,9 @@ script = ExtResource("14_7g0yx")
 can_shoot = true
 jumpsfx = NodePath("../../jumpsfx")
 
-[node name="Wallsliding" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
+[node name="Wallsliding" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
 script = ExtResource("14_lfmf2")
+dash_cooldown = NodePath("../../Timers/DashCooldown")
 jumpsfx = NodePath("../../jumpsfx")
 
 [node name="Timer" type="Timer" parent="FiniteStateMachine/Wallsliding"]
@@ -565,11 +614,95 @@ trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_b1ygp")
 
 [node name="jumpsfx" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_o28un")
+stream = ExtResource("21_gpjlu")
+volume_db = 2.0
+bus = &"Jump"
+
+[node name="LandingSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_8mwp6")
+volume_db = 5.0
 bus = &"Jump"
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_n471f")
+
+[node name="WalkingDustParticle" type="CPUParticles2D" parent="."]
+position = Vector2(0, 9)
+emitting = false
+amount = 16
+texture = ExtResource("24_8mwp6")
+lifetime = 0.2
+speed_scale = 0.4
+lifetime_randomness = 0.1
+direction = Vector2(-1, -0.395)
+spread = 3.0
+gravity = Vector2(0, 1000)
+initial_velocity_min = 209.47
+initial_velocity_max = 405.41
+angular_velocity_min = -262.7
+angular_velocity_max = 243.24
+damping_min = 50.0
+damping_max = 100.0
+angle_min = -389.2
+angle_max = 720.0
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_gpjlu")
+color_ramp = SubResource("Gradient_qemgg")
+hue_variation_max = 1.0
+
+[node name="WallslideDustParticle" type="CPUParticles2D" parent="."]
+position = Vector2(-5, 9)
+rotation = -0.43633232
+emitting = false
+amount = 12
+texture = ExtResource("24_8mwp6")
+lifetime = 0.06999999999999999
+speed_scale = 0.2
+lifetime_randomness = 0.2
+direction = Vector2(1, -10)
+spread = 3.0
+gravity = Vector2(0, 1000)
+initial_velocity_min = 450.0
+initial_velocity_max = 650.0
+orbit_velocity_min = -0.5
+orbit_velocity_max = -0.5
+damping_min = 50.0
+damping_max = 100.0
+angle_min = -389.2
+angle_max = 720.0
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_gpjlu")
+color_ramp = SubResource("Gradient_qemgg")
+hue_variation_max = 1.0
+
+[node name="JumpParticle" type="GPUParticles2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 18
+texture = ExtResource("25_qemgg")
+lifetime = 0.25
+one_shot = true
+speed_scale = 0.5
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_m0h3t")
+
+[node name="WallJumpParticle" type="GPUParticles2D" parent="."]
+position = Vector2(-6, 7)
+rotation = 0.43633232
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 15
+texture = ExtResource("25_qemgg")
+lifetime = 0.23
+one_shot = true
+speed_scale = 0.5
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_m0h3t")
 
 [connection signal="player_hit" from="." to="Health" method="_on_player_player_hit"]
 [connection signal="hp_changed" from="Health" to="." method="_on_health_hp_changed"]
