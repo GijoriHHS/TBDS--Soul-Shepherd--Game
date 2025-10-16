@@ -15,6 +15,8 @@ func screenshake(camera: Camera2D, magnitude: float = 8.0, duration: float = 0.1
 	camera.offset = original_offset
 	
 func apply_directional_blur(sprite, duration: float = 0.3, strength: float = 0.005, angle: float = 0.0):
+	if not sprite: 
+		return
 	var original_material = sprite.material
 	var blur_material = ShaderMaterial.new()
 	blur_material.shader = directional_blurr
