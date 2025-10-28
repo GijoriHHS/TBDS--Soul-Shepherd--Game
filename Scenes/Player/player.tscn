@@ -505,6 +505,7 @@ collision_layer = 4
 script = ExtResource("1_qr1w5")
 finite_state_machine = NodePath("FiniteStateMachine")
 hp = NodePath("Health")
+velocity2D = null
 
 [node name="Health" parent="." instance=ExtResource("2_ythyg")]
 

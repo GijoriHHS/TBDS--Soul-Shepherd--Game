@@ -23,10 +23,10 @@ buses/default_bus_layout="res://Resources/default_bus_layout.tres"
 
 DialogueManager="*res://Scripts/DialogueSystem/DialogueManager.gd"
 UtilsEffect="*res://Scripts/Autoloads/Utils_Effect.gd"
+AbilityData="*res://Scripts/Autoloads/AbilityData.gd"
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [global_group]
