@@ -26,7 +26,7 @@ func add_abilities_in_button () -> void:
 func ability_selected (index: int) -> void:
 	var selected_text = ability_options.get_item_text(index)
 	print(self, selected_text)
-	var selected_value: int = get_enum_from_name(selected_text)
+	var selected_value: int = AbilityData.get_value_from_ability_name(selected_text)
 	
 	if selected_value != -1:
 		selected_ability = selected_value
@@ -34,12 +34,6 @@ func ability_selected (index: int) -> void:
 	else:
 		print("Onbekende ability: ", selected_text)
 
-	
-func get_enum_from_name(ability_name: String) -> int:
-	for enum_name in AbilityData.ability_list.keys():
-		if enum_name == ability_name:
-			return AbilityData.ability_list[enum_name]
-	return -1
 
 func _on_button_pressed() -> void:
 	if not AbilityData.unlocked_abilities.has(selected_ability):

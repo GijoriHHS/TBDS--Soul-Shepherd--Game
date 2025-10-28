@@ -25,18 +25,14 @@ func load_unlocked_abilities() -> void:
 	var lines: Array = []
 	for ability in AbilityData.unlocked_abilities:
 		print(self, ability)
-		var abName = get_enum_key_from_value(ability)
+		var abName = AbilityData.get_ability_name_from_value(ability)
 		lines.append(abName)
 	ability_label.text = "\n".join(lines)
 
 func on_toggle_pressed() -> void:
 	ability_label.visible = not ability_label.visible
 
-func get_enum_key_from_value(value: int) -> String:
-	for key in AbilityData.ability_list.keys():
-		if AbilityData.ability_list[key] == value:
-			return key
-	return "Unknown"
+
 
 
 func _unhandled_input(event):
