@@ -8,6 +8,7 @@ var selected_ability
 func _ready() -> void:
 	add_abilities_in_button()
 	ability_options.item_selected.connect(ability_selected)
+	AbilityData.update_unlock_ability_buttons.connect(add_abilities_in_button)
 	ability_selected(0)
 	
 
@@ -20,12 +21,22 @@ func add_abilities_in_button () -> void:
 		print("is null")
 		return
 		
+	ability_options.clear()
+	
 	for ability in AbilityData.ability_list:
-		ability_options.add_item(ability)
+		ability = AbilityData.get_value_from_ability_name(ability)
+		
+		if ability not in AbilityData.unlocked_abilities:
+			ability = AbilityData.get_ability_name_from_value(ability)
+			ability_options.add_item(ability)
+			
+	if ability_options.get_item_count() > 0:
+		ability_options.selected = 0
+		ability_selected(0)
+		
 
 func ability_selected (index: int) -> void:
 	var selected_text = ability_options.get_item_text(index)
-	print(self, selected_text)
 	var selected_value: int = AbilityData.get_value_from_ability_name(selected_text)
 	
 	if selected_value != -1:
@@ -39,5 +50,11 @@ func _on_button_pressed() -> void:
 	if not AbilityData.unlocked_abilities.has(selected_ability):
 		AbilityData.unlocked_abilities.append(selected_ability)
 		AbilityData.update_debug_ability_label.emit()
+		#refresh_button_options()
+		add_abilities_in_button()
+		AbilityData.update_delete_ability_buttons.emit()
 	else:
 		print("Ability is al toegevoegd")
+		
+
+	

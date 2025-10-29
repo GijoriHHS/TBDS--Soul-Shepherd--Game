@@ -4,6 +4,8 @@ extends Node
 @onready var default_abilities: Array = [ability_list.Idling, ability_list.Walking, ability_list.Falling, ability_list.Attack1,ability_list.Airattack1, ability_list.Archery]
 
 signal update_debug_ability_label
+signal update_unlock_ability_buttons
+signal update_delete_ability_buttons
 
 enum ability_list {
 	Idling,
@@ -25,8 +27,7 @@ const INFO: Dictionary = {
 	},
 	ability_list.DoubleJump:{
 		"name": "Double Jump",
-		"description": "Press 'Jump' again in the air to Double Jump! \n \
-						Land on the ground to refresh the Double Jump"
+		"description": "Press 'Jump' again in the air to Double Jump! \nLand on the ground to refresh the Double Jump"
 	},
 	ability_list.WallJump: {
 		"name": "Wall Jump",
@@ -43,19 +44,18 @@ const INFO: Dictionary = {
 
 func _ready() -> void:
 	load_default_abilities()
+	#pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
 func load_default_abilities() -> void:
-	for ability in default_abilities:
+	for ability in ability_list:
 		ability = get_value_from_ability_name(ability)
-		if not unlocked_abilities.has(ability):
-			var index = get_value_from_ability_name(ability)
-			unlocked_abilities.append(index)
-		else:
-			print("Ability Already in")
+		if ability in default_abilities:
+			unlocked_abilities.append(ability)
+
 	
 func get_ability_name_from_value(value: int) -> String:
 	for key in AbilityData.ability_list.keys():
