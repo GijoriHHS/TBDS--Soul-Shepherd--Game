@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://dbawdw77kghcn" path="res://Scenes/UI/GameMenus/Pause_Menu.tscn" id="8_hnohd"]
 [ext_resource type="Shader" uid="uid://o6ancnl5jgcr" path="res://Shaders/Blink.gdshader" id="12_akeww"]
 [ext_resource type="PackedScene" uid="uid://ndkp1vfqmr4g" path="res://Scenes/Dialogue/DialogueUI.tscn" id="13_fvaf1"]
+[ext_resource type="PackedScene" uid="uid://b1wpf7mxi7ax8" path="res://Scenes/UI/Overlay/ability_debug_menu.tscn" id="9_mt3j2"]
+[ext_resource type="PackedScene" uid="uid://51slswqsb6ej" path="res://Scenes/Enemies/monk_enemy.tscn" id="12_mt3j2"]
+[ext_resource type="PackedScene" uid="uid://bdnyl8hwfggvd" path="res://Scenes/Enemies/husk_enemy.tscn" id="13_akeww"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7p6j4"]
 texture = ExtResource("2_pvlc2")
@@ -351,6 +354,14 @@ grow_vertical = 0
 text = "Dash Timer"
 horizontal_alignment = 2
 
+[node name="AbilityDebugMenu" parent="CanvasLayer" instance=ExtResource("9_mt3j2")]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+grow_vertical = 1
+
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("stateLabel", "hpLabel", "gameOverScreen")]
 unique_name_in_owner = true
 script = ExtResource("5_mt3j2")
@@ -451,6 +462,14 @@ position = Vector2(743, 378)
 
 [node name="DialogueUI" parent="." instance=ExtResource("13_fvaf1")]
 visible = false
+[node name="Enemy3" parent="." instance=ExtResource("12_mt3j2")]
+z_index = 4
+position = Vector2(253, 603)
+
+[node name="Enemy4" parent="." instance=ExtResource("13_akeww")]
+z_index = 4
+position = Vector2(92, 594)
+can_move = false
 
 [connection signal="body_entered" from="killzone" to="Player" method="_on_killzone_body_entered"]
 

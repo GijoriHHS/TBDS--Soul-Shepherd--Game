@@ -15,6 +15,8 @@ var paused = false
 @onready var game_manager: Node = %GameManager
 @onready var player_hitsfx: AudioStreamPlayer2D = $PlayerHit
 
+
+
 func _ready() -> void:
 	pass
 
