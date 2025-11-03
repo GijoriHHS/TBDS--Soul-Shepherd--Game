@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 signal player_hit
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D

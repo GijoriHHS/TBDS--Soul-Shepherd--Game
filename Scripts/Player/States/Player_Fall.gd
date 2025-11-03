@@ -13,7 +13,7 @@ var double_jumps_left : int
 @export var min_blur_strength : float =  0.001
 @export var max_duration : float =  0.38
 @export var min_duration : float =  0.03
-@export var max_landing_volume : float = 10
+@export var max_landing_volume : float = 25
 @export var min_landing_volume : float = -10
 @export var max_squash_str : float =  0.4
 @export var min_squash_str : float =  0.1
@@ -68,6 +68,6 @@ func _play_landing_effects() -> void:
 	
 	UtilsEffect.screenshake(level_camera, shake_amount, duration, 25.0)
 	UtilsEffect.apply_directional_blur(animated_sprite, duration, blur_amount, 45)
-	landing_sfx.volume_db = linear_to_db(volume)
+	landing_sfx.volume_db = volume
 	landing_sfx.play()
 	UtilsEffect.squash(sprite, squash_duration, squash_str)
