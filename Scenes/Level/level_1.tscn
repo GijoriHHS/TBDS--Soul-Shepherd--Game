@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://k0mron1debm7"]
+[gd_scene load_steps=23 format=3 uid="uid://k0mron1debm7"]
 
 [ext_resource type="PackedScene" uid="uid://c5ongupm07qh3" path="res://Scenes/Player/player.tscn" id="1_c458c"]
+[ext_resource type="PackedScene" uid="uid://cl45lm0hg20kf" path="res://Scenes/Items/soul.tscn" id="1_lrh7k"]
 [ext_resource type="Texture2D" uid="uid://jvylv1msq21o" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_pvlc2"]
 [ext_resource type="Script" uid="uid://b2b6rmyyluckx" path="res://Scripts/Player/General/camera_2d.gd" id="3_d68a7"]
 [ext_resource type="Texture2D" uid="uid://goes5l2sfyvw" path="res://Assets/Sprites/Tileset1.png" id="3_pvlc2"]
@@ -259,6 +260,29 @@ shader_parameter/blink_color = Color(1, 1, 1, 1)
 shader_parameter/blink_intensity = 0.0
 
 [node name="Level" type="Node2D"]
+
+[node name="Soul" parent="." instance=ExtResource("1_lrh7k")]
+z_index = 4
+position = Vector2(896, 580)
+scale = Vector2(0.765, 0.765)
+
+[node name="Soul2" parent="." instance=ExtResource("1_lrh7k")]
+z_index = 4
+position = Vector2(837, 577)
+scale = Vector2(0.765, 0.765)
+ability_name = 7
+
+[node name="Soul3" parent="." instance=ExtResource("1_lrh7k")]
+z_index = 4
+position = Vector2(1044, 576)
+scale = Vector2(0.765, 0.765)
+ability_name = 8
+
+[node name="Soul4" parent="." instance=ExtResource("1_lrh7k")]
+z_index = 4
+position = Vector2(1079, 576)
+scale = Vector2(0.765, 0.765)
+ability_name = 9
 
 [node name="Player" parent="." node_paths=PackedStringArray("pause_menu") instance=ExtResource("1_c458c")]
 position = Vector2(775, 531)
