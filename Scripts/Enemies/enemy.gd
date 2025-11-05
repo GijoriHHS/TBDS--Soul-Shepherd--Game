@@ -20,6 +20,8 @@ var player: CharacterBody2D = null
 @onready var ground: RayCast2D = $GroundCheck
 @onready var gravity: float = 300.0
 @export var can_move: bool = true
+@onready var raycastcheckright: RayCast2D = $RayCast2DRight
+@onready var raycastcheckleft: RayCast2D = $RayCast2DLeft
 var ground_collider
 
 
@@ -52,18 +54,30 @@ func _process(_delta: float) -> void:
 	if sprite.get_animation() != "Walking" and sprite.get_animation() != "Attack_shoot" and can_move:
 		sprite.play("Walking")
 	move_and_slide()
-	if playerInRange and can_move:
-		if (player.position.x - position.x) > 0:
-			dir = 1
-			flippedSprite = false
-			ground.position.x = groundPosOffset
-			_correct_sprite()
-		elif (player.position.x - position.x) < 0:
-			dir = -1
-			flippedSprite = true
-			ground.position.x = groundPosOffset * -1
-			_correct_sprite()
-
+	
+	if raycastcheckright.is_colliding() and raycastcheckright.get_collider() == CharacterBody2D and can_move:
+		dir = 1
+		flippedSprite = false
+		ground.position.x = groundPosOffset
+		_correct_sprite()
+		_on_area_2d_body_shape_entered()
+	if raycastcheckleft.is_colliding() and raycastcheckleft.get_collider() == CharacterBody2D and can_move:
+		dir = 1
+		flippedSprite = false
+		ground.position.x = groundPosOffset
+		_correct_sprite()
+		_on_area_2d_body_shape_entered()
+		
+	if !raycastcheckright.is_colliding() or raycastcheckright.get_collider() != CharacterBody2D:
+		_on_area_2d_body_shape_exited()
+	if !raycastcheckleft.is_colliding() or raycastcheckleft.get_collider() != CharacterBody2D:
+		_on_area_2d_body_shape_exited()
+	
+	if raycastcheckleft.get_collider() != null:
+		print(raycastcheckleft.get_collider())
+	if raycastcheckright.get_collider() != null:
+		print(raycastcheckright.get_collider())
+	
 
 func _on_health_hp_changed() -> void:
 	var tween = get_tree().create_tween()
@@ -90,12 +104,12 @@ func SetShader_BlinkIntensity(newValue: float):
 func _on_timer_timeout() -> void:
 	shoot()
 
-func _on_area_2d_body_shape_entered(body_rid: RID, body: CharacterBody2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_area_2d_body_shape_entered() -> void:
 	playerInRange = true
 	speed = 60
 	$in_range_shoot_timer.start()
 
-func _on_area_2d_body_shape_exited(body_rid: RID, body: CharacterBody2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_area_2d_body_shape_exited() -> void:
 	playerInRange = false
 	speed = 40
 	$in_range_shoot_timer.stop()
