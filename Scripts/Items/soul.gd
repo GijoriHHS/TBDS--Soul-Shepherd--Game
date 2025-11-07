@@ -1,4 +1,3 @@
-@tool
 extends Node2D
 
 @export var ability_name: AbilityData.ability_list = AbilityData.ability_list.Dash

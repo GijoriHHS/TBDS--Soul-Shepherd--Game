@@ -19,20 +19,26 @@ var walking_dust_particle: CPUParticles2D
 var jump_particle: GPUParticles2D
 var run_particle_timer : float
 
+var jump_hold_time: float = 0.0
+var is_jumping: bool = false
+
+@export var max_jump_hold: float = 0.3
 @export var run_particle_offset := 0.25
 @export var move_speed : int = 120
 @export var jump_force : int = 300
 @export var brake_force : int = 20
+@export var jumpsfx: AudioStreamPlayer2D
+
+@export_group("bools")
 @export var can_move : bool = true
 @export var can_jump : bool = true
 @export var in_anim : bool = false
 @export var is_gravity : bool = true
 @export var can_shoot : bool = false
 @export var airsStrafe : int = 20
-@export var jumpsfx: AudioStreamPlayer2D
 
 func _ready() -> void:
-	level_camera = get_tree().current_scene.get_node("Camera2D") 
+	level_camera = get_tree().current_scene.get_node("Camera2D")
 
 func Enter():
 	var parent = get_parent()
@@ -64,6 +70,9 @@ func movement(_delta:float):
 	if Input.is_action_just_pressed("Jump") and player.is_on_floor() and can_jump:
 		jumpsfx.playing = true
 		player.velocity.y = -jump_force
+		is_jumping = true
+		jump_hold_time = 0.0
+		
 		UtilsEffect.stretch(sprite, .2, .175)
 		jump_particle.emitting = false
 		jump_particle.restart()
@@ -72,7 +81,13 @@ func movement(_delta:float):
 		player.velocity += custom_gravity * _delta
 		if player.velocity.length() >= max_airglide_velocity and in_gliding:
 			player.velocity = player.velocity.normalized() * max_airglide_velocity
-		
+	
+	if is_jumping and Input.is_action_pressed("Jump") and jump_hold_time < max_jump_hold:
+		print("higher game")
+		jump_hold_time += _delta
+		player.velocity.y = lerp(player.velocity.y, -jump_force * 3.0, _delta * 10) # vloeiende versterking omhoog
+	if Input.is_action_just_released("Jump") or jump_hold_time >= max_jump_hold:
+		is_jumping = false
 	var direction := Input.get_axis("Left", "Right")
 	
 	if !in_anim and direction:

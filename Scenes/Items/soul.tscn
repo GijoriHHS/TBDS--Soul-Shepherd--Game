@@ -76,7 +76,7 @@ shape = SubResource("CapsuleShape2D_anvyd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_uvmf7")
-frame_progress = 0.8758428
+frame_progress = 0.15562123
 
 [node name="abilityNameLabel" type="Label" parent="."]
 anchors_preset = 8

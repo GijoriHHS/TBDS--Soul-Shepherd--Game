@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://c5ongupm07qh3"]
+[gd_scene load_steps=102 format=3 uid="uid://c5ongupm07qh3"]
 
 [ext_resource type="Script" uid="uid://bw7ujmm53vwsq" path="res://Scripts/Player/General/playermain.gd" id="1_qr1w5"]
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_ythyg"]
@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://75v06whe5qe4" path="res://Scripts/Player/States/Player_Bow.gd" id="17_ei2r2"]
 [ext_resource type="Script" uid="uid://cjb2yxf6iu2g1" path="res://Scripts/Player/States/Player_Wallslide.gd" id="18_j6uq4"]
 [ext_resource type="Script" uid="uid://dchumex8trwnx" path="res://Scripts/Player/General/arsenal.gd" id="19_h5u0x"]
-[ext_resource type="Script" path="res://Scripts/Player/States/Player_Walljump.gd" id="19_ythyg"]
+[ext_resource type="Script" uid="uid://b84gqgcp4m5db" path="res://Scripts/Player/States/Player_Walljump.gd" id="19_ythyg"]
 [ext_resource type="Script" uid="uid://bmir0r6qwki3l" path="res://Scripts/Player/States/Player_Doublejump.gd" id="20_bmb2s"]
 [ext_resource type="PackedScene" uid="uid://khbs6icahh14" path="res://Scenes/Weapons/MeleeWeapon.tscn" id="20_po18e"]
 [ext_resource type="AudioStream" uid="uid://c283ary013yu8" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/sounds/one pice jump sfx.wav" id="21_v37cr"]
@@ -587,8 +587,8 @@ holder = NodePath("../Holder")
 [node name="Idling" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
 script = ExtResource("10_2jnj1")
 dash_cooldown = NodePath("../../Timers/DashCooldown")
-can_move = false
 jumpsfx = NodePath("../../jumpsfx")
+can_move = false
 
 [node name="Walking" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
 script = ExtResource("11_enij7")
@@ -600,8 +600,8 @@ script = ExtResource("12_mwii3")
 dash_cooldown = NodePath("../../Timers/DashCooldown")
 landing_sfx = NodePath("../../LandingSFX")
 brake_force = 2
-can_jump = false
 jumpsfx = NodePath("../../jumpsfx")
+can_jump = false
 
 [node name="Attack1" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("13_2aanf")
@@ -619,8 +619,8 @@ script = ExtResource("15_ogmfp")
 dash_distance = 50.0
 dash_cooldown = NodePath("../../Timers/DashCooldown")
 move_speed = 400
-is_gravity = false
 jumpsfx = NodePath("../../jumpsfx")
+is_gravity = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FiniteStateMachine/Dash"]
 stream = ExtResource("10_bmb2s")
@@ -628,8 +628,8 @@ volume_db = -15.0
 
 [node name="Archery" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("17_ei2r2")
-can_shoot = true
 jumpsfx = NodePath("../../jumpsfx")
+can_shoot = true
 
 [node name="Wallsliding" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
 script = ExtResource("18_j6uq4")
@@ -658,8 +658,10 @@ jumpsfx = NodePath("../../jumpsfx")
 
 [node name="Timer" type="Timer" parent="FiniteStateMachine/Airgliding"]
 wait_time = 0.075
-[node name="Dialogue" type="Node" parent="FiniteStateMachine"]
+
+[node name="Dialogue" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("15_rukb4")
+jumpsfx = NodePath("../../jumpsfx")
 
 [node name="ShootPoint" type="Node2D" parent="."]
 position = Vector2(14, 0)

@@ -20,17 +20,10 @@ class_name Player_Fall
 
 var last_velocity_y : float = 0.0
 
-
-
-#@onready var jump_pressed_label: Label = $"../../../CanvasLayer/jump_pressed_label"
-#@onready var can_airglide_label: Label = $"../../../CanvasLayer/can_airglide_label"
-
 func Enter():
 	super()
-	#double_jumps_left = extra_jumps
 	sprite.play("Panda_Jump")
 	last_velocity_y = 0.0
-	#print("Double jumps left: ", jumps_left)
 
 func Update(_delta:float) -> void:
 	if player.velocity.y > 0:
