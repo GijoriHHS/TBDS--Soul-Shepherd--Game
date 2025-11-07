@@ -268,40 +268,35 @@ shader_parameter/blink_intensity = 0.0
 [node name="Soul" parent="." instance=ExtResource("1_lrh7k")]
 position = Vector2(928, 584)
 scale = Vector2(0.765, 0.765)
+ability_name = 10
 custom_sprite_frames = ExtResource("2_qs4fp")
-custom_sprite_scale = Vector2(0.225, 0.225)
 
 [node name="Soul2" parent="." instance=ExtResource("1_lrh7k")]
 position = Vector2(887.00006, 584)
 scale = Vector2(0.765, 0.765)
 ability_name = 7
-custom_sprite_scale = Vector2(0.225, 0.225)
 
 [node name="Soul3" parent="." instance=ExtResource("1_lrh7k")]
 position = Vector2(1027, 581)
 scale = Vector2(0.765, 0.765)
 ability_name = 8
 custom_sprite_frames = ExtResource("4_y7471")
-custom_sprite_scale = Vector2(0.225, 0.225)
 
 [node name="Soul4" parent="." instance=ExtResource("1_lrh7k")]
 position = Vector2(1076, 581)
 scale = Vector2(0.765, 0.765)
 ability_name = 9
-custom_sprite_scale = Vector2(0.225, 0.225)
 
 [node name="Soul5" parent="." instance=ExtResource("1_lrh7k")]
 position = Vector2(839, 584)
 scale = Vector2(0.765, 0.765)
 ability_name = 9
 custom_sprite_frames = ExtResource("4_qs4fp")
-custom_sprite_scale = Vector2(0.225, 0.225)
 
 [node name="Soul6" parent="." instance=ExtResource("1_lrh7k")]
 position = Vector2(742, 580)
 scale = Vector2(0.765, 0.765)
 custom_sprite_frames = ExtResource("3_uf8hr")
-custom_sprite_scale = Vector2(0.225, 0.225)
 
 [node name="Player" parent="." node_paths=PackedStringArray("pause_menu") instance=ExtResource("1_c458c")]
 position = Vector2(888, 370)
@@ -404,29 +399,6 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.0
 grow_vertical = 1
-
-[node name="Airglide_active" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-
-[node name="can_airglide_label" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -14.0
-offset_top = 26.0
-offset_right = 26.0
-offset_bottom = 49.0
-grow_horizontal = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("stateLabel", "hpLabel", "gameOverScreen")]
 unique_name_in_owner = true
