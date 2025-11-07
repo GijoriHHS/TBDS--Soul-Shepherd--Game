@@ -2,7 +2,9 @@ extends Node
 class_name PlayerState
 
 signal state_transition
+
 static var jumps_left: int = 1
+static var custom_gravity : Vector2 = Vector2(0,980)
 
 var player : CharacterBody2D
 var sprite : AnimatedSprite2D
@@ -62,7 +64,7 @@ func movement(_delta:float):
 		jump_particle.restart()
 		jump_particle.emitting = true
 	elif is_gravity:
-		player.velocity += player.get_gravity() * _delta
+		player.velocity += custom_gravity * _delta
 		
 	var direction := Input.get_axis("Left", "Right")
 	

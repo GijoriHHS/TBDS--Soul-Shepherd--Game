@@ -1,7 +1,15 @@
 extends Node
 
 @onready var unlocked_abilities: Array = []
-@onready var default_abilities: Array = [ability_list.Idling, ability_list.Walking, ability_list.Falling, ability_list.Attack1,ability_list.Airattack1, ability_list.Archery]
+@onready var default_abilities: Array = [
+	ability_list.Idling, 
+	ability_list.Walking, 
+	ability_list.Falling, 
+	ability_list.Attack1,
+	ability_list.Airattack1, 
+	ability_list.Archery,
+	ability_list.Airgliding
+]
 
 signal update_debug_ability_label
 signal update_unlock_ability_buttons
@@ -19,6 +27,7 @@ enum ability_list {
 	Wallsliding,
 	DoubleJump,
 	WallJump,
+	Airgliding,
 }
 
 const INFO: Dictionary = {

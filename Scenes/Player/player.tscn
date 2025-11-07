@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://c5ongupm07qh3"]
+[gd_scene load_steps=90 format=3 uid="uid://c5ongupm07qh3"]
 
 [ext_resource type="Script" uid="uid://bw7ujmm53vwsq" path="res://Scripts/Player/General/playermain.gd" id="1_qr1w5"]
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_ythyg"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://bmir0r6qwki3l" path="res://Scenes/Player/Player_Doublejump.gd" id="20_bmb2s"]
 [ext_resource type="PackedScene" uid="uid://khbs6icahh14" path="res://Scenes/Weapons/MeleeWeapon.tscn" id="20_po18e"]
 [ext_resource type="AudioStream" uid="uid://c283ary013yu8" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/sounds/one pice jump sfx.wav" id="21_v37cr"]
+[ext_resource type="Script" uid="uid://b6lde07wjscdy" path="res://Scripts/Player/States/Player_Airgliding.gd" id="22_4no11"]
 [ext_resource type="AudioStream" uid="uid://eb7gjbavvgb3" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/sounds/Landing sfx.wav" id="22_8d028"]
 [ext_resource type="AudioStream" uid="uid://bi3l61fpn0btr" path="res://Assets/Audio/SFX/Player/hitHurt.wav" id="23_0liok"]
 [ext_resource type="Texture2D" uid="uid://k3lrs06wxgfa" path="res://Assets/Textures/test smoke texture.png" id="24_gyc8k"]
@@ -564,6 +565,10 @@ one_shot = true
 
 [node name="Doublejump" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("20_bmb2s")
+jumpsfx = NodePath("../../jumpsfx")
+
+[node name="Airgliding" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
+script = ExtResource("22_4no11")
 jumpsfx = NodePath("../../jumpsfx")
 
 [node name="ShootPoint" type="Node2D" parent="."]
