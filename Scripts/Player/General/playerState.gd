@@ -5,8 +5,8 @@ signal state_transition
 
 static var jumps_left: int = 1
 static var custom_gravity : Vector2 = Vector2(0,980)
-static var max_airglide_velocity: int  = 500
 static var in_gliding: bool = false
+static var last_character_orientation: int = 0
 
 var player : CharacterBody2D
 var sprite : AnimatedSprite2D
@@ -19,20 +19,23 @@ var walking_dust_particle: CPUParticles2D
 var jump_particle: GPUParticles2D
 var run_particle_timer : float
 
+@export var max_airglide_velocity: int  = 180
 @export var run_particle_offset := 0.25
 @export var move_speed : int = 120
 @export var jump_force : int = 300
 @export var brake_force : int = 20
+@export var jumpsfx: AudioStreamPlayer2D
+
+@export_group("bools")
 @export var can_move : bool = true
 @export var can_jump : bool = true
 @export var in_anim : bool = false
 @export var is_gravity : bool = true
 @export var can_shoot : bool = false
 @export var airsStrafe : int = 20
-@export var jumpsfx: AudioStreamPlayer2D
 
 func _ready() -> void:
-	level_camera = get_tree().current_scene.get_node("Camera2D") 
+	level_camera = get_tree().current_scene.get_node("Camera2D")
 
 func Enter():
 	var parent = get_parent()
@@ -72,13 +75,16 @@ func movement(_delta:float):
 		player.velocity += custom_gravity * _delta
 		if player.velocity.length() >= max_airglide_velocity and in_gliding:
 			player.velocity = player.velocity.normalized() * max_airglide_velocity
-		
-	var direction := Input.get_axis("Left", "Right")
 	
-	if !in_anim and direction:
-		sprite.flip_h = direction < 0
-		weapon.position.x = -14 if direction < 0 else 14
-		shootPoint.position.x = -14 if direction < 0 else 14
+
+	var direction := Input.get_axis("Left", "Right")
+	if direction != 0:
+		last_character_orientation = direction
+	
+	if !in_anim and last_character_orientation:
+		sprite.flip_h = last_character_orientation < 0
+		weapon.position.x = -14 if last_character_orientation < 0 else 14
+		shootPoint.position.x = -14 if last_character_orientation < 0 else 14
 	
 	UtilsEffect.lean_run(sprite, _delta, direction)
 	if player.is_on_floor_only() and direction:
