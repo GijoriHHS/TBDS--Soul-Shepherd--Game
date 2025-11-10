@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d3ww40qkxw5eq" path="res://Scenes/Dialogue/dialogue_interact.tscn" id="11_p8kv5"]
 [ext_resource type="Resource" uid="uid://dgfnxjhqxasj7" path="res://Resources/Dialogue/FriendlyMonk1.tres" id="12_heeoc"]
 [ext_resource type="PackedScene" uid="uid://ndkp1vfqmr4g" path="res://Scenes/Dialogue/DialogueUI.tscn" id="13_heeoc"]
+[ext_resource type="Script" uid="uid://bpkjqkjnq8o6g" path="res://Scripts/Player/General/killzone.gd" id="11_jdr3a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aveji"]
 texture = ExtResource("1_o8n5m")
@@ -211,6 +212,8 @@ texture = ExtResource("1_o8n5m")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_aveji")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p8kv5"]
+
 [node name="Level" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("stateLabel", "hpLabel", "gameOverScreen")]
@@ -328,3 +331,12 @@ dialogue = ExtResource("12_heeoc")
 
 [node name="DialogueUI" parent="." instance=ExtResource("13_heeoc")]
 visible = false
+[node name="killzone" type="Area2D" parent="."]
+position = Vector2(730, 303)
+collision_mask = 4
+script = ExtResource("11_jdr3a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+shape = SubResource("WorldBoundaryShape2D_p8kv5")
+
+[connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
