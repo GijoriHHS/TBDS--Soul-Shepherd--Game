@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccdls2066rxv2"
-path="res://.godot/imported/panda_small_noHat.png-58092883261023cadd9f8c67e4196356.ctex"
+uid="uid://qopeprq1xhbw"
+path="res://.godot/imported/mountains_background.png-a389a9070baa02fa6529e2507bb091c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Panda/panda_small_noHat.png"
-dest_files=["res://.godot/imported/panda_small_noHat.png-58092883261023cadd9f8c67e4196356.ctex"]
+source_file="res://Assets/Background/mountains_background.png"
+dest_files=["res://.godot/imported/mountains_background.png-a389a9070baa02fa6529e2507bb091c5.ctex"]
 
 [params]
 
