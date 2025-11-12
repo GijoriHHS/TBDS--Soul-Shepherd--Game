@@ -87,6 +87,7 @@ func _on_health_hp_changed() -> void:
 	gpu_particles_2d.emitting = true
 
 func shoot():
+	speed = 0
 	sprite.play("Attack_shoot")
 	var instance = projectile.instantiate()
 	instance.sprite = sprite
