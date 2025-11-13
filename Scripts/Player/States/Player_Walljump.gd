@@ -14,6 +14,8 @@ var wall_jump_particle : GPUParticles2D
 func Enter():
 	super()
 	#sprite.play("WallSlide")
+	AbilityData.start_cooldown(AbilityData.ability_list.WallJump)
+
 	wallslide_dust_particle = player.get_node("WallslideDustParticle")
 	wall_jump_particle = player.get_node("WallJumpParticle")
 	

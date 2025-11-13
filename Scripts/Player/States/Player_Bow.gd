@@ -8,6 +8,7 @@ func Enter():
 	super()
 	in_anim = true
 	sprite.play("Panda_Throw")
+	AbilityData.start_cooldown(AbilityData.ability_list.Archery)
 func Exit():
 	shoot()
 
