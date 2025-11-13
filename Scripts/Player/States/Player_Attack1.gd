@@ -7,8 +7,10 @@ class_name Player_Attack1
 var done : bool
 func Enter():
 	super()
+	AbilityData.start_cooldown(AbilityData.ability_list.Attack1)
+
 	in_anim = true
-	sprite.play("Attack_old")
+	#sprite.play("Attack_old")
 	bamboo_stick.visible = true
 	player_cosmetics.visible = true
 	if last_character_orientation > 0:

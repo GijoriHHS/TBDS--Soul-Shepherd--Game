@@ -1,21 +1,25 @@
 extends Node
 
 @onready var unlocked_abilities: Array = []
-@onready var default_abilities: Array = [
-	ability_list.Idling, 
-	ability_list.Walking, 
-	ability_list.Falling, 
-	ability_list.Attack1,
-	ability_list.Airattack1, 
-	ability_list.Archery,
-	ability_list.Airgliding,
-  ability_list.Dialogue
-]
+
+#Recomment this for the real game to only unlock default abilities
+#@onready var default_abilities: Array = [
+	#ability_list.Idling, 
+	#ability_list.Walking, 
+	#ability_list.Falling, 
+	#ability_list.Attack1,
+	#ability_list.Airattack1, 
+	#ability_list.Archery,
+	#ability_list.Dialogue
+#]
+
+@onready var default_abilities: Array = ability_list.values()
 
 signal update_debug_ability_label
 signal update_unlock_ability_buttons
 signal update_delete_ability_buttons
-
+signal cooldown_started
+signal abilities_updated
 
 enum ability_list {
 	Idling,
@@ -23,14 +27,23 @@ enum ability_list {
 	Falling,
 	Attack1,
 	Airattack1,
-	Dash,
 	Archery,
+	Dash,
 	Wallsliding,
 	DoubleJump,
 	WallJump,
 	Airgliding,
 	Dialogue,
 }
+
+var cooldowns: Dictionary = {
+	ability_list.Dash: 1.0,
+	ability_list.Attack1: 0.5,
+	ability_list.Archery: 0.5,
+	ability_list.WallJump: 0.2
+}
+
+var active_cooldown_timers = {}
 
 const INFO: Dictionary = {
 	ability_list.Dash: {
@@ -68,7 +81,6 @@ func load_default_abilities() -> void:
 		if ability in default_abilities:
 			unlocked_abilities.append(ability)
 
-	
 func get_ability_name_from_value(value: int) -> String:
 	for key in AbilityData.ability_list.keys():
 		if AbilityData.ability_list[key] == value:
@@ -83,11 +95,29 @@ func get_value_from_ability_name(ability_name: String) -> int:
 	return -1
 	
 func add_collected_ability_add_to_list(ability: ability_list) -> void:
-	#var ability_value = get_value_from_ability_name(ability_name)
-	#if ability_value not in unlocked_abilities:
-		#unlocked_abilities.append(ability_value)
 	if ability not in unlocked_abilities:
 		unlocked_abilities.append(ability)
 		update_debug_ability_label.emit()
 		update_delete_ability_buttons.emit()
 		update_unlock_ability_buttons.emit()
+		abilities_updated.emit()
+		
+func start_cooldown(ability: int) -> void:
+	if ability not in unlocked_abilities:
+		push_warning("Ability niet unlocked: %s" % ability)
+		return
+	var duration = cooldowns.get(ability, 0)
+	if duration > 0:
+		active_cooldown_timers[ability] = duration
+		emit_signal("cooldown_started", ability)
+		
+func process_cooldowns(delta: float) -> void:
+	var to_be_removed = []
+	
+	for ability in active_cooldown_timers.keys():
+		active_cooldown_timers[ability] -= delta
+		if active_cooldown_timers[ability] <= 0:
+			to_be_removed.append(ability)
+			
+	for ability in to_be_removed:
+		active_cooldown_timers.erase(ability)

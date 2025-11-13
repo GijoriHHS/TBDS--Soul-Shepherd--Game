@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dhoq3sp0l7yob"]
+[gd_scene load_steps=26 format=3 uid="uid://dhoq3sp0l7yob"]
 
 [ext_resource type="Script" uid="uid://byn1je7flnjo3" path="res://Scripts/Central/game_manager.gd" id="1_d3t52"]
 [ext_resource type="Texture2D" uid="uid://dfdfu6o1j3apv" path="res://Assets/Sprites/Playtest1.png" id="1_o8n5m"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://brc3fv7pjl1bv" path="res://Scenes/UI/GameMenus/Options_Menu.tscn" id="6_um1rd"]
 [ext_resource type="PackedScene" uid="uid://b1wpf7mxi7ax8" path="res://Scenes/UI/Overlay/ability_debug_menu.tscn" id="7_jdr3a"]
 [ext_resource type="Script" uid="uid://b2b6rmyyluckx" path="res://Scripts/Player/General/camera_2d.gd" id="9_4tw43"]
+[ext_resource type="PackedScene" uid="uid://bdqpqswjpdvot" path="res://Scenes/UI/Overlay/ability_grid.tscn" id="9_yvfeb"]
 [ext_resource type="PackedScene" uid="uid://5jrffwap8tjk" path="res://Scenes/Background/parralax_background.tscn" id="10_um1rd"]
 [ext_resource type="Script" uid="uid://bpkjqkjnq8o6g" path="res://Scripts/Player/General/killzone.gd" id="11_jdr3a"]
 [ext_resource type="PackedScene" uid="uid://d3ww40qkxw5eq" path="res://Scenes/Dialogue/dialogue_interact.tscn" id="11_p8kv5"]
@@ -18,9 +19,9 @@
 [ext_resource type="SpriteFrames" uid="uid://diip4lnhcmedw" path="res://Resources/Wisps/Ghost_Wisp.tres" id="13_fc1sg"]
 [ext_resource type="PackedScene" uid="uid://ndkp1vfqmr4g" path="res://Scenes/Dialogue/DialogueUI.tscn" id="13_heeoc"]
 [ext_resource type="SpriteFrames" uid="uid://btqrxjedotkrq" path="res://Resources/Wisps/Water_Wisp.tres" id="14_dbpip"]
-[ext_resource type="SpriteFrames" uid="uid://dddu3nk2vhaqr" path="res://Resources/Wisps/Red_Devil_Wisp.tres" id="15_o1anj"]
 [ext_resource type="SpriteFrames" uid="uid://dg0vx2sffi824" path="res://Resources/Wisps/Green_Wisp.tres" id="16_2vemj"]
 [ext_resource type="PackedScene" uid="uid://c2qbrpracjsi5" path="res://Scenes/Enemies/orc.tscn" id="17_fc1sg"]
+[ext_resource type="SpriteFrames" uid="uid://ctjpgblgpxxr1" path="res://Resources/Wisps/Purple_Wisp.tres" id="18_4s5db"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aveji"]
 texture = ExtResource("1_o8n5m")
@@ -324,6 +325,13 @@ anchor_right = 0.5
 anchor_bottom = 0.0
 grow_vertical = 1
 
+[node name="AbilityGrid" parent="CanvasLayer" instance=ExtResource("9_yvfeb")]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+grow_horizontal = 1
+
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 zoom = Vector2(4, 4)
 script = ExtResource("9_4tw43")
@@ -361,10 +369,10 @@ ability_name = 10
 custom_sprite_frames = ExtResource("13_fc1sg")
 
 [node name="Soul2" parent="." instance=ExtResource("12_t8xxn")]
-position = Vector2(279, 149)
+position = Vector2(281, 148.00002)
 scale = Vector2(0.765, 0.765)
 ability_name = 7
-custom_sprite_frames = ExtResource("15_o1anj")
+custom_sprite_frames = ExtResource("18_4s5db")
 
 [node name="Soul3" parent="." instance=ExtResource("12_t8xxn")]
 position = Vector2(206.00003, 105)
@@ -387,48 +395,6 @@ z_index = 6
 position = Vector2(388, -11)
 
 [node name="Enemy" parent="Node2D" instance=ExtResource("17_fc1sg")]
-position = Vector2(112, 215)
-
-[node name="Node2D2" type="Node2D" parent="."]
-z_index = 6
-position = Vector2(804, -45)
-
-[node name="Enemy" parent="Node2D2" instance=ExtResource("17_fc1sg")]
-position = Vector2(112, 215)
-
-[node name="Node2D3" type="Node2D" parent="."]
-z_index = 6
-position = Vector2(1252, -28)
-
-[node name="Enemy" parent="Node2D3" instance=ExtResource("17_fc1sg")]
-position = Vector2(112, 215)
-
-[node name="Node2D4" type="Node2D" parent="."]
-z_index = 6
-position = Vector2(1794, -56)
-
-[node name="Enemy" parent="Node2D4" instance=ExtResource("17_fc1sg")]
-position = Vector2(112, 215)
-
-[node name="Node2D5" type="Node2D" parent="."]
-z_index = 6
-position = Vector2(2306, -91)
-
-[node name="Enemy" parent="Node2D5" instance=ExtResource("17_fc1sg")]
-position = Vector2(112, 215)
-
-[node name="Node2D6" type="Node2D" parent="."]
-z_index = 6
-position = Vector2(2805, -238)
-
-[node name="Enemy" parent="Node2D6" instance=ExtResource("17_fc1sg")]
-position = Vector2(112, 215)
-
-[node name="Node2D7" type="Node2D" parent="."]
-z_index = 6
-position = Vector2(3290, -201)
-
-[node name="Enemy" parent="Node2D7" instance=ExtResource("17_fc1sg")]
 position = Vector2(112, 215)
 
 [connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
