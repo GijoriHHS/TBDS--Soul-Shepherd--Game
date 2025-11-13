@@ -9,8 +9,6 @@ var active_indicators = {}
 
 func _ready():
 	ability_icons = load_ability_icons(icons_path)
-	print("ability icons: ", ability_icons)
-	print()
 	AbilityData.connect("abilities_updated", Callable(self, "_update_ui"))
 	AbilityData.connect("cooldown_started", Callable(self, "_on_cooldown_start"))
 	_update_ui()
@@ -52,21 +50,15 @@ func _update_ui() -> void:
 
 	for ability in AbilityData.unlocked_abilities:
 		if ability not in active_indicators:
-			print()
-			var ability_name = AbilityData.get_ability_name_from_value(ability)
-			print("ability name is: ", ability_name)
-			
 			var icon = ability_icons.get(ability, null)
 			if icon:
 				var indicator = cooldown_indicator_scene.instantiate()
 				grid_container.add_child(indicator)
 				indicator.set_icon(icon)
-				print("found icon for: ", ability_name)
 				active_indicators[ability] = indicator
 				indicator.set_cooldown_fraction(0)
 			else:
-				print("Geen icon voor ability:", ability_name)
-
+				pass
 func _on_cooldown_start(ability):
 	if ability in active_indicators:
 		active_indicators[ability].set_cooldown_fraction(1)

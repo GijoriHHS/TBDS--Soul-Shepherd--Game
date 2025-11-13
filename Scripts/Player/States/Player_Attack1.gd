@@ -7,6 +7,8 @@ class_name Player_Attack1
 var done : bool
 func Enter():
 	super()
+	AbilityData.start_cooldown(AbilityData.ability_list.Attack1)
+
 	in_anim = true
 	#sprite.play("Attack_old")
 	bamboo_stick.visible = true

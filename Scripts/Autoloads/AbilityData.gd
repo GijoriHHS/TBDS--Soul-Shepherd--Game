@@ -38,9 +38,9 @@ enum ability_list {
 
 var cooldowns: Dictionary = {
 	ability_list.Dash: 1.0,
-	ability_list.Attack1: 1.0,
-	ability_list.Archery: 1.0,
-	ability_list.WallJump: 1.0
+	ability_list.Attack1: 0.5,
+	ability_list.Archery: 0.5,
+	ability_list.WallJump: 0.2
 }
 
 var active_cooldown_timers = {}
@@ -115,7 +115,6 @@ func process_cooldowns(delta: float) -> void:
 	var to_be_removed = []
 	
 	for ability in active_cooldown_timers.keys():
-		print("cooldowns: ", get_ability_name_from_value(ability))
 		active_cooldown_timers[ability] -= delta
 		if active_cooldown_timers[ability] <= 0:
 			to_be_removed.append(ability)
