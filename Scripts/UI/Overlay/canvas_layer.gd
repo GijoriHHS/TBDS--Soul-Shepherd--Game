@@ -20,10 +20,10 @@ func _process(delta: float) -> void:
 	if is_timer_on:
 		dash_timer.visible = true
 		time_left -= delta
-		var mils = fmod(time_left, 1) * 1000
-		#var sec = fmod(time_left, 60)
-		#var time_show = "%02d: %03d" % [sec, mils]
-		var time_show = "0.%03d" % [mils]
+		var seconds = int(time_left)
+		var mils = int(fmod(time_left, 1) * 1000)
+
+		var time_show = "%d.%03d" % [seconds, mils]
 		dash_timer.text = time_show
 		
 		if time_left <= 0:

@@ -43,7 +43,8 @@ func ability_selected (index: int) -> void:
 		selected_ability = selected_value
 		
 	else:
-		print("Onbekende ability: ", selected_text)
+		pass
+		#print("Onbekende ability (unlock): ", selected_text)
 
 
 func _on_button_pressed() -> void:
