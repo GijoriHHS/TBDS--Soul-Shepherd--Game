@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba6ubp05v8fe7"
-path="res://.godot/imported/WallJump.png-714407cc268f27a1624f265b4b2ae33c.ctex"
+uid="uid://cay18govjn1lr"
+path="res://.godot/imported/DoubleJump.png-aca3508df3d7df09861e2c8b51ecb623.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Abilities/WallJump.png"
-dest_files=["res://.godot/imported/WallJump.png-714407cc268f27a1624f265b4b2ae33c.ctex"]
+source_file="res://Assets/Icons/Abilities/DoubleJump.png"
+dest_files=["res://.godot/imported/DoubleJump.png-aca3508df3d7df09861e2c8b51ecb623.ctex"]
 
 [params]
 
