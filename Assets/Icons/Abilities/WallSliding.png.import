@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba6ubp05v8fe7"
-path="res://.godot/imported/WallJump.png-714407cc268f27a1624f265b4b2ae33c.ctex"
+uid="uid://b5outom57nrv5"
+path="res://.godot/imported/WallSliding.png-86cd149ea6423701ce65698391799181.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Abilities/WallJump.png"
-dest_files=["res://.godot/imported/WallJump.png-714407cc268f27a1624f265b4b2ae33c.ctex"]
+source_file="res://Assets/Icons/Abilities/WallSliding.png"
+dest_files=["res://.godot/imported/WallSliding.png-86cd149ea6423701ce65698391799181.ctex"]
 
 [params]
 

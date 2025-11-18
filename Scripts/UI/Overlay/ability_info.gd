@@ -1,7 +1,7 @@
 extends Control
 @export var cooldown_indicator_scene: PackedScene = preload("res://Scenes/UI/Components/ability_icon_timers.tscn")
 @export var icons_path: String = "res://assets/icons/abilities"
-@onready var grid_container: GridContainer = $MarginContainer/VBoxContainer/GridContainer
+@onready var grid_container: GridContainer = $MarginContainer/VBoxContainer/CenterContainer/GridContainer
 
 var ability_icons = {}
 var active_indicators = {} 
@@ -49,5 +49,8 @@ func _update_ui() -> void:
 				indicator.set_icon(icon)
 				active_indicators[ability] = indicator
 				indicator.set_cooldown_fraction(0)
+				indicator.set_default_info_label_text(ability)
+				indicator.set_info_label_text(ability)
+				indicator.set_minimum_size()
 			else:
 				pass
