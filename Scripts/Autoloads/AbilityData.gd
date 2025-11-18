@@ -48,7 +48,7 @@ var active_cooldown_timers = {}
 const INFO: Dictionary = {
 	ability_list.Dash: {
 		"name": "Dash",
-		"description": "Press 'Shift' to Dash!"
+		"description": "Press 'Shift' to Dash forwards!"
 	},
 	ability_list.DoubleJump:{
 		"name": "Double Jump",
@@ -62,6 +62,11 @@ const INFO: Dictionary = {
 		"name": "Wall Slide",
 		"description": "Move into a wall while falling to slow down and Wall Slide!"
 	},
+	ability_list.Airgliding: {
+		"name": "Air Gliding",
+		"description": "Hold space in the air to glide down!"
+		
+	}
 }
 # Called when the node enters the scene tree for the first time.
 

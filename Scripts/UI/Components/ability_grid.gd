@@ -11,7 +11,6 @@ func _ready():
 	ability_icons = load_ability_icons(icons_path)
 	AbilityData.connect("abilities_updated", Callable(self, "_update_ui"))
 	AbilityData.connect("cooldown_started", Callable(self, "_on_cooldown_start"))
-	_update_ui()
 
 func _process(delta: float) -> void:
 	AbilityData.process_cooldowns(delta)
@@ -22,7 +21,8 @@ func _process(delta: float) -> void:
 			var max_cd = AbilityData.cooldowns.get(ability, 1)
 			fraction = timer / max_cd if max_cd > 0 else 0
 		active_indicators[ability].set_cooldown_fraction(fraction)
-
+	_update_ui()
+	
 func load_ability_icons(path: String) -> Dictionary:
 	var icons = {}
 	var dir = DirAccess.open(path)
@@ -44,11 +44,11 @@ func load_ability_icons(path: String) -> Dictionary:
 
 func _update_ui() -> void:
 	for ability in active_indicators.keys():
-		if ability not in AbilityData.unlocked_abilities:
+		if ability not in AbilityData.active_cooldown_timers.keys():
 			active_indicators[ability].queue_free()
 			active_indicators.erase(ability)
 
-	for ability in AbilityData.unlocked_abilities:
+	for ability in AbilityData.active_cooldown_timers.keys():
 		if ability not in active_indicators:
 			var icon = ability_icons.get(ability, null)
 			if icon:

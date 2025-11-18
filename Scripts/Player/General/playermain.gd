@@ -6,8 +6,6 @@ signal player_hit
 
 @export var finite_state_machine: FSM
 @export var hp : HP
-@export var pause_menu : Control
-var paused = false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
@@ -20,20 +18,12 @@ var paused = false
 func _ready() -> void:
 	pass
 
-func _input(event):
-	if paused:
-		return
-
 
 
 func _process(_delta: float) -> void:
 	#print(Engine.get_frames_per_second())
 
-	if Input.is_action_just_pressed("Pause"):
-		pauseMenu()
-		
-	if paused:
-		return
+
 		
 	velocity2D = velocity 
 	game_manager.updateLabel(finite_state_machine.current_state.name)
@@ -44,19 +34,6 @@ func _process(_delta: float) -> void:
 		collision_shape_2d.disabled = true
 		game_manager.updateGameOver()
 
-		
-func pauseMenu():
-	if paused:
-		pause_menu.hide()
-		get_tree().set_pause(false)
-	else:
-		pause_menu.show()
-		#Engine.time_scale = 0
-		get_tree().set_pause(true)
-	paused = !paused
-		
-
-	
 func SetShader_BlinkIntensity(newValue: float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
 
