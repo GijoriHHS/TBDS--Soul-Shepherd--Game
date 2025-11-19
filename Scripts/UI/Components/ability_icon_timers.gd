@@ -5,6 +5,7 @@ extends Control
 @onready var progress_overlay: TextureProgressBar = $HBoxContainer/AbilityIconButton/AbilityIcon/ProgressOverlay
 @onready var name_label: Label = $HBoxContainer/NameLabel
 @onready var info_label: Label = $HBoxContainer/IconButtonResizer/InfoLabel
+@onready var label_button: Button = $HBoxContainer/IconButtonResizer/LabelButton
 
 signal clicked_on_a_button
 
@@ -21,19 +22,15 @@ func set_icon(texture: Texture) -> void:
 func set_cooldown_fraction(fraction: float) -> void:
 	progress_overlay.value = fraction
 	
-
-func set_info_label_text(ability: int) -> void:
-	ability_description = AbilityData.INFO[ability]["description"]
-	#info_label.text = ability_description
 	
 func set_default_info_label_text(ability: int) -> void:
+	ability_description = AbilityData.INFO[ability]["description"]
 	ability_name = AbilityData.INFO[ability]["name"]
 	info_label.text = ability_name
 	
 func set_minimum_size() -> void:
 	var horizontal_size = info_label.get_size().x
-	print(horizontal_size)
-	custom_minimum_size.x = horizontal_size *3
+	custom_minimum_size.x = horizontal_size * 3
 
 
 func _on_ability_icon_button_pressed() -> void:
@@ -44,9 +41,14 @@ func _on_label_button_pressed() -> void:
 
 func on_button_pressed() -> void:
 	button_pressed = !button_pressed
+	var stylebox = label_button.get_theme_stylebox("normal").duplicate()
 	
 	if button_pressed:
 		info_label.text = ability_name
+		stylebox.bg_color.a = 100.0/255.0
+		label_button.add_theme_stylebox_override("normal", stylebox)
 	else:
 		info_label.text = ability_description
+		stylebox.bg_color.a = 0.8 
+		label_button.add_theme_stylebox_override("normal", stylebox)
 		
