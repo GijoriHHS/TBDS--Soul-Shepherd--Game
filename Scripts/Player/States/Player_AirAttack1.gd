@@ -8,6 +8,7 @@ func Enter():
 	super()
 	in_anim = true
 	sprite.play("Attack")
+	print("Did an air attack")
 	
 func Update(_delta:float):
 	if Input.get_axis("Left", "Right") == 0 and !in_anim:

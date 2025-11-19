@@ -6,6 +6,7 @@ extends Control
 @onready var name_label: Label = $HBoxContainer/NameLabel
 @onready var info_label: Label = $HBoxContainer/IconButtonResizer/InfoLabel
 @onready var label_button: Button = $HBoxContainer/IconButtonResizer/LabelButton
+@onready var ability_icon_button: Button = $HBoxContainer/AbilityIconButton
 
 signal clicked_on_a_button
 
@@ -47,8 +48,11 @@ func on_button_pressed() -> void:
 		info_label.text = ability_name
 		stylebox.bg_color.a = 100.0/255.0
 		label_button.add_theme_stylebox_override("normal", stylebox)
+		ability_icon_button.add_theme_stylebox_override("normal", stylebox)
 	else:
 		info_label.text = ability_description
 		stylebox.bg_color.a = 0.8 
 		label_button.add_theme_stylebox_override("normal", stylebox)
+		ability_icon_button.add_theme_stylebox_override("normal", stylebox)
+		
 		

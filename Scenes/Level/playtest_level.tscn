@@ -370,7 +370,6 @@ custom_sprite_frames = ExtResource("13_fc1sg")
 [node name="Soul2" parent="." instance=ExtResource("12_t8xxn")]
 position = Vector2(281, 148.00002)
 scale = Vector2(0.765, 0.765)
-ability_name = 7
 custom_sprite_frames = ExtResource("18_4s5db")
 
 [node name="Soul3" parent="." instance=ExtResource("12_t8xxn")]
