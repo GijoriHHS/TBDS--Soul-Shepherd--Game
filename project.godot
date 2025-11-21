@@ -24,6 +24,7 @@ buses/default_bus_layout="res://Resources/default_bus_layout.tres"
 DialogueManager="*res://Scripts/DialogueSystem/DialogueManager.gd"
 UtilsEffect="*res://Scripts/Autoloads/Utils_Effect.gd"
 AbilityData="*res://Scripts/Autoloads/AbilityData.gd"
+TextboxPopupManager="*res://Scripts/Autoloads/TextboxPopupManager.gd"
 
 [display]
 
