@@ -12,6 +12,8 @@ var is_dialogue_active := false
 var can_advance_line := false
 
 func start_dialogue(position: Vector2, lines: Array[String]):
+	print("received lines: ", lines)
+	print("recieved position %s" %position)
 	if is_dialogue_active:
 		return
 	
@@ -39,6 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		can_advance_line
 	):
 		text_box.queue_free()
+		print("closing box")
 		
 		current_line_index += 1
 		if current_line_index >= dialogue_lines.size():

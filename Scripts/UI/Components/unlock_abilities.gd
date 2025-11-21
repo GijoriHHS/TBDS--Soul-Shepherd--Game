@@ -36,8 +36,11 @@ func add_abilities_in_button () -> void:
 		
 
 func ability_selected (index: int) -> void:
-	var selected_text = ability_options.get_item_text(index)
-	var selected_value: int = AbilityData.get_value_from_ability_name(selected_text)
+	var selected_text
+	var selected_value
+	if ability_options.get_item_count() != 0:
+		selected_text = ability_options.get_item_text(index)
+		selected_value = AbilityData.get_value_from_ability_name(selected_text)
 	
 	if selected_value != -1:
 		selected_ability = selected_value

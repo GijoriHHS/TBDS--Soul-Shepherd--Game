@@ -12,8 +12,6 @@ var lines: Array[String]
 var vertical_message_offset: Vector2 = Vector2(0,0)
 
 func _ready() -> void:
-	lines.append("You've unlocked the %s Ability" % AbilityData.get_ability_name_from_value(ability))
-	lines.append(AbilityData.INFO[ability]["description"])
 	
 	if custom_sprite_frames:
 		$AnimatedSprite2D.sprite_frames = custom_sprite_frames
@@ -43,6 +41,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	if body is Player:
 		AbilityData.add_collected_ability_add_to_list(ability)
-		TextboxPopupManager.start_dialogue(global_position + vertical_message_offset, lines)
+		
+	lines.append("You've unlocked the %s Ability" % AbilityData.get_ability_name_from_value(ability))
+	
+	if ability in AbilityData.INFO.keys():
+		print( "%s zit erin " %ability)
+		lines.append(AbilityData.INFO[ability]["description"])
+		
+		TextboxPopupManager.start_dialogue(body.global_position + vertical_message_offset, lines)
 		self.queue_free()
 		

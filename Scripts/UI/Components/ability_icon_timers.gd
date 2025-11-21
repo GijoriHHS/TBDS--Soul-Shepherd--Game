@@ -3,7 +3,6 @@ extends Control
 
 @onready var ability_icon: TextureRect = $HBoxContainer/AbilityIconButton/AbilityIcon
 @onready var progress_overlay: TextureProgressBar = $HBoxContainer/AbilityIconButton/AbilityIcon/ProgressOverlay
-@onready var name_label: Label = $HBoxContainer/NameLabel
 @onready var info_label: Label = $HBoxContainer/IconButtonResizer/InfoLabel
 @onready var label_button: Button = $HBoxContainer/IconButtonResizer/LabelButton
 @onready var ability_icon_button: Button = $HBoxContainer/AbilityIconButton
