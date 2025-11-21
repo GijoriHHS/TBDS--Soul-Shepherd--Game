@@ -10,9 +10,14 @@ func take_damage(dmg : int):
 	hp -= dmg
 	hp_changed.emit()
 	if get_parent().is_in_group("Player") and hp <= 0:
-		player_death.playing =true
-		Engine.time_scale = .2
-		timer.start()
+		var player = get_parent()
+		var current_state = player.get_node("FiniteStateMachine")._get_current_state()
+		if current_state != player.get_node("FiniteStateMachine").get_node("Died"):
+			print(current_state, hp)
+			CheckPointManager._on_player_died(player)
+		#player_death.playing =true
+		#Engine.time_scale = .2
+		#timer.start()
 	elif(hp <= 0):
 		get_parent().queue_free()
 

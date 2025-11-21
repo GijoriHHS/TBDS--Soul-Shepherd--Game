@@ -16,7 +16,6 @@ var paused = false
 @onready var player_hitsfx: AudioStreamPlayer2D = $PlayerHit
 
 
-
 func _ready() -> void:
 	pass
 
@@ -37,8 +36,8 @@ func _process(_delta: float) -> void:
 		game_manager.updateGameOver()
 		collision_shape_2d.disabled = true
 	if hp.hp <= 0:
+		pass
 		#game_manager.updateGameOver() #Change this to reset player ui
-		CheckPointManager.respawn_player_to_checkpoint.emit(self)
 		#collision_shape_2d.disabled = true
 		
 
@@ -64,10 +63,11 @@ func _on_killzone_body_entered(body: Node2D) -> void:
 
 
 func _on_health_hp_changed() -> void:
-	if hp.hp >0:
-		player_hitsfx.playing =true
-	var tween = get_tree().create_tween()
-	tween.tween_method(SetShader_BlinkIntensity, 1.0, 0.0, 0.5)
-	
-	gpu_particles_2d.restart()
-	gpu_particles_2d.emitting = true
+	pass
+	#if hp.hp > 0:
+		#player_hitsfx.playing =true
+	#var tween = get_tree().create_tween()
+	#tween.tween_method(SetShader_BlinkIntensity, 1.0, 0.0, 0.5)
+	#
+	#gpu_particles_2d.restart()
+	#gpu_particles_2d.emitting = true

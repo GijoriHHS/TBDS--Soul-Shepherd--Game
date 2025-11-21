@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://k0mron1debm7"]
+[gd_scene load_steps=31 format=3 uid="uid://k0mron1debm7"]
 
 [ext_resource type="PackedScene" uid="uid://c5ongupm07qh3" path="res://Scenes/Player/player.tscn" id="1_c458c"]
 [ext_resource type="Script" uid="uid://dj20bsfxufi1e" path="res://Scripts/Level/level_1.gd" id="1_jrwi5"]
@@ -23,6 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://bdnyl8hwfggvd" path="res://Scenes/Enemies/husk_enemy.tscn" id="13_akeww"]
 [ext_resource type="PackedScene" uid="uid://ndkp1vfqmr4g" path="res://Scenes/Dialogue/DialogueUI.tscn" id="13_fvaf1"]
 [ext_resource type="PackedScene" uid="uid://c45jpc3kaflr4" path="res://Scenes/CheckPoints/CheckPoint.tscn" id="22_y7471"]
+[ext_resource type="PackedScene" uid="uid://bajjogst0v58d" path="res://Scenes/UI/Overlay/CheckPointRespawnUI.tscn" id="24_3juip"]
+[ext_resource type="Script" uid="uid://w2kplnyjgyql" path="res://Scenes/Level/start.gd" id="25_jn63p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7p6j4"]
 texture = ExtResource("2_pvlc2")
@@ -308,7 +310,7 @@ custom_sprite_frames = ExtResource("3_uf8hr")
 custom_sprite_scale = Vector2(0.225, 0.225)
 
 [node name="Player" parent="." node_paths=PackedStringArray("pause_menu") instance=ExtResource("1_c458c")]
-position = Vector2(775, 531)
+position = Vector2(655, 562)
 pause_menu = NodePath("../CanvasLayer/PauseMenu")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -409,6 +411,9 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.0
 grow_vertical = 1
+
+[node name="CheckPointRespawnUI" parent="CanvasLayer" instance=ExtResource("24_3juip")]
+visible = false
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("stateLabel", "hpLabel", "gameOverScreen")]
 unique_name_in_owner = true
@@ -524,20 +529,21 @@ position = Vector2(92, 594)
 z_index = 3
 
 [node name="Area2D" parent="CheckPoints" instance=ExtResource("22_y7471")]
-position = Vector2(151, 624)
+position = Vector2(723, 593)
 checkppoint_id = 1
 
 [node name="Area2D2" parent="CheckPoints" instance=ExtResource("22_y7471")]
-position = Vector2(648, 595)
+position = Vector2(811, 590)
 checkppoint_id = 2
 
 [node name="Area2D3" parent="CheckPoints" instance=ExtResource("22_y7471")]
-position = Vector2(1034, 384)
+position = Vector2(1035, 592)
 checkppoint_id = 3
 
 [node name="Start" type="Marker2D" parent="CheckPoints"]
 position = Vector2(60, 607)
+script = ExtResource("25_jn63p")
 
-[connection signal="body_entered" from="killzone" to="Player" method="_on_killzone_body_entered"]
+[connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
 
 [editable path="Enemy"]

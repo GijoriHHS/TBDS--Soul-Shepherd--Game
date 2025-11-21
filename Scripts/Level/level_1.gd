@@ -4,7 +4,7 @@ signal on_game_over
 
 func _ready() -> void:
 	on_game_over.connect(_on_game_over)
-	CheckPointManager.respawn_player_to_checkpoint.connect(_on_reset_player)
+	#CheckPointManager.player_died.connect(_on_reset_player)
 
 func _process(delta: float) -> void:
 	pass
