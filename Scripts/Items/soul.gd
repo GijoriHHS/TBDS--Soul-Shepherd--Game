@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var ability: AbilityData.ability_list = AbilityData.ability_list.Dash
+@export var ability: AbilityData.ability_list = AbilityData.ability_list.Airgliding
 @export var custom_sprite_frames: SpriteFrames
 
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
@@ -45,7 +45,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	lines.append("You've unlocked the %s Ability" % AbilityData.get_ability_name_from_value(ability))
 	
 	if ability in AbilityData.INFO.keys():
-		print( "%s zit erin " %ability)
 		lines.append(AbilityData.INFO[ability]["description"])
 		
 		TextboxPopupManager.start_dialogue(body.global_position + vertical_message_offset, lines)

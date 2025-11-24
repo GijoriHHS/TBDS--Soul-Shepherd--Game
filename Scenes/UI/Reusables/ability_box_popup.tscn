@@ -1,28 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://usgiuqnlphst"]
+[gd_scene load_steps=4 format=3 uid="uid://usgiuqnlphst"]
 
 [ext_resource type="Texture2D" uid="uid://fjtsfq4dln7c" path="res://Assets/Miscellaneous/Popup Box Sprite.png" id="1_514rq"]
 [ext_resource type="Script" uid="uid://bbr1m11gtihmn" path="res://Scripts/Reusables/ability_box_popup.gd" id="1_gpo42"]
 [ext_resource type="FontFile" uid="uid://bunt72veb2o54" path="res://Assets/Fonts/Silkscreen-Regular.ttf" id="3_masxj"]
-
-[sub_resource type="Animation" id="Animation_gpo42"]
-resource_name = "OpenPopupBox"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NinePatchRect:region_rect:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_masxj"]
-_data = {
-&"OpenPopupBox": SubResource("Animation_gpo42")
-}
 
 [node name="MarginContainer" type="MarginContainer"]
 z_index = 10
@@ -50,11 +30,6 @@ theme_override_fonts/font = ExtResource("3_masxj")
 theme_override_font_sizes/font_size = 8
 text = "example text"
 vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_masxj")
-}
 
 [node name="LetterDisplayTimer" type="Timer" parent="."]
 one_shot = true

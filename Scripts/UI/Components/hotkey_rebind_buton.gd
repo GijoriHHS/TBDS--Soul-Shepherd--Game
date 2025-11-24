@@ -35,15 +35,9 @@ func set_text_for_key() -> void:
 	
 	button.text = "%s" % action_keycode
 	
-	#var Event = InputMap.action_get_events(action_name)
-	#if Event is Array:
-		#Event = Event.front()
-	#if not Event == null:
-		#button.text = Event.as_text_physical_keycode()
 
 
 func _on_button_toggled(toggled_on: bool) -> void:
-	print(toggled_on)
 	if toggled_on:
 		button.text = "Press any key..."
 		set_process_unhandled_key_input(toggled_on)
