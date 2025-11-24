@@ -5,9 +5,7 @@ signal player_choice
 signal died_transition
 
 var unlocked_checkpoints : Array = []
-@export var prefer_closest_checkpoint = true
-
-#@onready var start_marker: Marker2D = get_tree().get_root()
+@export var perefernce_checkpoint = true
 
 @onready var unlocked_texture = preload("res://Assets/Sprites/checkpoint/Checkpoint Unlocked.png")
 @onready var player_stored : Player =  get_tree().current_scene.get_node("Player")
@@ -23,7 +21,8 @@ func register_start(Start: Marker2D):
 		"position": Start.global_position,
 		"node": Start
 	})
-
+	print(unlocked_checkpoints)
+	
 func checkpoint_unlocked(checkpoint: CheckPoint):
 	for unlocked_cp in unlocked_checkpoints:
 		if unlocked_cp["id"] == checkpoint.checkppoint_id:
@@ -56,18 +55,24 @@ func get_spawn_checkpoint(player: Player):
 	
 	var best_checkpoint = null
 	var closest_distance = INF
-	var highest_id = -10
+	var highest_id = -INF
+	var lowest_id = INF
 
 	for checkpoint in unlocked_checkpoints:
-		if prefer_closest_checkpoint:
+		if perefernce_checkpoint == "closest":
 			var distance = player.global_position.distance_to(checkpoint["position"])
 			if distance < closest_distance:
 				closest_distance = distance
 				best_checkpoint = checkpoint
-		else:
+		elif perefernce_checkpoint == "furthest":
 			if checkpoint["id"] > highest_id:
 				highest_id = checkpoint["id"]
 				best_checkpoint = checkpoint
+		elif perefernce_checkpoint == "begin":
+			if checkpoint["id"] < lowest_id:
+				lowest_id = checkpoint["id"]
+				best_checkpoint = checkpoint
+			
 	return best_checkpoint
 
 func _on_player_died(player: Player):
@@ -80,8 +85,8 @@ func _on_player_died(player: Player):
 	player.collision_shape_2d.disabled = true
 	player_died.emit()
 
-func _on_choice_made(closest: bool):
-	prefer_closest_checkpoint = closest
+func _on_choice_made(preference: String):
+	perefernce_checkpoint = preference
 	_respawn_player_to_checkpoint(player_stored)
 
 func _respawn_player_to_checkpoint(player: Player):

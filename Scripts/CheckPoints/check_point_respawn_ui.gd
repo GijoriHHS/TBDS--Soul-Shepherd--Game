@@ -9,13 +9,16 @@ func _on_player_died():
 	if not visible:
 		visible = true
 
-func _on_choice_made(closest: bool):
+func _on_choice_made(perefernce_checkpoint: String):
 	visible = false
-	CheckPointManager.player_choice.emit(closest)
+	CheckPointManager.player_choice.emit(perefernce_checkpoint)
+
+func _on_begin_pressed() -> void:
+	_on_choice_made("begin")
 
 func _on_closest_pressed() -> void:
-	_on_choice_made(true)
+	_on_choice_made("closest")
 
 
 func _on_furthest_pressed() -> void:
-	_on_choice_made(false)
+	_on_choice_made("furthest")

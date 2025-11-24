@@ -32,7 +32,7 @@ func set_default_info_label_text(ability: int) -> void:
 	
 func set_minimum_size() -> void:
 	var horizontal_size = info_label.get_size().x
-	print(horizontal_size)
+	#print(horizontal_size)
 	custom_minimum_size.x = horizontal_size *3
 
 
