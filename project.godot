@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="State Machine"
+config/name="Soul Shepherd Game"
 run/main_scene="uid://d0aadsv0uaoyf"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Assets/Icons/icon.svg"
