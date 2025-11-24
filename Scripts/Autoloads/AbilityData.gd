@@ -63,7 +63,8 @@ const INFO: Dictionary = {
 	},
 	ability_list.DoubleJump:{
 		"name": "Double Jump",
-		"description": "Press 'Jump' again in the air to Double Jump! \nLand on the ground to refresh the Double Jump"
+		"description": "Press 'Jump' again in the air to Double Jump! 
+		\n Land on the ground to refresh the Double Jump"
 	},
 	ability_list.WallJump: {
 		"name": "Wall Jump",

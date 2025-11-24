@@ -980,10 +980,6 @@ move_speed = 400
 jumpsfx = NodePath("../../jumpsfx")
 is_gravity = false
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FiniteStateMachine/Dash"]
-stream = ExtResource("10_bmb2s")
-volume_db = -15.0
-
 [node name="Archery" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("17_ei2r2")
 jumpsfx = NodePath("../../jumpsfx")
@@ -1040,8 +1036,6 @@ slots = [NodePath("Weapon"), NodePath("Bow"), NodePath("GrappleHook")]
 position = Vector2(14, 0)
 sprite = NodePath("../../AnimatedSprite2D")
 anim_player = NodePath("../../AnimationPlayer")
-animation_name_left = null
-animation_name_right = null
 frame_hit = Array[int]([0])
 damage = 10
 
@@ -1158,6 +1152,12 @@ process_material = SubResource("ParticleProcessMaterial_m0h3t")
 
 [node name="DashSmoke" parent="." instance=ExtResource("27_bmb2s")]
 
+[node name="Dashsfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_bmb2s")
+volume_db = -15.0
+bus = &"Sfx"
+
+[connection signal="player_hit" from="." to="Health" method="_on_player_player_hit"]
 [connection signal="hp_changed" from="Health" to="." method="_on_health_hp_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FiniteStateMachine/Attack1" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FiniteStateMachine/AirAttack1" method="_on_animated_sprite_2d_animation_finished"]

@@ -50,7 +50,6 @@ func _update_ui() -> void:
 				active_indicators[ability] = indicator
 				indicator.set_cooldown_fraction(0)
 				indicator.set_default_info_label_text(ability)
-				indicator.set_info_label_text(ability)
 				indicator.set_minimum_size()
 			else:
 				pass

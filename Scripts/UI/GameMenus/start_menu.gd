@@ -15,7 +15,6 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_start_pressed() -> void:
-	print("gedrukt op start")
 	get_tree().change_scene_to_file("res://Scenes/Level/playtest_level.tscn")
 	Engine.time_scale = 1
 
