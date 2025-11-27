@@ -61,7 +61,6 @@ func set_text_for_keyboard_key() -> void:
 				keycode_name = OS.get_keycode_string(action_event.physical_keycode)
 				
 		button.text = "%s %s" % [keycode_name, "" if not second_keycode_name else " or " + second_keycode_name]
-	
 
 
 func _on_button_toggled(toggled_on: bool) -> void:
@@ -87,52 +86,54 @@ func _on_button_toggled(toggled_on: bool) -> void:
 func set_can_rebind(can: bool)-> void:
 	if can:
 		can_rebind = can
+	set_process_input(can) 
+
+
+func _input(event: InputEvent) -> void:
+	if not can_rebind:
+		return
 		
-	set_process_unhandled_input(can)
-	set_process_unhandled_key_input(can)
+	if event is InputEventMouseMotion:
+		return  
+	
+	if event is InputEventJoypadMotion:
+		if abs(event.axis_value) < 0.8: 
+			return
+	
+	rebind_action_key(event)
+	button.button_pressed = false
+	controller_input_button.button_pressed = false
+	
+	get_viewport().set_input_as_handled()  
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if !(event is InputEventMouseMotion) and !(event is InputEventJoypadMotion):
-		rebind_action_key(event)
-		button.button_pressed = false
-		controller_input_button.button_pressed = false
-
-
-func rebind_action_key(event) -> void:
+func rebind_action_key(event: InputEvent) -> void:
 	var is_keyboard_or_mouse := event is InputEventKey or event is InputEventMouseButton
+	var is_joypad := event is InputEventJoypadButton or event is InputEventJoypadMotion
 
-	# Oude events van de action ophalen
 	var old_events = InputMap.action_get_events(action_name)
-
-	# Nieuwe lijst maken waarin we events bewaren die niet overschreven moeten worden
-	var filtered_events = []
+	var filtered_events: Array = []
 
 	for old_event in old_events:
 		var old_is_keyboard_or_mouse := old_event is InputEventKey or old_event is InputEventMouseButton
+		var old_is_joypad := old_event is InputEventJoypadButton or old_event is InputEventJoypadMotion
+		
+		if is_keyboard_or_mouse and not old_is_keyboard_or_mouse:
+			filtered_events.append(old_event) 
+		elif is_joypad and not old_is_joypad:
+			filtered_events.append(old_event)  
 
-		# Alleen events bewaren die niet hetzelfde type zijn als het nieuwe event
-		if old_is_keyboard_or_mouse != is_keyboard_or_mouse:
-			filtered_events.append(old_event)
-
-	# Eerst alle events van de actie verwijderen
 	InputMap.action_erase_events(action_name)
-
-	# De gefilterde events weer toevoegen (input events van het andere type blijven intact)
+	
 	for e in filtered_events:
 		InputMap.action_add_event(action_name, e)
-
-	# Nu het nieuwe event toevoegen (overschrijft alleen het corresponderende inputtype)
+	
 	InputMap.action_add_event(action_name, event)
-
-	# Input gereedmelding
+	
 	set_can_rebind(false)
-
-	# UI updaten met nieuwe bindings
 	set_text_for_keyboard_key()
 	set_text_for_controller_key()
 	set_action_name()
-
 
 
 func _on_controller_input_button_toggled(toggled_on: bool) -> void:
@@ -157,33 +158,25 @@ func _on_controller_input_button_toggled(toggled_on: bool) -> void:
 
 func set_text_for_controller_key() -> void:
 	var action_events = InputMap.action_get_events(action_name)
-	assert(InputMap.has_action(action_name), "There is no action called %s" % [action_name])
+	var joypad_button_text = ""
+	var joypad_motion_text = ""
 	
 	for action_event in action_events:
 		if action_event is InputEventJoypadButton:
 			var btn_index = action_event.button_index
-			var btn_name = get_joypad_button_string(btn_index)
-			controller_input_button.text = btn_name
-			break
-			
-	var joypadButton
-	var joypadMotion
-	
-	for action_event in action_events:
-		if action_event is InputEventMouseButton:
-			pass
-			
-		elif action_event is InputEventJoypadButton:
-			var btn_index = action_event.button_index
-			var btn_name = get_joypad_button_string(btn_index)
-			joypadButton = btn_name
+			joypad_button_text = get_joypad_button_string(btn_index)
 			
 		elif action_event is InputEventJoypadMotion:
-			joypadMotion = get_joypad_motion_name(action_event)
-		else:
-			pass
-				
-		controller_input_button.text = "%s %s" % [joypadButton, "" if not joypadMotion else " or " + joypadMotion]
+			joypad_motion_text = get_joypad_motion_name(action_event)
+	
+	if joypad_button_text and joypad_motion_text:
+		controller_input_button.text = "%s or %s" % [joypad_button_text, joypad_motion_text]
+	elif joypad_button_text:
+		controller_input_button.text = joypad_button_text
+	elif joypad_motion_text:
+		controller_input_button.text = joypad_motion_text
+	else:
+		controller_input_button.text = "No input bound"
 
 
 func get_joypad_button_string(button_index: int) -> String:
