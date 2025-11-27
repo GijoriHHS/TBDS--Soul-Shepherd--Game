@@ -44,7 +44,7 @@ func _process(_delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * _delta
 	else:
-		velocity.y = 0
+		velocity.y += gravity * _delta
 	
 	if old_hp != health.hp:
 		label.text = "HP: " + str(health.hp)
@@ -62,7 +62,6 @@ func _process(_delta: float) -> void:
 			velocity.x = speed * dir
 		else:
 			velocity.x = 0
-	
 	move_and_slide()
 	
 	if playerInRange:
