@@ -21,12 +21,16 @@ var walking_dust_particle: CPUParticles2D
 var jump_particle: GPUParticles2D
 var run_particle_timer : float
 
+@export var fall_speed_threshold := 500
+@export var max_fall_speed := 1500
+@export var max_fall_damage := 99
+
 @export var max_airglide_velocity: int  = 180
 @export var run_particle_offset := 0.25
 @export var move_speed : int = 120
 @export var jump_force : int = 300
 @export var brake_force : int = 20
-@export var air_brake_force : int = 2000
+@export var air_brake_force : int = 3000
 @export var jumpsfx: AudioStreamPlayer2D
 
 @export_group("bools")
@@ -63,6 +67,8 @@ func Phys_Update(_delta:float):
 	pass
 
 func movement(delta:float):
+	var fall_speed = abs(player.velocity.y)
+	
 	if player.is_on_floor():
 		custom_gravity = Vector2(0,980)
 		#jumps_left = 1
@@ -74,7 +80,10 @@ func movement(delta:float):
 		
 	elif is_gravity:
 		player.velocity += custom_gravity * delta
-		if player.velocity.length() >= max_airglide_velocity and in_gliding:
+		if player.velocity.y >= max_fall_speed:
+			player.velocity.y = max_fall_speed
+			
+		if player.velocity.y >= max_airglide_velocity and in_gliding:
 			player.velocity.y = move_toward(
 				player.velocity.y, player.velocity.normalized().y * max_airglide_velocity, air_brake_force * delta)
 	
@@ -108,6 +117,18 @@ func movement(delta:float):
 
 	player.move_and_slide()
 	
+	if player.is_on_floor():
+		custom_gravity = Vector2(0,980)
+		if fall_speed > fall_speed_threshold:
+			print("fall speed voor floor is: %s " %fall_speed)
+			
+			var damage_ratio = clamp((fall_speed - fall_speed_threshold) / (max_fall_speed - fall_speed_threshold), 0, 1)
+			var damage = damage_ratio * max_fall_damage  # max_damage definieer je ergens
+			var hp = player.get_node_or_null("Health")
+			if hp and hp.has_method("take_damage"):
+				print("taking fall damage: ", damage)
+				hp.take_damage(damage)
+				
 func get_item_by_name(node_name: String, array: Array[Node2D]):
 	var found = array.filter(func(n): return n.name == node_name)
 	if found.size() > 0:

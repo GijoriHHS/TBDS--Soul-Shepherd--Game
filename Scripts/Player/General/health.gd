@@ -1,12 +1,13 @@
 extends Node
 class_name HP
-@export var hp = 50
+@export var hp = 100
 @onready var timer: Timer = $Timer
 @onready var player_death: AudioStreamPlayer2D = $PlayerDeath
+@onready var bone_break: AudioStreamPlayer2D = $BoneBreak
 
 signal hp_changed
 
-func take_damage(dmg : int):
+func take_damage(dmg : int, sfx: AudioStreamPlayer2D = player_death):
 	hp -= dmg
 	hp_changed.emit()
 	if get_parent().is_in_group("Player") and hp <= 0:
@@ -14,7 +15,7 @@ func take_damage(dmg : int):
 		var current_state = player.get_node("FiniteStateMachine")._get_current_state()
 		if current_state != player.get_node("FiniteStateMachine").get_node("Died"):
 			CheckPointManager._on_player_died(player)
-		#player_death.playing =true
+		sfx.playing = true
 		#Engine.time_scale = .2
 		#timer.start()
 	elif(hp <= 0):
