@@ -1,6 +1,7 @@
 extends Node
 class_name PlayerState
 
+
 @warning_ignore("unused_signal")
 signal state_transition
 
@@ -10,6 +11,7 @@ static var in_gliding: bool = false
 static var last_character_orientation: int = 0
 static var can_double_jump: bool = false
 
+var hp: HP
 var player : CharacterBody2D
 var sprite : AnimatedSprite2D
 var weapon: Area2D
@@ -21,7 +23,7 @@ var walking_dust_particle: CPUParticles2D
 var jump_particle: GPUParticles2D
 var run_particle_timer : float
 
-@export var fall_speed_threshold := 500
+@export var fall_speed_threshold := 666
 @export var max_fall_speed := 1500
 @export var max_fall_damage := 99
 
@@ -43,7 +45,7 @@ var run_particle_timer : float
 
 func _ready() -> void:
 	level_camera = get_tree().current_scene.get_node("Camera2D")
-
+	
 func Enter():
 	var parent = get_parent()
 	sprite = parent.sprite2D
@@ -53,6 +55,11 @@ func Enter():
 	holder = parent.holder
 	walking_dust_particle = player.get_node("WalkingDustParticle")
 	jump_particle = player.get_node("JumpParticle")
+	
+	hp = player.get_node_or_null("Health")
+	if hp == null:
+		print("hp not found")
+		
 	for child in holder.get_children():
 		slots.append(child)
 	return
@@ -120,14 +127,12 @@ func movement(delta:float):
 	if player.is_on_floor():
 		custom_gravity = Vector2(0,980)
 		if fall_speed > fall_speed_threshold:
-			print("fall speed voor floor is: %s " %fall_speed)
-			
 			var damage_ratio = clamp((fall_speed - fall_speed_threshold) / (max_fall_speed - fall_speed_threshold), 0, 1)
-			var damage = damage_ratio * max_fall_damage  # max_damage definieer je ergens
-			var hp = player.get_node_or_null("Health")
+			var damage = damage_ratio * max_fall_damage 
+
 			if hp and hp.has_method("take_damage"):
 				print("taking fall damage: ", damage)
-				hp.take_damage(damage)
+				hp.take_damage(damage, hp.DamageType.FALL)
 				
 func get_item_by_name(node_name: String, array: Array[Node2D]):
 	var found = array.filter(func(n): return n.name == node_name)

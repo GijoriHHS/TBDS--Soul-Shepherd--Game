@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5iem585xfpb3" path="res://Scripts/Player/General/health.gd" id="1_cvdme"]
 [ext_resource type="AudioStream" uid="uid://p10un5uu3bbn" path="res://Assets/Audio/SFX/Player/PlayerDeath.wav" id="2_w8hlu"]
-[ext_resource type="AudioStream" uid="uid://sh46w4eotatx" path="res://Assets/Audio/SFX/Player/bone_break_sfx.mp3" id="3_w8hlu"]
+[ext_resource type="AudioStream" uid="uid://1tbvqq61yrsa" path="res://Assets/Audio/SFX/Player/bone_break_sfx.mp3" id="3_w8hlu"]
 
 [node name="Health" type="Node"]
 script = ExtResource("1_cvdme")
@@ -11,11 +11,12 @@ script = ExtResource("1_cvdme")
 wait_time = 0.6
 ignore_time_scale = true
 
-[node name="PlayerDeath" type="AudioStreamPlayer2D" parent="."]
+[node name="PlayerDeathSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_w8hlu")
 bus = &"Sfx"
 
-[node name="BoneBreak" type="AudioStreamPlayer2D" parent="."]
+[node name="BoneBreakSfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_w8hlu")
+bus = &"Sfx"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
