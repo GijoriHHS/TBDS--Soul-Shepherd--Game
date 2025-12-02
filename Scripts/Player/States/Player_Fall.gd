@@ -80,7 +80,6 @@ func Phys_Update(_delta:float) -> void:
 			
 		if Input.is_action_just_pressed("Jump") and jumps_left > 0 and \
 		AbilityData.unlocked_abilities.has(AbilityData.get_value_from_ability_name("Doublejump")):
-			print("going double jump")
 			state_transition.emit(self, "Doublejump")
 			
 	elif Input.is_action_just_pressed("Jump") and can_double_jump and jumps_left > 0 and \

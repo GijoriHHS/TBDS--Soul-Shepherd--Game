@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://c5ongupm07qh3"]
+[gd_scene load_steps=122 format=3 uid="uid://c5ongupm07qh3"]
 
 [ext_resource type="Script" uid="uid://bw7ujmm53vwsq" path="res://Scripts/Player/General/playermain.gd" id="1_qr1w5"]
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_ythyg"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://det0un1vj4110" path="res://Assets/Sprites/Panda/panda_small.png" id="8_fcwna"]
 [ext_resource type="Script" uid="uid://d2q03jes32ygw" path="res://Scripts/Central/FSM.gd" id="9_1agin"]
 [ext_resource type="Texture2D" uid="uid://bm18u1wsukfwa" path="res://Assets/Sprites/Panda/hat_throw.png" id="10_1agin"]
+[ext_resource type="Script" uid="uid://cfp24xkllqnau" path="res://Scripts/Player/General/trail.gd" id="10_2aanf"]
 [ext_resource type="Script" uid="uid://bob4e3bisalwi" path="res://Scripts/Player/States/Player_Idle.gd" id="10_2jnj1"]
 [ext_resource type="AudioStream" uid="uid://de7lye0f5nucm" path="res://Assets/Audio/SFX/Player/dash sfx.wav" id="10_bmb2s"]
 [ext_resource type="Texture2D" uid="uid://b0uxft6vb0ayw" path="res://Assets/Sprites/Bamboo_Parry.png" id="10_fcwna"]
@@ -444,6 +445,12 @@ animations = [{
 "name": &"new_animation",
 "speed": 5.0
 }]
+
+[sub_resource type="Curve" id="Curve_m6ahd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ogmfp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcwjh"]
 atlas = ExtResource("5_2jnj1")
@@ -903,6 +910,17 @@ sprite_frames = SubResource("SpriteFrames_gymyn")
 animation = &"Attack"
 autoplay = "Idle"
 frame = 1
+
+[node name="trail" type="Line2D" parent="AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0.9411765)
+top_level = true
+z_index = 20
+width_curve = SubResource("Curve_m6ahd")
+gradient = SubResource("Gradient_ogmfp")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("10_2aanf")
 
 [node name="Player_Cosmetics" type="AnimatedSprite2D" parent="."]
 visible = false
