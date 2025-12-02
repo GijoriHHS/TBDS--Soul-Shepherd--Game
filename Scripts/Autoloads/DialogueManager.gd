@@ -2,6 +2,7 @@ extends Node
 
 signal dialogue_started(dialogue_resource: DialogueResource)
 signal dialogue_ended
+signal dialogue_completely_ended
 signal text_displayed(text: String)
 signal choices_displayed(choices: Array[PlayerOption])
 signal dialogue_transition
@@ -10,7 +11,7 @@ var current_dialogue: DialogueResource
 var current_entry: DialogueEntry
 var current_line_index: int = 0
 var is_dialogue_active: bool = false
-@onready var finite_state_machine: FSM = $FiniteStateMachine
+#@onready var finite_state_machine: FSM = $FiniteStateMachine
 
 
 var dialogue_ui: Control
@@ -19,11 +20,11 @@ func start_dialogue(dialogue_resource: DialogueResource):
 	if is_dialogue_active:
 		return
 	
+	is_dialogue_active = true
 	dialogue_transition.emit()
 	current_dialogue = dialogue_resource
 	current_entry = dialogue_resource.dialogue_data
 	current_line_index = 0
-	is_dialogue_active = true
 	
 	dialogue_started.emit(dialogue_resource)
 	display_current_line()
@@ -57,6 +58,14 @@ func show_player_choices():
 	choices_displayed.emit(current_entry.player_options)
 
 func choose_option(option_index: int):
+	if not current_entry:
+		end_dialogue()
+		return
+	
+	if not current_entry["player_options"]:
+		end_dialogue()
+		return
+
 	if option_index >= current_entry.player_options.size():
 		return
 	
@@ -78,8 +87,10 @@ func process_rewards(rewards: Dictionary):
 		print("Reward given: ", reward_type, " = ", rewards[reward_type])
 
 func end_dialogue():
+	dialogue_ended.emit()
+	#Make sure to allow the tween to finish (.3 sec) then reset everything
+	await get_tree().create_timer(.5).timeout
 	is_dialogue_active = false
 	current_dialogue = null
 	current_entry = null
 	current_line_index = 0
-	dialogue_ended.emit()

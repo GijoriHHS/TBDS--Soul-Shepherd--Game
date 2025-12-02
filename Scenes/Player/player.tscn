@@ -1,15 +1,17 @@
-[gd_scene load_steps=101 format=3 uid="uid://c5ongupm07qh3"]
+[gd_scene load_steps=122 format=3 uid="uid://c5ongupm07qh3"]
 
 [ext_resource type="Script" uid="uid://bw7ujmm53vwsq" path="res://Scripts/Player/General/playermain.gd" id="1_qr1w5"]
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_ythyg"]
 [ext_resource type="Shader" uid="uid://o6ancnl5jgcr" path="res://Shaders/Blink.gdshader" id="3_bmb2s"]
 [ext_resource type="Texture2D" uid="uid://6x2g3xw7pdko" path="res://Assets/Tutorial Open Assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Attack01.png" id="4_ur3l4"]
 [ext_resource type="Texture2D" uid="uid://d0c5idgfq6ym8" path="res://Assets/Tutorial Open Assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier.png" id="5_2ahak"]
+[ext_resource type="Texture2D" uid="uid://xoc326mubg4p" path="res://Assets/Sprites/Panda/Panda_hat.png" id="5_2jnj1"]
 [ext_resource type="Texture2D" uid="uid://u5j8flnr1bdo" path="res://Assets/Tutorial Open Assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Walk.png" id="6_rukb4"]
-[ext_resource type="Texture2D" uid="uid://pkk1tn7ji5id" path="res://Assets/Sprites/Panda/No_Hat_Panda.png" id="8_1agin"]
+[ext_resource type="Texture2D" uid="uid://pkk1tn7ji5id" path="res://Assets/Sprites/Panda/panda_small_no_hat.png" id="8_1agin"]
 [ext_resource type="Texture2D" uid="uid://det0un1vj4110" path="res://Assets/Sprites/Panda/panda_small.png" id="8_fcwna"]
 [ext_resource type="Script" uid="uid://d2q03jes32ygw" path="res://Scripts/Central/FSM.gd" id="9_1agin"]
 [ext_resource type="Texture2D" uid="uid://bm18u1wsukfwa" path="res://Assets/Sprites/Panda/hat_throw.png" id="10_1agin"]
+[ext_resource type="Script" uid="uid://cfp24xkllqnau" path="res://Scripts/Player/General/trail.gd" id="10_2aanf"]
 [ext_resource type="Script" uid="uid://bob4e3bisalwi" path="res://Scripts/Player/States/Player_Idle.gd" id="10_2jnj1"]
 [ext_resource type="AudioStream" uid="uid://de7lye0f5nucm" path="res://Assets/Audio/SFX/Player/dash sfx.wav" id="10_bmb2s"]
 [ext_resource type="Texture2D" uid="uid://b0uxft6vb0ayw" path="res://Assets/Sprites/Bamboo_Parry.png" id="10_fcwna"]
@@ -22,26 +24,44 @@
 [ext_resource type="Script" uid="uid://75v06whe5qe4" path="res://Scripts/Player/States/Player_Bow.gd" id="17_ei2r2"]
 [ext_resource type="Script" uid="uid://cjb2yxf6iu2g1" path="res://Scripts/Player/States/Player_Wallslide.gd" id="18_j6uq4"]
 [ext_resource type="Script" uid="uid://dchumex8trwnx" path="res://Scripts/Player/General/arsenal.gd" id="19_h5u0x"]
-[ext_resource type="Script" path="res://Scripts/Player/States/Player_Walljump.gd" id="19_ythyg"]
+[ext_resource type="Script" uid="uid://b84gqgcp4m5db" path="res://Scripts/Player/States/Player_Walljump.gd" id="19_ythyg"]
 [ext_resource type="Script" uid="uid://bmir0r6qwki3l" path="res://Scripts/Player/States/Player_Doublejump.gd" id="20_bmb2s"]
 [ext_resource type="PackedScene" uid="uid://khbs6icahh14" path="res://Scenes/Weapons/MeleeWeapon.tscn" id="20_po18e"]
 [ext_resource type="AudioStream" uid="uid://c283ary013yu8" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/sounds/one pice jump sfx.wav" id="21_v37cr"]
 [ext_resource type="Script" uid="uid://b6lde07wjscdy" path="res://Scripts/Player/States/Player_Airgliding.gd" id="22_4no11"]
 [ext_resource type="AudioStream" uid="uid://eb7gjbavvgb3" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/sounds/Landing sfx.wav" id="22_8d028"]
-[ext_resource type="AudioStream" uid="uid://bi3l61fpn0btr" path="res://Assets/Audio/SFX/Player/hitHurt.wav" id="23_0liok"]
+[ext_resource type="Script" uid="uid://bobohqjtqaok3" path="res://Scripts/Player/States/Player_Died.gd" id="23_fcwna"]
 [ext_resource type="Texture2D" uid="uid://k3lrs06wxgfa" path="res://Assets/Textures/test smoke texture.png" id="24_gyc8k"]
 [ext_resource type="Texture2D" uid="uid://c8kqnetnxng1o" path="res://Assets/Textures/test smoke texture lower res.png" id="25_qflxp"]
+[ext_resource type="Script" uid="uid://wifadrvhtulr" path="res://Scripts/Player/States/Player_Grapple.gd" id="26_enij7"]
 [ext_resource type="PackedScene" uid="uid://cde6qxgsfv3w" path="res://Scenes/Effects/dash_lines.tscn" id="26_ythyg"]
 [ext_resource type="PackedScene" uid="uid://b3qfe4rcpk6rv" path="res://Scenes/Effects/dash_smoke.tscn" id="27_bmb2s"]
+[ext_resource type="AudioStream" uid="uid://bwgoippum6cgf" path="res://Assets/Audio/SFX/Player/Knife Sword Katana stab.mp3" id="30_2jnj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfmf2"]
-size = Vector2(12, 18)
+size = Vector2(12, 19)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b1ygp"]
 resource_local_to_scene = true
 shader = ExtResource("3_bmb2s")
 shader_parameter/blink_color = Color(1, 1, 1, 1)
 shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pk7v"]
+atlas = ExtResource("8_1agin")
+region = Rect2(288, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rblve"]
+atlas = ExtResource("8_1agin")
+region = Rect2(304, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn4qh"]
+atlas = ExtResource("8_1agin")
+region = Rect2(320, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5omc3"]
+atlas = ExtResource("8_1agin")
+region = Rect2(336, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_06tpx"]
 atlas = ExtResource("4_ur3l4")
@@ -183,6 +203,10 @@ region = Rect2(128, 0, 16, 16)
 atlas = ExtResource("8_fcwna")
 region = Rect2(144, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g0gh"]
+atlas = ExtResource("10_fcwna")
+region = Rect2(160, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_mtuoh"]
 atlas = ExtResource("5_2ahak")
 region = Rect2(0, 100, 100, 100)
@@ -219,6 +243,23 @@ region = Rect2(700, 100, 100, 100)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0pk7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rblve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn4qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5omc3")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_06tpx")
 }, {
 "duration": 1.0,
@@ -237,7 +278,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hnuln")
 }],
 "loop": false,
-"name": &"Attack",
+"name": &"Attack_old",
 "speed": 15.0
 }, {
 "frames": [{
@@ -364,6 +405,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8g0gh")
+}],
+"loop": true,
+"name": &"Single_bamboo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mtuoh")
 }, {
 "duration": 1.0,
@@ -389,6 +438,53 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_m6ahd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ogmfp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcwjh"]
+atlas = ExtResource("5_2jnj1")
+region = Rect2(272, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejxfg"]
+atlas = ExtResource("5_2jnj1")
+region = Rect2(288, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huyyu"]
+atlas = ExtResource("5_2jnj1")
+region = Rect2(304, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5eiq"]
+atlas = ExtResource("5_2jnj1")
+region = Rect2(320, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2jnj1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcwjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejxfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huyyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5eiq")
+}],
+"loop": true,
+"name": &"Panda_Hat_Attack",
 "speed": 10.0
 }]
 
@@ -482,6 +578,252 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Animation" id="Animation_2jnj1"]
+resource_name = "AttackAnimation_Left"
+length = 0.1333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bamboo_Stick:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.7853982, -1.5707964, -0.7853982, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bamboo_Stick:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(-2, 5), Vector2(-2, 5), Vector2(0, 5), Vector2(0, 4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player_Cosmetics:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Panda_Hat_Attack"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player_Cosmetics:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Player_Cosmetics:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1agin"]
+resource_name = "AttackAnimation_Right"
+length = 0.1333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bamboo_Stick:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7853982, 1.5707964, 0.7853982, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bamboo_Stick:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(2, 5), Vector2(2, 5), Vector2(0, 4.9999995), Vector2(0, 4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player_Cosmetics:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Panda_Hat_Attack"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player_Cosmetics:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Player_Cosmetics:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pcwjh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bamboo_Stick:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5707964]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bamboo_Stick:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player_Cosmetics:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Panda_Hat_Attack"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player_Cosmetics:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2jnj1"]
+_data = {
+&"AttackAnimation_Left": SubResource("Animation_2jnj1"),
+&"AttackAnimation_Right": SubResource("Animation_1agin"),
+&"RESET": SubResource("Animation_pcwjh")
+}
+
 [sub_resource type="Gradient" id="Gradient_pisgm"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
@@ -551,22 +893,42 @@ alpha_curve = SubResource("CurveTexture_sm0op")
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("finite_state_machine", "hp") groups=["Player"]]
 z_index = 5
 collision_layer = 4
+floor_constant_speed = true
 script = ExtResource("1_qr1w5")
 finite_state_machine = NodePath("FiniteStateMachine")
 hp = NodePath("Health")
-velocity2D = null
 
 [node name="Health" parent="." instance=ExtResource("2_ythyg")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_lfmf2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_b1ygp")
 sprite_frames = SubResource("SpriteFrames_gymyn")
-animation = &"Panda_Jump_No_Hat"
+animation = &"Attack"
 autoplay = "Idle"
+frame = 1
+
+[node name="trail" type="Line2D" parent="AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0.9411765)
+top_level = true
+z_index = 20
+width_curve = SubResource("Curve_m6ahd")
+gradient = SubResource("Gradient_ogmfp")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("10_2aanf")
+
+[node name="Player_Cosmetics" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_2jnj1")
+animation = &"Panda_Hat_Attack"
+frame = 1
 
 [node name="Bamboo-glide" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -574,6 +936,20 @@ position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_j6uq4")
 animation = &"Hat_glide"
 frame_progress = 0.39128947
+
+[node name="Bamboo_Stick" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, 5)
+rotation = 1.5707964
+texture = ExtResource("10_fcwna")
+region_enabled = true
+region_rect = Rect2(160, 0, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2jnj1")
+}
+speed_scale = 0.75
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "sprite2D", "player", "weapon", "shootPoint", "holder")]
 script = ExtResource("9_1agin")
@@ -587,8 +963,8 @@ holder = NodePath("../Holder")
 [node name="Idling" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
 script = ExtResource("10_2jnj1")
 dash_cooldown = NodePath("../../Timers/DashCooldown")
-can_move = false
 jumpsfx = NodePath("../../jumpsfx")
+can_move = false
 
 [node name="Walking" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
 script = ExtResource("11_enij7")
@@ -600,8 +976,8 @@ script = ExtResource("12_mwii3")
 dash_cooldown = NodePath("../../Timers/DashCooldown")
 landing_sfx = NodePath("../../LandingSFX")
 brake_force = 2
-can_jump = false
 jumpsfx = NodePath("../../jumpsfx")
+can_jump = false
 
 [node name="Attack1" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("13_2aanf")
@@ -619,17 +995,13 @@ script = ExtResource("15_ogmfp")
 dash_distance = 50.0
 dash_cooldown = NodePath("../../Timers/DashCooldown")
 move_speed = 400
-is_gravity = false
 jumpsfx = NodePath("../../jumpsfx")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FiniteStateMachine/Dash"]
-stream = ExtResource("10_bmb2s")
-volume_db = -15.0
+is_gravity = false
 
 [node name="Archery" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("17_ei2r2")
-can_shoot = true
 jumpsfx = NodePath("../../jumpsfx")
+can_shoot = true
 
 [node name="Wallsliding" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
 script = ExtResource("18_j6uq4")
@@ -658,24 +1030,34 @@ jumpsfx = NodePath("../../jumpsfx")
 
 [node name="Timer" type="Timer" parent="FiniteStateMachine/Airgliding"]
 wait_time = 0.075
-[node name="Dialogue" type="Node" parent="FiniteStateMachine"]
+
+[node name="Dialogue" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("15_rukb4")
+jumpsfx = NodePath("../../jumpsfx")
+
+[node name="Grapple" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("26_enij7")
+
+[node name="Died" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("23_fcwna")
 
 [node name="ShootPoint" type="Node2D" parent="."]
 position = Vector2(14, 0)
 
 [node name="Holder" type="Node2D" parent="." node_paths=PackedStringArray("slots")]
 script = ExtResource("19_h5u0x")
-slots = [NodePath("Weapon"), NodePath("Bow")]
+slots = [NodePath("Weapon"), NodePath("Bow"), NodePath("GrappleHook")]
 
 [node name="Bow" type="Area2D" parent="Holder"]
 
-[node name="Weapon" parent="Holder" node_paths=PackedStringArray("sprite") instance=ExtResource("20_po18e")]
+[node name="Weapon" parent="Holder" node_paths=PackedStringArray("sprite", "anim_player") instance=ExtResource("20_po18e")]
 position = Vector2(14, 0)
 sprite = NodePath("../../AnimatedSprite2D")
-animation_name = "Attack"
+anim_player = NodePath("../../AnimationPlayer")
 frame_hit = Array[int]([0])
 damage = 10
+
+[node name="GrappleHook" type="Area2D" parent="Holder"]
 
 [node name="Timers" type="Node" parent="."]
 
@@ -702,7 +1084,8 @@ volume_db = 5.0
 bus = &"Jump"
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("23_0liok")
+stream = ExtResource("30_2jnj1")
+volume_db = -5.0
 bus = &"Sfx"
 
 [node name="WalkingDustParticle" type="CPUParticles2D" parent="."]
@@ -787,8 +1170,14 @@ process_material = SubResource("ParticleProcessMaterial_m0h3t")
 
 [node name="DashSmoke" parent="." instance=ExtResource("27_bmb2s")]
 
+[node name="Dashsfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_bmb2s")
+volume_db = -15.0
+bus = &"Sfx"
+
 [connection signal="player_hit" from="." to="Health" method="_on_player_player_hit"]
 [connection signal="hp_changed" from="Health" to="." method="_on_health_hp_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FiniteStateMachine/Attack1" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FiniteStateMachine/AirAttack1" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FiniteStateMachine/Archery" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/Attack1" method="_on_animation_player_animation_finished"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdqpqswjpdvot"]
+
+[ext_resource type="Script" uid="uid://b7ox1ughg6kyp" path="res://Scripts/UI/Components/ability_grid.gd" id="1_8c67b"]
+
+[node name="AbilityGrid" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8c67b")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="GridContainer"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="GridContainer"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="ColorRect6" type="ColorRect" parent="GridContainer"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="GridContainer"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
