@@ -27,6 +27,8 @@ var player: CharacterBody2D = null
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_strength := 150.0
 var knockback_decay := 10.0
+@export var can_jump: bool
+var projectile_index_number: int
 
 
 var old_hp : int
@@ -50,7 +52,7 @@ func _process(_delta: float) -> void:
 		label.text = "HP: " + str(health.hp)
 		old_hp = health.hp
 		
-	if (is_on_wall() or !ground.is_colliding()) and can_move:
+	if (is_on_wall() or (!ground.is_colliding() and ground.enabled)) and can_move:
 		dir = dir * -1
 		_correct_sprite()
 
@@ -112,6 +114,8 @@ func shoot():
 		instance.spawnpos.x -= shotOffset
 		instance.speed = instance.speed * -1
 	main.add_child.call_deferred(instance)
+	projectile_index_number = instance.get_index()
+	print(projectile_index_number)
 	
 func SetShader_BlinkIntensity(newValue: float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
@@ -123,11 +127,13 @@ func _on_area_2d_body_shape_entered() -> void:
 	_correct_sprite()
 	playerInRange = true
 	speed = 60
+	can_jump = false
 	$in_range_shoot_timer.start()
 
 func _on_area_2d_body_shape_exited() -> void:
 	playerInRange = false
 	speed = 40
+	can_jump = true
 	$in_range_shoot_timer.stop()
 
 func _correct_sprite() -> void:
