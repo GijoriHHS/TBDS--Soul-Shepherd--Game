@@ -11,7 +11,7 @@ var paused = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	OptionsManager._set_focus_all_on_children(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,6 +47,9 @@ func start_timer() -> void:
 	is_timer_on = true
 	
 func pauseMenu():
+	if ability_info.visible:
+		AbilityInfoMenu()
+	
 	if paused:
 		pause_menu.hide()
 		get_tree().set_pause(false)
@@ -54,9 +57,13 @@ func pauseMenu():
 		pause_menu.show()
 		#Engine.time_scale = 0
 		get_tree().set_pause(true)
+	
 	paused = !paused
 	
 func AbilityInfoMenu():
+	if pause_menu.visible:
+		return
+		
 	if paused:
 		ability_info.hide()
 		get_tree().set_pause(false)
@@ -64,8 +71,9 @@ func AbilityInfoMenu():
 		ability_info.show()
 		#Engine.time_scale = 0
 		get_tree().set_pause(true)
-	paused = !paused	
-
+		
+	paused = !paused
+		
 func _input(_event):
 	if paused:
 		return

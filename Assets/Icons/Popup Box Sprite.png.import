@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba6ubp05v8fe7"
-path="res://.godot/imported/WallJump.png-714407cc268f27a1624f265b4b2ae33c.ctex"
+uid="uid://b3p0lrxb8rf1e"
+path="res://.godot/imported/Popup Box Sprite.png-2adb6f65847b56cff227b83998b56b3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Abilities/WallJump.png"
-dest_files=["res://.godot/imported/WallJump.png-714407cc268f27a1624f265b4b2ae33c.ctex"]
+source_file="res://Assets/Icons/Popup Box Sprite.png"
+dest_files=["res://.godot/imported/Popup Box Sprite.png-2adb6f65847b56cff227b83998b56b3c.ctex"]
 
 [params]
 

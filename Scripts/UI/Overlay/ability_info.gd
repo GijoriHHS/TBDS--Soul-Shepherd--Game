@@ -10,7 +10,7 @@ var active_indicators = {}
 func _ready():
 	ability_icons = load_ability_icons(icons_path)
 	AbilityData.connect("abilities_updated", Callable(self, "_update_ui"))
-
+	$MarginContainer/VBoxContainer/CenterContainer/GridContainer.grab_focus()
 func _process(_delta: float) -> void:
 	
 	_update_ui()
@@ -50,7 +50,6 @@ func _update_ui() -> void:
 				active_indicators[ability] = indicator
 				indicator.set_cooldown_fraction(0)
 				indicator.set_default_info_label_text(ability)
-				indicator.set_info_label_text(ability)
 				indicator.set_minimum_size()
 			else:
 				pass
