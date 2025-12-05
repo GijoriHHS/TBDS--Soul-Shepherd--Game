@@ -46,7 +46,10 @@ func _ready() -> void:
 
 func _create_raycasts() -> void:
 	var parent := player.get_node("Border_RayCasts")
-
+	
+	if not parent:
+		return 
+	
 	for child in parent.get_children():
 		if child is RayCast2D and child.name.begins_with("Ray"):
 			child.queue_free()
