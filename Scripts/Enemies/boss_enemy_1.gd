@@ -10,18 +10,12 @@ func _ready() -> void:
 	super._ready()
 	JumpTimer.start()
 
-func _on_area_2d_body_shape_entered() -> void:
-	super._on_area_2d_body_shape_entered()
-	speed = 40
-
-func _on_area_2d_body_shape_exited() -> void:
-	super._on_area_2d_body_shape_exited()
-	speed = 20
-
 func _process(_delta: float) -> void:
 	super._process(_delta)
 	if is_on_floor() and !ground.enabled:
 		ground.set_enabled(true)
+	if !playerInRange:
+		$HatSplitTimer.stop()
 
 func _on_jump_timer_timeout() -> void:
 	if can_jump:
@@ -36,5 +30,11 @@ func shoot():
 	$HatSplitTimer.start()
 
 func _on_hat_split_timer_timeout() -> void:
-	var duplicated_hat = main.find_child("Instances")
-	pass
+	if is_instance_valid(latest_hat):
+		var instance = projectile.instantiate()
+		instance.sprite = sprite
+		instance.spawnpos = latest_hat.global_position
+		instance.spawnpos.y = instance.spawnpos.y - 10
+		instance.velocity = latest_hat.velocity
+		main.add_child.call_deferred(instance)
+		await get_tree().process_frame

@@ -195,7 +195,8 @@ radius = 7.0
 collision_mask = 5
 script = ExtResource("1_v0yt4")
 shootPoint = NodePath("CollisionShape2D")
-speed = 20
+walk_speed = 20
+sprint_speed = 40
 
 [node name="Health" parent="." instance=ExtResource("2_rkuo3")]
 script = ExtResource("3_aesm5")

@@ -11,7 +11,9 @@ class_name enemy
 @onready var label: Label = $Label
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
-@export var speed : int = 40
+@export var walk_speed : int = 40
+@export var sprint_speed : int = 60
+var speed : int = 0
 @export var dir : int = 1
 var player: CharacterBody2D = null
 @export var playerInRange: bool = false
@@ -29,6 +31,7 @@ var knockback_strength := 150.0
 var knockback_decay := 10.0
 @export var can_jump: bool
 var projectile_index_number: int
+var latest_hat : Node
 
 
 var old_hp : int
@@ -39,8 +42,11 @@ func _ready() -> void:
 	if root and root.has_node("Player"):
 		player = root.get_node("Player")
 	Engine.max_fps = 60
+	speed = walk_speed
+	_on_animated_sprite_2d_animation_finished()
 
 func _process(_delta: float) -> void:
+	_correct_sprite()
 	ground.position.x = groundPosOffset if dir > 0 else groundPosOffset * -1
 		
 	if not is_on_floor():
@@ -54,7 +60,7 @@ func _process(_delta: float) -> void:
 		
 	if (is_on_wall() or (!ground.is_colliding() and ground.enabled)) and can_move:
 		dir = dir * -1
-		_correct_sprite()
+		#_correct_sprite()
 
 	if knockback_velocity.length() > 1:
 		velocity.x = knockback_velocity.x
@@ -73,10 +79,10 @@ func _process(_delta: float) -> void:
 			_on_area_2d_body_shape_exited()
 		elif raycastcheckleft.is_colliding():
 			dir = -1
-			_correct_sprite()
+			#_correct_sprite()
 		elif raycastcheckright.is_colliding():
 			dir = 1
-			_correct_sprite()
+			#_correct_sprite()
 	elif raycastcheckright.is_colliding() and raycastcheckright.get_collider().name == "Player" and can_move:
 		dir = 1
 		flippedSprite = false
@@ -105,17 +111,15 @@ func _on_health_hp_changed() -> void:
 func shoot():
 	speed = 0
 	sprite.play("Attack_shoot")
-	var instance = projectile.instantiate()
-	instance.sprite = sprite
-	instance.spawnpos = shootPoint.global_position
+	latest_hat = projectile.instantiate()
+	latest_hat.sprite = sprite
+	latest_hat.spawnpos = shootPoint.global_position
 	if dir == 1:
-		instance.spawnpos.x += shotOffset
+		latest_hat.spawnpos.x += shotOffset
 	elif dir == -1:
-		instance.spawnpos.x -= shotOffset
-		instance.speed = instance.speed * -1
-	main.add_child.call_deferred(instance)
-	projectile_index_number = instance.get_index()
-	print(projectile_index_number)
+		latest_hat.spawnpos.x -= shotOffset
+		latest_hat.speed = latest_hat.speed * -1
+	main.add_child.call_deferred(latest_hat)
 	
 func SetShader_BlinkIntensity(newValue: float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
@@ -124,15 +128,15 @@ func _on_timer_timeout() -> void:
 	shoot()
 
 func _on_area_2d_body_shape_entered() -> void:
-	_correct_sprite()
+	#_correct_sprite()
 	playerInRange = true
-	speed = 60
+	speed = sprint_speed
 	can_jump = false
 	$in_range_shoot_timer.start()
 
 func _on_area_2d_body_shape_exited() -> void:
 	playerInRange = false
-	speed = 40
+	speed = walk_speed
 	can_jump = true
 	$in_range_shoot_timer.stop()
 
