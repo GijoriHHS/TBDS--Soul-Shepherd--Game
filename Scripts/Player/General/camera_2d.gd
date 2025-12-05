@@ -6,13 +6,13 @@ class_name CameraMain
 @export var border_vertical_layer: int = 9
 @export var border_horizontal_layer: int = 10
 
-@export var follow_speed := 5.0
-@export var base_offset := Vector2(30, 0)
+@export var follow_speed := 7.0
+@export var base_offset := Vector2(30, 15)
 
 @export var horizontal_ray_distance := 80.0
 @export var vertical_ray_distance := 30.0
 
-@export var ground_cam_offset := -50.0
+@export var ground_cam_offset := -55.0
 @export var ceiling_cam_offset := 40.0
 
 @export var left_cam_offset := 60.0
