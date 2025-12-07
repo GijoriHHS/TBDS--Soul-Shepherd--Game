@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba6ubp05v8fe7"
-path="res://.godot/imported/walljump.png-dd503764dc365e4c3ceee8f81cb30e1b.ctex"
+uid="uid://dio3iqb0738xf"
+path="res://.godot/imported/green_ball.png-73c44076fc06778dcc7343089f09b762.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Abilities/walljump.png"
-dest_files=["res://.godot/imported/walljump.png-dd503764dc365e4c3ceee8f81cb30e1b.ctex"]
+source_file="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/sounds/green_ball.png"
+dest_files=["res://.godot/imported/green_ball.png-73c44076fc06778dcc7343089f09b762.ctex"]
 
 [params]
 
