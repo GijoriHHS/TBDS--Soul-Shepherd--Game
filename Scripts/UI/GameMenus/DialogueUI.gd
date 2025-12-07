@@ -14,6 +14,9 @@ class_name  DialogueScene
 @onready var continue_sfx = $Node/Continue
 @onready var choice_sfx = $Node/Choice
 
+var select_cooldown_timer: Timer
+var scroll_cooldown_timer: Timer
+
 var selected_choice_index: int = 0
 var choice_buttons: Array[Button] = []
 var is_animating_text := false
@@ -22,6 +25,7 @@ var current_text_index: int = 0
 var text_speed: float = 0.03
 var animate_text_timer: Timer = null
 var ending_tween = false
+var showing_choices : bool = false
 
 func _ready():
 	visible = false
@@ -41,6 +45,16 @@ func _ready():
 		animate_text_timer.wait_time = text_speed
 		add_child(animate_text_timer)
 		animate_text_timer.timeout.connect(_on_animate_text_timer)
+		
+	select_cooldown_timer = Timer.new()
+	select_cooldown_timer.wait_time = .4
+	select_cooldown_timer.one_shot = true
+	add_child(select_cooldown_timer)
+
+	scroll_cooldown_timer = Timer.new()
+	scroll_cooldown_timer.wait_time = 0.25
+	scroll_cooldown_timer.one_shot = true
+	add_child(scroll_cooldown_timer)
 
 func _on_dialogue_started(dialogue_resource: DialogueResource):
 	visible = true
@@ -95,15 +109,17 @@ func _on_animate_text_timer():
 func _on_choices_displayed(choices: Array[PlayerOption]):
 	show_choices(choices)
 	hide_continue_button()
-	update_choice_selection(selected_choice_index)
+	update_choice_selection()
 
 func hide_choices():
+	showing_choices = false
 	for button in choice_buttons:
 		button.visible = false
 	choice_buttons.clear()
 
 func show_choices(choices: Array[PlayerOption]):
 	hide_choices()
+	showing_choices = true
 	for i in range(choices.size()):
 		var button: Button
 		button = choice_template.duplicate() as Button
@@ -113,7 +129,7 @@ func show_choices(choices: Array[PlayerOption]):
 		
 		var number_label: Label = button.get_node("Number")
 		if number_label:
-			number_label.text = str(i + 1)
+			number_label.text = ""
 			number_label.position.y += -4
 		
 		if button.pressed.is_connected(_on_choice_selected):
@@ -124,6 +140,7 @@ func show_choices(choices: Array[PlayerOption]):
 func _on_choice_selected(choice_index: int):
 	choice_sfx.play()
 	DialogueManager.choose_option(choice_index)
+	selected_choice_index = 0
 
 func _on_continue():
 	continue_sfx.play()
@@ -142,7 +159,27 @@ func show_continue_button():
 func hide_continue_button():
 	continue_button.visible = false
 	continue_label.visible = false
+
+func update_choice_selection(): 
+	# Reset ALLE buttons naar normaal
+	if not choice_buttons.is_empty() and choice_buttons[selected_choice_index]:
+			choice_buttons[selected_choice_index].modulate = Color(0.432, 1.0, 0.401, 1.0)
+			choice_buttons[selected_choice_index].grab_focus()
+			choice_buttons[selected_choice_index].get_node("Number").text = "< >"
 	
+	for i in range(choice_buttons.size()):
+		if i == selected_choice_index: continue
+		var button = choice_buttons[i]
+		button.modulate = Color.WHITE 
+		button.get_node("Number").text = ""
+
+
+func can_select() -> bool:
+	return select_cooldown_timer.is_stopped()
+
+func can_scroll() -> bool:
+	return scroll_cooldown_timer.is_stopped()
+
 func _input(event):
 	if not DialogueManager.is_dialogue_active: 
 		return
@@ -150,58 +187,42 @@ func _input(event):
 		return
 
 	# CONTROLLER - X/A button voor continue/select
-	if event is InputEventJoypadButton and event.is_released and not event.is_echo():
-		print("Controller button: ", event.button_index)
-		
-		if event.button_index == JOY_BUTTON_A:  # X/A button
-			print("X/A pressed")
+	if event is InputEventJoypadButton and event.is_pressed and event.is_released() and not event.is_echo():
+		if not can_select(): return
+		if event.button_index == JOY_BUTTON_A:  
 			if continue_button.visible and continue_label.visible:
+				select_cooldown_timer.start()
 				_on_continue()
-			elif choices_container.visible and choice_buttons.size() > 0:
-				print("Selecting choice: ", selected_choice_index)
+			elif showing_choices and choice_buttons.size() > 0:
+				select_cooldown_timer.start()
 				_on_choice_selected(selected_choice_index)
-		
-		# D-pad scrollen
+
 		elif choices_container.visible and choice_buttons.size() > 0:
 			match event.button_index:
-				11:  # DPAD UP/LEFT
+				11:
+					if not can_scroll(): return
 					selected_choice_index = max(0, selected_choice_index - 1)
-					print("Controller left: ", selected_choice_index)
-					update_choice_selection(selected_choice_index)
-				12:  # DPAD DOWN/RIGHT
+					update_choice_selection()
+				12: 
+					if not can_scroll(): return
 					selected_choice_index = min(choice_buttons.size() - 1, selected_choice_index + 1)
-					print("Controller right: ", selected_choice_index)
-					update_choice_selection(selected_choice_index)
+					update_choice_selection()
 
-	# KEYBOARD - Arrow keys scrollen + Space select
-	if event is InputEventKey and event.is_released and not event.is_echo():
-		if event.keycode == Key.KEY_SPACE:  # Space = select/continue
+	if event is InputEventKey and event.is_pressed and event.is_released() and not event.is_echo():
+		if event.keycode == Key.KEY_SPACE:
+			if not can_select(): return
 			if continue_button.visible and continue_label.visible:
+				select_cooldown_timer.start()
 				_on_continue()
-			elif choices_container.visible and choice_buttons.size() > 0:
+			elif showing_choices and not continue_button.visible and choice_buttons.size() > 0:
+				select_cooldown_timer.start()
 				_on_choice_selected(selected_choice_index)
 		
 		elif choices_container.visible and choice_buttons.size() > 0:
 			match event.keycode:
-				Key.KEY_LEFT, Key.KEY_UP:
+				Key.KEY_LEFT, Key.KEY_A:
 					selected_choice_index = max(0, selected_choice_index - 1)
-					print("Keyboard left: ", selected_choice_index)
-					update_choice_selection(selected_choice_index)
-				Key.KEY_RIGHT, Key.KEY_DOWN:
+					update_choice_selection()
+				Key.KEY_RIGHT, Key.KEY_D:
 					selected_choice_index = min(choice_buttons.size() - 1, selected_choice_index + 1)
-					print("Keyboard right: ", selected_choice_index)
-					update_choice_selection(selected_choice_index)
-					
-func update_choice_selection(index: int):
-	selected_choice_index = index
-	
-	# Reset ALLE buttons naar normaal
-	for i in range(choice_buttons.size()):
-		var button = choice_buttons[i]
-		button.modulate = Color.WHITE  # Normaal wit
-	
-	# Witte highlight voor geselecteerde
-	if index < choice_buttons.size():
-		choice_buttons[index].modulate = Color(1.0, 1.0, 1.0, 1.0)  # Volledig wit
-		choice_buttons[index].grab_focus()
-		print("Highlighted choice: ", index)
+					update_choice_selection()
