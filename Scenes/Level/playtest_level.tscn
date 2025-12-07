@@ -607,6 +607,7 @@ stream = ExtResource("26_lxrd0")
 volume_db = -50.0
 autoplay = true
 bus = &"Music"
+
 [node name="ItemContainer" type="Node" parent="."]
 
 [connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]

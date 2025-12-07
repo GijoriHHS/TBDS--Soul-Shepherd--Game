@@ -199,14 +199,15 @@ func _input(event):
 
 		elif choices_container.visible and choice_buttons.size() > 0:
 			match event.button_index:
-				11:
-					if not can_scroll(): return
+				13:
 					selected_choice_index = max(0, selected_choice_index - 1)
 					update_choice_selection()
-				12: 
-					if not can_scroll(): return
+					print(selected_choice_index)
+				14: 
 					selected_choice_index = min(choice_buttons.size() - 1, selected_choice_index + 1)
 					update_choice_selection()
+					print(selected_choice_index)
+					
 
 	if event is InputEventKey and event.is_pressed and event.is_released() and not event.is_echo():
 		if event.keycode == Key.KEY_SPACE:
