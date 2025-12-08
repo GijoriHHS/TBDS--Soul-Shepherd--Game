@@ -621,7 +621,6 @@ position = Vector2(388, -11)
 position = Vector2(112, 225)
 
 [node name="GrapplingHookSystem" parent="." node_paths=PackedStringArray("player_ref") instance=ExtResource("24_agvfv")]
-visible = false
 player_ref = NodePath("../Player")
 
 [node name="Level1Music" type="AudioStreamPlayer" parent="."]
@@ -635,7 +634,7 @@ bus = &"Music"
 [node name="Souls" type="Node2D" parent="."]
 
 [node name="Soul" parent="Souls" instance=ExtResource("12_t8xxn")]
-position = Vector2(-47, -12)
+position = Vector2(-13, -9.000001)
 scale = Vector2(0.765, 0.765)
 ability = 9
 custom_sprite_frames = ExtResource("13_fc1sg")
