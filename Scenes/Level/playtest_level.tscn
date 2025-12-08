@@ -10,11 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://brc3fv7pjl1bv" path="res://Scenes/UI/GameMenus/Options_Menu.tscn" id="6_um1rd"]
 [ext_resource type="PackedScene" uid="uid://b1wpf7mxi7ax8" path="res://Scenes/UI/Overlay/ability_debug_menu.tscn" id="7_jdr3a"]
 [ext_resource type="Script" uid="uid://b2b6rmyyluckx" path="res://Scripts/Player/General/camera_2d.gd" id="9_4tw43"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/Overlay/ability_grid.tscn" id="9_yvfeb"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/GameMenus/Ability_Info.tscn" id="10_1cavx"]
+[ext_resource type="PackedScene" uid="uid://bdqpqswjpdvot" path="res://Scenes/UI/Overlay/ability_grid.tscn" id="9_yvfeb"]
+[ext_resource type="PackedScene" uid="uid://3nx8i28smrqo" path="res://Scenes/UI/GameMenus/Ability_Info.tscn" id="10_1cavx"]
 [ext_resource type="PackedScene" uid="uid://5jrffwap8tjk" path="res://Scenes/Background/parralax_background.tscn" id="10_um1rd"]
 [ext_resource type="Script" uid="uid://bpkjqkjnq8o6g" path="res://Scripts/Player/General/killzone.gd" id="11_jdr3a"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/Overlay/CheckPointRespawnUI.tscn" id="11_lxrd0"]
+[ext_resource type="PackedScene" uid="uid://bajjogst0v58d" path="res://Scenes/UI/Overlay/CheckPointRespawnUI.tscn" id="11_lxrd0"]
 [ext_resource type="PackedScene" uid="uid://d3ww40qkxw5eq" path="res://Scenes/Dialogue/dialogue_interact.tscn" id="11_p8kv5"]
 [ext_resource type="Resource" uid="uid://dgfnxjhqxasj7" path="res://Resources/Dialogue/FriendlyMonk1.tres" id="12_heeoc"]
 [ext_resource type="PackedScene" uid="uid://cl45lm0hg20kf" path="res://Scenes/Items/soul.tscn" id="12_t8xxn"]
@@ -29,7 +29,7 @@
 [ext_resource type="SpriteFrames" uid="uid://ctjpgblgpxxr1" path="res://Resources/Wisps/Purple_Wisp.tres" id="27_x4l1k"]
 [ext_resource type="SpriteFrames" uid="uid://dddu3nk2vhaqr" path="res://Resources/Wisps/Red_Devil_Wisp.tres" id="28_naxo4"]
 [ext_resource type="SpriteFrames" uid="uid://dg0vx2sffi824" path="res://Resources/Wisps/Green_Wisp.tres" id="30_tqefj"]
-[ext_resource type="Script" path="res://Scenes/Level/next_level.gd" id="31_naxo4"]
+[ext_resource type="Script" uid="uid://b7008awu7lly6" path="res://Scenes/Level/next_level.gd" id="31_naxo4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0qu4d"]
 texture = ExtResource("1_o8n5m")
@@ -456,7 +456,7 @@ layer_2/modulate = Color(1, 1, 1, 0)
 layer_2/tile_data = PackedInt32Array(983039, 458754, 11, 917503, 458754, 11, 851967, 458754, 11, 786431, 458754, 11, 720895, 458754, 11, 655359, 458754, 11, 589823, 458754, 11, 65535, 458754, 11, 131071, 458754, 11, 196607, 458754, 11, 262143, 458754, 11, 327679, 458754, 11, 393215, 458754, 11, 458751, 458754, 11, 524287, 458754, 11, -393013, 458754, 11, -327477, 458754, 11, -261941, 458754, 11, -196405, 458754, 11, -130869, 458754, 11, -65333, 458754, 11, 203, 458754, 11, 65739, 458754, 11, 131275, 458754, 11)
 
 [node name="Player" parent="." instance=ExtResource("2_aveji")]
-position = Vector2(-44, -52)
+position = Vector2(3038, -102)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -584,7 +584,7 @@ position = Vector2(3199, 50)
 checkppoint_id = 4
 
 [node name="Start" type="Marker2D" parent="CheckPoints"]
-position = Vector2(-72, -10)
+position = Vector2(-77, -12)
 script = ExtResource("26_0qu4d")
 
 [node name="ParralaxBackground" parent="." instance=ExtResource("10_um1rd")]
