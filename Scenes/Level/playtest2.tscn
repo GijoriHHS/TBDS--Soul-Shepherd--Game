@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://lahfkubql7vo"]
+[gd_scene load_steps=28 format=3 uid="uid://lahfkubql7vo"]
 
 [ext_resource type="Texture2D" uid="uid://dfdfu6o1j3apv" path="res://Assets/Sprites/Playtest1.png" id="1_f065d"]
 [ext_resource type="Texture2D" uid="uid://j1w6x4hpn3ou" path="res://Assets/Icons/Sung Chin Woo Icon.png" id="2_mu72t"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://bpkjqkjnq8o6g" path="res://Scripts/Player/General/killzone.gd" id="19_8j3de"]
 [ext_resource type="PackedScene" uid="uid://dpatdmh4s5sg5" path="res://Scenes/GrapplingSystem/GrapplingHookSystem.tscn" id="20_lt7pv"]
 [ext_resource type="AudioStream" uid="uid://cbtn1bitrynwi" path="res://Assets/Audio/Music/sample.wav" id="21_v2evn"]
+[ext_resource type="PackedScene" uid="uid://c45jpc3kaflr4" path="res://Scenes/CheckPoints/CheckPoint.tscn" id="22_pv5y6"]
+[ext_resource type="Script" uid="uid://dtfsguwdnfr7m" path="res://Scripts/CheckPoints/start.gd" id="23_qt3gr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j3um3"]
 texture = ExtResource("1_f065d")
@@ -593,6 +595,29 @@ stream = ExtResource("21_v2evn")
 volume_db = -50.0
 autoplay = true
 bus = &"Music"
+
+[node name="CheckPoints" type="Node2D" parent="."]
+z_index = 10
+
+[node name="Area2D" parent="CheckPoints" instance=ExtResource("22_pv5y6")]
+position = Vector2(396, 242)
+checkppoint_id = 1
+
+[node name="Area2D2" parent="CheckPoints" instance=ExtResource("22_pv5y6")]
+position = Vector2(828, 178)
+checkppoint_id = 2
+
+[node name="Area2D3" parent="CheckPoints" instance=ExtResource("22_pv5y6")]
+position = Vector2(2312, 34)
+checkppoint_id = 3
+
+[node name="Area2D4" parent="CheckPoints" instance=ExtResource("22_pv5y6")]
+position = Vector2(3245, 194)
+checkppoint_id = 4
+
+[node name="Start" type="Marker2D" parent="CheckPoints"]
+position = Vector2(14, 209)
+script = ExtResource("23_qt3gr")
 
 [connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
 
