@@ -16,8 +16,7 @@ signal player_hit
 @onready var ray_down: RayCast2D = $Ground
 
 func _ready() -> void:
-	floor_max_angle = 60.0
-	floor_snap_length = 7.0
+	pass
 
 
 func _process(delta: float) -> void:
