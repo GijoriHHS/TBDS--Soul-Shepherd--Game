@@ -664,13 +664,6 @@ scale = Vector2(0.765, 0.765)
 ability = 8
 custom_sprite_frames = ExtResource("28_naxo4")
 
-[node name="Soul5" parent="Souls" instance=ExtResource("12_t8xxn")]
-visible = false
-position = Vector2(661, 181)
-scale = Vector2(0.765, 0.765)
-ability = 12
-custom_sprite_frames = ExtResource("13_fc1sg")
-
 [node name="Soul3" parent="Souls" instance=ExtResource("12_t8xxn")]
 position = Vector2(252, 98)
 scale = Vector2(0.765, 0.765)
