@@ -585,7 +585,7 @@ position = Vector2(3199, 50)
 checkppoint_id = 4
 
 [node name="Start" type="Marker2D" parent="CheckPoints"]
-position = Vector2(14, 209)
+position = Vector2(-72, -10)
 script = ExtResource("26_0qu4d")
 
 [node name="ParralaxBackground" parent="." instance=ExtResource("10_um1rd")]
