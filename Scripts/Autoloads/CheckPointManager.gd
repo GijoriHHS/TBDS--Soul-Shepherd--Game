@@ -26,6 +26,8 @@ func register_start(Start: Marker2D):
 		"node": Start
 	})
 	
+	print("Start: ", unlocked_checkpoints)
+	
 func checkpoint_unlocked(checkpoint: CheckPoint):
 	for unlocked_cp in unlocked_checkpoints:
 		if unlocked_cp["id"] == checkpoint.checkppoint_id:
@@ -38,6 +40,10 @@ func checkpoint_unlocked(checkpoint: CheckPoint):
 	})
 	
 	play_unlock_effects(checkpoint)
+
+func reset_checkpoints():
+	unlocked_checkpoints.clear()
+	print("Checkpoints Reset: ", unlocked_checkpoints)
 
 func play_unlock_effects(checkpoint: CheckPoint):
 	var Sprite2D_node : Sprite2D = checkpoint.get_node("Sprite2D")
