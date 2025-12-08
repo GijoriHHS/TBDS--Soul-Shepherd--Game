@@ -5,8 +5,7 @@ class_name PlayerState
 @warning_ignore("unused_signal")
 signal state_transition
 
-const max_double_jumps: int = 2
-static var jumps_left: int = max_double_jumps
+static var jumps_left: int = 1
 static var custom_gravity : Vector2 = Vector2(0,980)
 static var in_gliding: bool = false
 static var last_character_orientation: int = 0
@@ -31,7 +30,7 @@ var run_particle_timer : float
 @export var max_airglide_velocity: int  = 180
 @export var run_particle_offset := 0.25
 @export var move_speed : int = 120
-@export var jump_force : int = 250
+@export var jump_force : int = 300
 @export var brake_force : int = 20
 @export var air_brake_force : int = 3000
 @export var jumpsfx: AudioStreamPlayer2D
@@ -44,7 +43,6 @@ var run_particle_timer : float
 @export var can_shoot : bool = false
 @export var airsStrafe : int = 20
 
-var jump_ui : Node2D
 func _ready() -> void:
 	level_camera = get_tree().current_scene.get_node("Camera2D")
 	
@@ -58,7 +56,6 @@ func Enter():
 	walking_dust_particle = player.get_node("WalkingDustParticle")
 	jump_particle = player.get_node("JumpParticle")
 	
-	jump_ui = player.get_node_or_null("JumpUI")
 	hp = player.get_node_or_null("Health")
 	if hp == null:
 		print("hp not found")
@@ -78,7 +75,6 @@ func Phys_Update(_delta:float):
 
 func movement(delta:float):
 	var fall_speed = abs(player.velocity.y)
-	
 	
 	if player.is_on_floor():
 		custom_gravity = Vector2(0,980)
@@ -108,10 +104,7 @@ func movement(delta:float):
 		sprite.flip_h = last_character_orientation < 0
 		weapon.position.x = -14 if last_character_orientation < 0 else 14
 		shootPoint.position.x = -14 if last_character_orientation < 0 else 14
-		
-		if jump_ui:
-			jump_ui.set_side(last_character_orientation > 0)
-		
+	
 	@warning_ignore("narrowing_conversion")
 	UtilsEffect.lean_run(sprite, delta, direction)
 	if player.is_on_floor_only() and direction:
