@@ -4,8 +4,8 @@ class_name Player_Fall
 @onready var ghs : GHS = get_tree().get_root().get_node("Level").find_child("GrapplingHookSystem")
 @export var dash_cooldown : Timer
 @export var landing_sfx : AudioStreamPlayer2D
-@export var extra_hold_jump: float = 6.7
-@export var max_jump_hold_time: float = 1
+@export var extra_hold_jump: float = 6.3
+@export var max_jump_hold_time: float = 1.5
 
 @export_group("fx")
 @export var max_landing_shake : float = 3
@@ -41,7 +41,7 @@ func Update(_delta:float) -> void:
 
 	if player.is_on_floor():
 		_play_landing_effects()
-		jumps_left = 1
+		jumps_left = max_double_jumps
 		can_double_jump = false
 		state_transition.emit(self, "Idling")
 
