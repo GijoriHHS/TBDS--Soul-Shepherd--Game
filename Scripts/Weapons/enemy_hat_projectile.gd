@@ -34,12 +34,11 @@ func _physics_process(_delta: float) -> void:
 func _on_body_entered(collision: KinematicCollision2D) -> void:
 	var coll = collision.get_collider()
 	var hp = coll.get_node_or_null("Health")
-	print("coll layer " + str(coll.collision_layer))
 	if hp and hp.has_method("take_damage") and coll.collision_layer & (1<<0):
 		print("Body Working_code :D")
 		hp.take_damage(10)
 		collision_mask = (0<<0) | (1<<2)
-		despawn.start()
+		queue_free()
 		direction = -direction
 	else:
 		queue_free()

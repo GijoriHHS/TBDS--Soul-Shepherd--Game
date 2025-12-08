@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bu78o5fps1jsf"]
+[gd_scene load_steps=37 format=3 uid="uid://bu78o5fps1jsf"]
 
 [ext_resource type="Script" uid="uid://cuyrxjtu26bru" path="res://Scripts/Enemies/boss_enemy_1.gd" id="1_v0yt4"]
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_rkuo3"]
@@ -68,6 +68,14 @@ region = Rect2(64, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hpfy1"]
 atlas = ExtResource("5_v0yt4")
 region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0yt4"]
+atlas = ExtResource("5_v0yt4")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18jt2"]
+atlas = ExtResource("5_v0yt4")
+region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17wga"]
 atlas = ExtResource("5_v0yt4")
@@ -154,6 +162,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_v0yt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18jt2")
+}],
+"loop": true,
+"name": &"Jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_17wga")
 }, {
 "duration": 1.0,
@@ -222,10 +241,9 @@ script = ExtResource("3_aesm5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6hc3a")
 sprite_frames = SubResource("SpriteFrames_wpvyt")
-animation = &"Walking"
+animation = &"Jumping"
 autoplay = "Idle"
-frame = 7
-frame_progress = 0.3393591
+frame_progress = 0.0725533
 
 [node name="Label" type="Label" parent="."]
 offset_left = -20.0
