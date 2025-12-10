@@ -19,7 +19,8 @@ func _process(_delta: float) -> void:
 		$HatSplitTimer.stop()
 
 func _on_jump_timer_timeout() -> void:
-	if can_jump:
+	$JumpChecker.position.x = dir*speed
+	if can_jump and $JumpChecker.is_colliding():
 		jump()
 	
 func jump():

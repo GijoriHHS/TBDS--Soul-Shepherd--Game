@@ -232,8 +232,6 @@ radius = 7.0
 collision_mask = 5
 script = ExtResource("1_v0yt4")
 shootPoint = NodePath("CollisionShape2D")
-walk_speed = 20
-sprint_speed = 40
 
 [node name="Health" parent="." instance=ExtResource("2_rkuo3")]
 script = ExtResource("3_aesm5")
@@ -303,6 +301,9 @@ wait_time = 2.0
 autostart = true
 
 [node name="HatSplitTimer" type="Timer" parent="."]
+
+[node name="JumpChecker" type="RayCast2D" parent="."]
+target_position = Vector2(0, 10)
 
 [connection signal="hp_changed" from="Health" to="." method="_on_health_hp_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
