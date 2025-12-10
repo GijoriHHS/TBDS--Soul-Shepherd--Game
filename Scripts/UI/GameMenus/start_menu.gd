@@ -42,6 +42,6 @@ func _on_exit_pressed() -> void:
 
 
 func _on_game_start_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Level/playtest_level.tscn")
-	#get_tree().change_scene_to_file("res://Scenes/Level/playtest2.tscn")
+	#get_tree().change_scene_to_file("res://Scenes/Level/playtest_level.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Level/playtest2.tscn")
 	Engine.time_scale = 1

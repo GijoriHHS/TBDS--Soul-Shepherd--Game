@@ -12,7 +12,8 @@ var turn_on_body : Array[int]
 @onready var parry: AudioStreamPlayer2D = $Parry
 
 func _ready() -> void:
-	direction = -1 if sprite.flip_h else 1
+	if direction == -1:
+		sprite.flip_h
 	global_position = spawnpos
 	for num in turn_on_area:
 		area_2d.set_collision_mask_value(num, true)
@@ -21,11 +22,7 @@ func _ready() -> void:
 	despawn.start()
 	
 func _physics_process(_delta: float) -> void:
-	# Add the gravity.
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta.
-	if direction:
-		velocity.x = direction * speed
+	velocity.x = direction * speed
 
 	var collision = move_and_collide(velocity * _delta)
 	if collision:
