@@ -561,16 +561,8 @@ visible = false
 
 [node name="AbilityInfoButton" parent="CanvasLayer" instance=ExtResource("13_naxo4")]
 anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -189.0
-offset_top = -140.0
-offset_right = -51.0
-offset_bottom = -109.0
-grow_horizontal = 0
-grow_vertical = 2
+offset_top = -224.0
+offset_bottom = -184.0
 
 [node name="CameraMain" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 zoom = Vector2(4, 4)
