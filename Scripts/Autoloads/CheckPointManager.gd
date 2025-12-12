@@ -26,6 +26,8 @@ func register_start(Start: Marker2D):
 		"node": Start
 	})
 	
+	print("Start: ", unlocked_checkpoints)
+	
 func checkpoint_unlocked(checkpoint: CheckPoint):
 	for unlocked_cp in unlocked_checkpoints:
 		if unlocked_cp["id"] == checkpoint.checkppoint_id:
@@ -38,6 +40,10 @@ func checkpoint_unlocked(checkpoint: CheckPoint):
 	})
 	
 	play_unlock_effects(checkpoint)
+
+func reset_checkpoints():
+	unlocked_checkpoints.clear()
+	print("Checkpoints Reset: ", unlocked_checkpoints)
 
 func play_unlock_effects(checkpoint: CheckPoint):
 	var Sprite2D_node : Sprite2D = checkpoint.get_node("Sprite2D")
@@ -84,7 +90,7 @@ func _on_player_died(player: Player):
 	if not player_stored:
 		player_stored = player
 	
-	Engine.time_scale = .05
+	#Engine.time_scale = .05
 	player.collision_shape_2d.disabled = true
 	player_died.emit() #This signal enables the UI of checkpoint respawn
 

@@ -5,11 +5,11 @@ class_name PlayerState
 @warning_ignore("unused_signal")
 signal state_transition
 
-const max_double_jumps: int = 2
+const max_double_jumps: int = 1
 static var jumps_left: int = max_double_jumps
 static var custom_gravity : Vector2 = Vector2(0,980)
 static var in_gliding: bool = false
-static var last_character_orientation: int = 0
+static var last_character_orientation: float = 0.0
 static var can_double_jump: bool = false
 
 var hp: HP
@@ -24,7 +24,7 @@ var walking_dust_particle: CPUParticles2D
 var jump_particle: GPUParticles2D
 var run_particle_timer : float
 
-@export var fall_speed_threshold := 666
+@export var fall_speed_threshold := 600
 @export var max_fall_speed := 1500
 @export var max_fall_damage := 99
 
@@ -45,9 +45,10 @@ var run_particle_timer : float
 @export var airsStrafe : int = 20
 
 var jump_ui : Node2D
+
 func _ready() -> void:
 	level_camera = get_tree().current_scene.get_node("Camera2D")
-	
+		
 func Enter():
 	var parent = get_parent()
 	sprite = parent.sprite2D
@@ -59,6 +60,12 @@ func Enter():
 	jump_particle = player.get_node("JumpParticle")
 	
 	jump_ui = player.get_node_or_null("JumpUI")
+	
+	if AbilityData.unlocked_abilities.has(AbilityData.ability_list.DoubleJump):
+		jump_ui.visible = true
+	else:
+		jump_ui.visible = false
+		
 	hp = player.get_node_or_null("Health")
 	if hp == null:
 		print("hp not found")
@@ -100,7 +107,7 @@ func movement(delta:float):
 	
 
 	var direction := Input.get_axis("Left", "Right")
-	if direction != 0:
+	if abs(direction) > 0.05:
 		@warning_ignore("narrowing_conversion")
 		last_character_orientation = direction
 	
