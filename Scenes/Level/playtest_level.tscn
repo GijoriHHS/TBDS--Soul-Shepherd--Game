@@ -652,6 +652,18 @@ scale = Vector2(0.765, 0.765)
 ability = 9
 custom_sprite_frames = ExtResource("13_fc1sg")
 
+[node name="Soul4" parent="Souls" instance=ExtResource("12_t8xxn")]
+position = Vector2(-85, -12)
+scale = Vector2(0.765, 0.765)
+ability = 9
+custom_sprite_frames = ExtResource("13_fc1sg")
+
+[node name="Soul5" parent="Souls" instance=ExtResource("12_t8xxn")]
+position = Vector2(-132, -12)
+scale = Vector2(0.765, 0.765)
+ability = 9
+custom_sprite_frames = ExtResource("13_fc1sg")
+
 [node name="Soul2" parent="Souls" instance=ExtResource("12_t8xxn")]
 position = Vector2(1022.00006, 134)
 scale = Vector2(0.765, 0.765)
