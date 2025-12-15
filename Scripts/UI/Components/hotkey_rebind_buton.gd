@@ -135,7 +135,7 @@ func rebind_action_key(event: InputEvent) -> void:
 	set_text_for_keyboard_key()
 	set_text_for_controller_key()
 	set_action_name()
-
+	get_parent().grab_focus()
 
 func _on_controller_input_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
