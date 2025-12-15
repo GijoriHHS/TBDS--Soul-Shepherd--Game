@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1sjuovd6m30t"
-path="res://.godot/imported/Green_Wisp.png-7816946166b0e0c52be1542bff8036e3.ctex"
+uid="uid://btifqr457t4rv"
+path="res://.godot/imported/checkpoint_unlocked.png-b05118efa1b278aa38c7ca2c0f552f7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Wisps/Green_Wisp.png"
-dest_files=["res://.godot/imported/Green_Wisp.png-7816946166b0e0c52be1542bff8036e3.ctex"]
+source_file="res://Assets/Sprites/checkpoint/checkpoint_unlocked.png"
+dest_files=["res://.godot/imported/checkpoint_unlocked.png-b05118efa1b278aa38c7ca2c0f552f7c.ctex"]
 
 [params]
 

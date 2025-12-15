@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1sjuovd6m30t"
-path="res://.godot/imported/Green_Wisp.png-7816946166b0e0c52be1542bff8036e3.ctex"
+uid="uid://5j8r6plk7dru"
+path="res://.godot/imported/Spikes.png-348d77d259554ce95c1aa9bbb9053bd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Wisps/Green_Wisp.png"
-dest_files=["res://.godot/imported/Green_Wisp.png-7816946166b0e0c52be1542bff8036e3.ctex"]
+source_file="res://Assets/Sprites/Obstacles/Spikes.png"
+dest_files=["res://.godot/imported/Spikes.png-348d77d259554ce95c1aa9bbb9053bd3.ctex"]
 
 [params]
 

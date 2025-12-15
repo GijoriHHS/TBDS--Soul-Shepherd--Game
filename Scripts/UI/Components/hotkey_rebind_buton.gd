@@ -86,8 +86,7 @@ func _on_button_toggled(toggled_on: bool) -> void:
 
 
 func set_can_rebind(can: bool)-> void:
-	if can:
-		can_rebind = can
+	can_rebind = can
 	set_process_input(can) 
 
 

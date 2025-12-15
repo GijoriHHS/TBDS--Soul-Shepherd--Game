@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1sjuovd6m30t"
-path="res://.godot/imported/Green_Wisp.png-7816946166b0e0c52be1542bff8036e3.ctex"
+uid="uid://dm67j43wqeov4"
+path="res://.godot/imported/bamboo_trap.png-c67f4bf6ec76b43f08cadffc0a892669.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Wisps/Green_Wisp.png"
-dest_files=["res://.godot/imported/Green_Wisp.png-7816946166b0e0c52be1542bff8036e3.ctex"]
+source_file="res://Assets/Sprites/Obstacles/bamboo_trap.png"
+dest_files=["res://.godot/imported/bamboo_trap.png-c67f4bf6ec76b43f08cadffc0a892669.ctex"]
 
 [params]
 
