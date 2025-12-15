@@ -1,6 +1,7 @@
-[gd_scene load_steps=57 format=3 uid="uid://dlo0qlmn2vs1c"]
+[gd_scene load_steps=58 format=3 uid="uid://dlo0qlmn2vs1c"]
 
 [ext_resource type="Script" uid="uid://byn1je7flnjo3" path="res://Scripts/Central/game_manager.gd" id="1_6qsb6"]
+[ext_resource type="Script" uid="uid://c2jeph0pjh467" path="res://Scripts/Level/playtest_level.gd" id="1_vps0q"]
 [ext_resource type="Texture2D" uid="uid://dfdfu6o1j3apv" path="res://Assets/Sprites/Playtest1.png" id="2_5lk6k"]
 [ext_resource type="Texture2D" uid="uid://j1w6x4hpn3ou" path="res://Assets/Icons/Sung Chin Woo Icon.png" id="3_3gi3r"]
 [ext_resource type="PackedScene" uid="uid://c45jpc3kaflr4" path="res://Scenes/CheckPoints/CheckPoint.tscn" id="4_3gi3r"]
@@ -870,6 +871,7 @@ _data = {
 size = Vector2(48, 16)
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_vps0q")
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("stateLabel", "equipLabel", "hpLabel", "gameOverScreen")]
 unique_name_in_owner = true
@@ -1207,6 +1209,8 @@ texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(144, 96, 16, 32)
 
+[node name="Obstacles" type="Node2D" parent="."]
+
 [node name="Next_level" type="Area2D" parent="."]
 position = Vector2(3808, 48)
 collision_mask = 4
@@ -1236,82 +1240,82 @@ z_index = 7
 position = Vector2(1688, 8)
 
 [node name="Moving_platforms" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Moving_Platform")
+root_node = NodePath("Moving_Platform")
 libraries = {
 &"": SubResource("AnimationLibrary_fby5h")
 }
 speed_scale = 0.2
 
-[node name="Moving_Platform" type="AnimatableBody2D" parent="."]
+[node name="Moving_Platform" type="AnimatableBody2D" parent="Moving_platforms"]
 z_index = 5
 position = Vector2(2600, 248)
 
-[node name="Sprite2D" type="Sprite2D" parent="Moving_Platform"]
+[node name="Sprite2D" type="Sprite2D" parent="Moving_platforms/Moving_Platform"]
 position = Vector2(16, 0)
 texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(64, 160, 16, 16)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Moving_Platform"]
+[node name="Sprite2D2" type="Sprite2D" parent="Moving_platforms/Moving_Platform"]
 texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(64, 160, 16, 16)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Moving_Platform"]
+[node name="Sprite2D3" type="Sprite2D" parent="Moving_platforms/Moving_Platform"]
 position = Vector2(-16, 0)
 texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(64, 160, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_platforms/Moving_Platform"]
 shape = SubResource("RectangleShape2D_sinv2")
 
-[node name="Moving_Platform2" type="AnimatableBody2D" parent="."]
+[node name="Moving_Platform2" type="AnimatableBody2D" parent="Moving_platforms"]
 z_index = 5
 position = Vector2(2904, 248)
 
-[node name="Sprite2D" type="Sprite2D" parent="Moving_Platform2"]
+[node name="Sprite2D" type="Sprite2D" parent="Moving_platforms/Moving_Platform2"]
 position = Vector2(16, 0)
 texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(64, 160, 16, 16)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Moving_Platform2"]
+[node name="Sprite2D2" type="Sprite2D" parent="Moving_platforms/Moving_Platform2"]
 texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(64, 160, 16, 16)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Moving_Platform2"]
+[node name="Sprite2D3" type="Sprite2D" parent="Moving_platforms/Moving_Platform2"]
 position = Vector2(-16, 0)
 texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(64, 160, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_platforms/Moving_Platform2"]
 shape = SubResource("RectangleShape2D_sinv2")
 
-[node name="Moving_Platform3" type="AnimatableBody2D" parent="."]
+[node name="Moving_Platform3" type="AnimatableBody2D" parent="Moving_platforms"]
 z_index = 5
 position = Vector2(3240, 248)
 
-[node name="Sprite2D" type="Sprite2D" parent="Moving_Platform3"]
+[node name="Sprite2D" type="Sprite2D" parent="Moving_platforms/Moving_Platform3"]
 position = Vector2(16, 0)
 texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(64, 160, 16, 16)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Moving_Platform3"]
+[node name="Sprite2D2" type="Sprite2D" parent="Moving_platforms/Moving_Platform3"]
 texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(64, 160, 16, 16)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Moving_Platform3"]
+[node name="Sprite2D3" type="Sprite2D" parent="Moving_platforms/Moving_Platform3"]
 position = Vector2(-16, 0)
 texture = ExtResource("2_5lk6k")
 region_enabled = true
 region_rect = Rect2(64, 160, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_Platform3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moving_platforms/Moving_Platform3"]
 shape = SubResource("RectangleShape2D_sinv2")
 
 [connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
