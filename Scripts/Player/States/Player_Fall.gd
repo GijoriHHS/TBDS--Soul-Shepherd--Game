@@ -1,7 +1,6 @@
 extends PlayerState
 class_name Player_Fall
 
-@onready var ghs : GHS = get_tree().get_root().get_node("Level").find_child("GrapplingHookSystem")
 @export var dash_cooldown : Timer
 @export var landing_sfx : AudioStreamPlayer2D
 @export var extra_hold_jump: float = 6.3
@@ -25,15 +24,22 @@ var last_velocity_y : float = 0.0
 var fall_hold_time: float = 0.0
 var max_fall_hold_time: float = 0.05
 var jump_hold_time: float = 0.0
+var can_glide : bool
 
 
 func Enter():
 	super()
-	sprite.play("Panda_Jump")
+	if PlayerPro.projectile:
+		sprite.play("Panda_Jump_No_Hat")
+		can_glide = false
+	else:
+		sprite.play("Panda_Jump")
+		can_glide = true
+	if not PlayerPro.projectile_exists.is_connected(_update_bool):
+		PlayerPro.projectile_exists.connect(_update_bool)
 	last_velocity_y = 0.0
 	fall_hold_time = 0.0
 	jump_hold_time = 0.0
-	ghs.can_grapple = true
 
 func Update(_delta:float) -> void:
 	if player.velocity.y > 0:
@@ -51,17 +57,11 @@ func Update(_delta:float) -> void:
 	if Input.is_action_just_pressed("Shift") and dash_cooldown.is_stopped():
 		state_transition.emit(self, "Dash")
 	#if Input.is_action_just_pressed("RightClick") and get_item_by_name("Bow", slots).visible:
-	if Input.is_action_just_pressed("RightClick"):
+	if Input.is_action_just_pressed("RightClick") and not PlayerPro.projectile:
 		state_transition.emit(self, "Archery")
 		
 	if Input.is_action_pressed("WallSlide") and player.is_on_wall_only():
 		state_transition.emit(self, "Wallsliding")
-	#if get_item_by_name("GrappleHook", slots).visible:
-		#ghs.can_grapple = true
-	#else: 
-		#ghs.can_grapple = false
-	if ghs.is_grappling:
-		state_transition.emit(self, "Grapple")
 
 func Phys_Update(_delta:float) -> void:
 	if Input.is_action_just_pressed("Jump") and player.is_on_wall_only() and (Input.is_action_pressed("Left") or Input.is_action_pressed("Right")):
@@ -76,7 +76,7 @@ func Phys_Update(_delta:float) -> void:
 	if Input.is_action_pressed("Jump") and player.velocity.y >=0:
 
 		fall_hold_time += _delta
-		if fall_hold_time >= max_fall_hold_time:
+		if fall_hold_time >= max_fall_hold_time and can_glide:
 			state_transition.emit(self, "Airgliding")
 			
 		if Input.is_action_just_pressed("Jump") and jumps_left > 0 and \
@@ -111,3 +111,6 @@ func _play_landing_effects() -> void:
 	landing_sfx.volume_db = volume
 	landing_sfx.play()
 	UtilsEffect.squash(sprite, squash_duration, squash_str)
+	
+func _update_bool():
+	can_glide = true

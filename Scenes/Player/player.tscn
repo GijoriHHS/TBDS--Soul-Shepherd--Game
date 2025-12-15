@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://c5ongupm07qh3"]
+[gd_scene load_steps=136 format=3 uid="uid://c5ongupm07qh3"]
 
 [ext_resource type="Script" uid="uid://bw7ujmm53vwsq" path="res://Scripts/Player/General/playermain.gd" id="1_qr1w5"]
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_ythyg"]
@@ -136,21 +136,25 @@ region = Rect2(192, 0, 16, 16)
 atlas = ExtResource("8_fcwna")
 region = Rect2(208, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6nl3"]
-atlas = ExtResource("8_fcwna")
-region = Rect2(240, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fcwna"]
-atlas = ExtResource("8_1agin")
-region = Rect2(224, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0liok"]
 atlas = ExtResource("8_1agin")
-region = Rect2(240, 0, 16, 16)
+region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gyc8k"]
 atlas = ExtResource("8_1agin")
-region = Rect2(256, 0, 16, 16)
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlqkp"]
+atlas = ExtResource("8_1agin")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbwwl"]
+atlas = ExtResource("8_1agin")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6nl3"]
+atlas = ExtResource("8_fcwna")
+region = Rect2(240, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qflxp"]
 atlas = ExtResource("8_1agin")
@@ -206,6 +210,46 @@ region = Rect2(128, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbimk"]
 atlas = ExtResource("8_fcwna")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a2xn"]
+atlas = ExtResource("8_1agin")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grehw"]
+atlas = ExtResource("8_1agin")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn8q6"]
+atlas = ExtResource("8_1agin")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vj0r"]
+atlas = ExtResource("8_1agin")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7g5o"]
+atlas = ExtResource("8_1agin")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckdd2"]
+atlas = ExtResource("8_1agin")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37mva"]
+atlas = ExtResource("8_1agin")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwcno"]
+atlas = ExtResource("8_1agin")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8s58"]
+atlas = ExtResource("8_1agin")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4a23"]
+atlas = ExtResource("8_1agin")
 region = Rect2(144, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8g0gh"]
@@ -336,6 +380,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0liok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyc8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlqkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbwwl")
+}],
+"loop": true,
+"name": &"Panda_Idle_No_Hat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_m6nl3")
 }],
 "loop": true,
@@ -343,15 +404,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fcwna")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0liok")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gyc8k")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qflxp")
 }],
@@ -410,6 +462,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0a2xn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grehw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn8q6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vj0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7g5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckdd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37mva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwcno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8s58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4a23")
+}],
+"loop": true,
+"name": &"Panda_Walk_No_Hat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8g0gh")
 }],
 "loop": true,
@@ -444,11 +531,6 @@ animations = [{
 "loop": true,
 "name": &"Walk",
 "speed": 10.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
 }]
 
 [sub_resource type="Curve" id="Curve_m6ahd"]
@@ -671,6 +753,58 @@ tracks/6/keys = {
 "values": [Vector2(-1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_m6ahd"]
+resource_name = "AttackAnimation_Left_No_Hat"
+length = 0.1333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bamboo_Stick:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.7853982, -1.5707964, -0.7853982, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bamboo_Stick:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(-2, 5), Vector2(-2, 5), Vector2(0, 5), Vector2(0, 4)]
+}
+
 [sub_resource type="Animation" id="Animation_1agin"]
 resource_name = "AttackAnimation_Right"
 length = 0.1333
@@ -759,6 +893,58 @@ tracks/6/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ogmfp"]
+resource_name = "AttackAnimation_Right_No_Hat"
+length = 0.1333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bamboo_Stick:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7853982, 1.5707964, 0.7853982, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bamboo_Stick:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(2, 5), Vector2(2, 5), Vector2(0, 4.9999995), Vector2(0, 4)]
+}
+
 [sub_resource type="Animation" id="Animation_pcwjh"]
 length = 0.001
 tracks/0/type = "value"
@@ -825,7 +1011,9 @@ tracks/4/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2jnj1"]
 _data = {
 &"AttackAnimation_Left": SubResource("Animation_2jnj1"),
+&"AttackAnimation_Left_No_Hat": SubResource("Animation_m6ahd"),
 &"AttackAnimation_Right": SubResource("Animation_1agin"),
+&"AttackAnimation_Right_No_Hat": SubResource("Animation_ogmfp"),
 &"RESET": SubResource("Animation_pcwjh")
 }
 
@@ -933,7 +1121,6 @@ script = ExtResource("10_2aanf")
 [node name="Player_Cosmetics" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, 1)
-scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_2jnj1")
 animation = &"Panda_Hat_Attack"
 frame = 1
@@ -971,13 +1158,42 @@ holder = NodePath("../Holder")
 [node name="Idling" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
 script = ExtResource("10_2jnj1")
 dash_cooldown = NodePath("../../Timers/DashCooldown")
+fall_speed_threshold = null
+max_fall_speed = null
+max_fall_damage = null
+max_airglide_velocity = null
+run_particle_offset = null
+move_speed = null
+jump_force = null
+brake_force = null
+air_brake_force = null
 jumpsfx = NodePath("../../jumpsfx")
 can_move = false
+can_jump = null
+in_anim = null
+is_gravity = null
+can_shoot = null
+airsStrafe = null
 
 [node name="Walking" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "jumpsfx")]
 script = ExtResource("11_enij7")
 dash_cooldown = NodePath("../../Timers/DashCooldown")
+fall_speed_threshold = null
+max_fall_speed = null
+max_fall_damage = null
+max_airglide_velocity = null
+run_particle_offset = null
+move_speed = null
+jump_force = null
+brake_force = null
+air_brake_force = null
 jumpsfx = NodePath("../../jumpsfx")
+can_move = null
+can_jump = null
+in_anim = null
+is_gravity = null
+can_shoot = null
+airsStrafe = null
 
 [node name="Falling" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("dash_cooldown", "landing_sfx", "jumpsfx")]
 script = ExtResource("12_mwii3")
@@ -1044,9 +1260,6 @@ wait_time = 0.075
 [node name="Dialogue" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("15_rukb4")
 jumpsfx = NodePath("../../jumpsfx")
-
-[node name="Grapple" type="Node" parent="FiniteStateMachine"]
-script = ExtResource("26_enij7")
 
 [node name="Died" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("23_fcwna")

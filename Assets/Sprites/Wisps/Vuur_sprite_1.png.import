@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg2itvny2alg2"
-path="res://.godot/imported/blue_ball.png-cd1ab3b565a8dd617b92ea17bb47b241.ctex"
+uid="uid://dnfhn83chffmp"
+path="res://.godot/imported/Vuur_sprite_1.png-d7ea6e90aeb3024b4ddd1111b530ebdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/sounds/blue_ball.png"
-dest_files=["res://.godot/imported/blue_ball.png-cd1ab3b565a8dd617b92ea17bb47b241.ctex"]
+source_file="res://Assets/Sprites/Wisps/Vuur_sprite_1.png"
+dest_files=["res://.godot/imported/Vuur_sprite_1.png-d7ea6e90aeb3024b4ddd1111b530ebdb.ctex"]
 
 [params]
 
