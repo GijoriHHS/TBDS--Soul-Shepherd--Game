@@ -82,10 +82,10 @@ func SetShader_BlinkIntensity(newValue: float):
 	sprite.material.set_shader_parameter("blink_intensity", newValue)
 
 func _correct_sprite() -> void:
-	if dir == 1 and $AnimatedSprite2D.scale.x == 1:
+	if dir == 1 and $AnimatedSprite2D.scale.x == -1:
 		$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x * -1
 		flippedSprite = false
-	if dir == -1 and $AnimatedSprite2D.scale.x == -1:
+	if dir == -1 and $AnimatedSprite2D.scale.x == 1:
 		$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x * -1
 		flippedSprite = true
 

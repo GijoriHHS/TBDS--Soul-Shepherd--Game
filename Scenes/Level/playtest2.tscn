@@ -461,7 +461,7 @@ hpLabel = NodePath("../CanvasLayer/HP")
 gameOverScreen = NodePath("../CanvasLayer/ColorRect")
 
 [node name="Player" parent="." instance=ExtResource("4_qt3gr")]
-position = Vector2(52, 212)
+position = Vector2(2972, 116)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3

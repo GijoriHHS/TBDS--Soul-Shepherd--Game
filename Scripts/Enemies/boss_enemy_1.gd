@@ -11,6 +11,10 @@ func _ready() -> void:
 	super._ready()
 	JumpTimer.start()
 	speed = 0
+	stage = 2
+	if stage > 1:
+		health.hp = 200
+
 
 func _process(_delta: float) -> void:
 	super._process(_delta)
@@ -19,6 +23,8 @@ func _process(_delta: float) -> void:
 	if just_jumped and velocity.y == 0:
 		shoot()
 		just_jumped = false
+		if stage > 2:
+			$stage_3_timer.start()
 
 func _on_jump_timer_timeout() -> void:
 	$JumpChecker.position.x = dir*speed
@@ -38,3 +44,8 @@ func pre_shoot():
 
 func shoot():
 	super.shoot()
+
+
+func _on_stage_3_timer_timeout() -> void:
+	shoot()
+	$stage_3_timer.stop()
