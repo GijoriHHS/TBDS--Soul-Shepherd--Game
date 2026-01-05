@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://lahfkubql7vo"]
+[gd_scene load_steps=33 format=3 uid="uid://lahfkubql7vo"]
 
 [ext_resource type="Texture2D" uid="uid://dfdfu6o1j3apv" path="res://Assets/Sprites/Playtest1.png" id="1_f065d"]
 [ext_resource type="Script" uid="uid://beypopj8ttlnq" path="res://Scripts/Level/playtest_2.gd" id="1_qt3gr"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://c2qbrpracjsi5" path="res://Scenes/Enemies/orc.tscn" id="25_17aq4"]
 [ext_resource type="PackedScene" uid="uid://c34kdnga4axvp" path="res://Scenes/Obstacles/obstacle_falling_tiles.tscn" id="26_0nra7"]
 [ext_resource type="PackedScene" uid="uid://d2jbqn300os54" path="res://Scenes/Obstacles/obstacle_spike.tscn" id="27_6qp0l"]
+[ext_resource type="PackedScene" uid="uid://dm61xmst0522o" path="res://Scenes/Items/magic_bamboo.tscn" id="28_6qp0l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j3um3"]
 texture = ExtResource("1_f065d")
@@ -669,6 +670,15 @@ position = Vector2(-139, -48)
 
 [node name="obstacle_spike" parent="Obstacles/spikes" instance=ExtResource("27_6qp0l")]
 position = Vector2(233, 187)
+
+[node name="MagicBamboo" type="Node2D" parent="Obstacles"]
+z_index = 4
+position = Vector2(-1, -17)
+
+[node name="MagicBamboo" parent="Obstacles/MagicBamboo" instance=ExtResource("28_6qp0l")]
+position = Vector2(-110, -11)
+heal_amount = 10
+COLOR = Color(0, 0.59607846, 0.8627451, 1)
 
 [connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
 
