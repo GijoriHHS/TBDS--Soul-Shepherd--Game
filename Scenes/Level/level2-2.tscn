@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dm61xmst0522o" path="res://Scenes/Items/magic_bamboo.tscn" id="16_wr53j"]
 [ext_resource type="Texture2D" uid="uid://c8dol58rb8t5j" path="res://Assets/Sprites/Magic Bamboo/+5 hp magic bamboo.png" id="17_3urri"]
 [ext_resource type="SpriteFrames" uid="uid://dddu3nk2vhaqr" path="res://Resources/Wisps/Red_Devil_Wisp.tres" id="17_b3vhu"]
-[ext_resource type="PackedScene" path="res://Scenes/Background/parralax_background_2_2.tscn" id="18_b3vhu"]
+[ext_resource type="PackedScene" uid="uid://dgriy1udfe26i" path="res://Scenes/Background/parralax_background_2_2.tscn" id="18_b3vhu"]
 [ext_resource type="PackedScene" uid="uid://c45jpc3kaflr4" path="res://Scenes/CheckPoints/CheckPoint.tscn" id="20_yvtrx"]
 [ext_resource type="Script" uid="uid://dtfsguwdnfr7m" path="res://Scripts/CheckPoints/start.gd" id="21_iy8e7"]
 [ext_resource type="Script" uid="uid://bpkjqkjnq8o6g" path="res://Scripts/Player/General/killzone.gd" id="22_yvtrx"]
@@ -809,6 +809,7 @@ script = ExtResource("21_iy8e7")
 [node name="Enemy" parent="Enemies" instance=ExtResource("23_iy8e7")]
 z_index = 4
 position = Vector2(286, 273)
+can_jump = true
 
 [node name="killzone" type="Area2D" parent="."]
 collision_mask = 4
