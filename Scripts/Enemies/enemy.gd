@@ -119,7 +119,7 @@ func shoot():
 	speed = 0
 	sprite.play("Attack_shoot")
 	latest_hat = projectile.instantiate()
-	latest_hat.sprite = sprite
+	#latest_hat.sprite = sprite
 	latest_hat.spawnpos = shootPoint.global_position
 	if dir == 1:
 		latest_hat.spawnpos.x += shotOffset
