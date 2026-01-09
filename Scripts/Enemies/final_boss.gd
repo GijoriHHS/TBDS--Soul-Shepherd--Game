@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 	if is_on_floor() and !ground.enabled:
 		ground.set_enabled(true)
 	if just_jumped and velocity.y == 0:
-		velocity.y = 0
+		gravity*2
 		shoot()
 	if just_jumped and ground.is_colliding():
 		just_jumped = false
