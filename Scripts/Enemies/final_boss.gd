@@ -1,6 +1,6 @@
 extends enemy
 
-class_name boss_enemy_1
+class_name final_boss
 
 @export var jump_speed: int = -125.0
 @onready var JumpTimer : Timer = $JumpTimer
@@ -25,6 +25,8 @@ func _process(_delta: float) -> void:
 		just_jumped = false
 		if stage > 2:
 			$stage_3_timer.start()
+	if speed != 0:
+		sprite.play("Walking")
 
 func _on_jump_timer_timeout() -> void:
 	$JumpChecker.position.x = dir*speed
@@ -43,9 +45,12 @@ func pre_shoot():
 	just_jumped = true
 
 func shoot():
-	super.shoot()
+	print('skibidi')
 
 
 func _on_stage_3_timer_timeout() -> void:
 	shoot()
 	$stage_3_timer.stop()
+	
+func _on_animated_sprite_2d_animation_finished() -> void:
+	sprite.play("Idle")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bs6hijimb1akk"]
+[gd_scene load_steps=66 format=3 uid="uid://b76woqie8uxl7"]
 
 [ext_resource type="Script" uid="uid://bkmtjfc44s6bw" path="res://Scripts/Enemies/final_boss.gd" id="1_td638"]
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_td638"]
@@ -404,10 +404,11 @@ scale_min = 0.2
 color = Color(1, 0.0705882, 0.133333, 1)
 color_ramp = SubResource("GradientTexture1D_31h1d")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3xw0u"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1nrsg"]
 radius = 7.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tq37w"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_td638"]
+radius = 7.0
 
 [sub_resource type="Theme" id="Theme_v0yt4"]
 
@@ -418,9 +419,10 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="boss_enemy_1" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Final_boss" type="CharacterBody2D" node_paths=PackedStringArray("shootPoint") groups=["Enemy"]]
 collision_mask = 5
 script = ExtResource("1_td638")
+shootPoint = NodePath("CollisionShape2D")
 
 [node name="Health" parent="." instance=ExtResource("2_td638")]
 script = ExtResource("3_1nrsg")
@@ -428,9 +430,8 @@ script = ExtResource("3_1nrsg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6hc3a")
 sprite_frames = SubResource("SpriteFrames_wpvyt")
-animation = &"Clap"
+animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.713548
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -458,25 +459,29 @@ process_material = SubResource("ParticleProcessMaterial_dfwqp")
 wait_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3xw0u")
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_1nrsg")
 
 [node name="GroundCheck" type="RayCast2D" parent="."]
-position = Vector2(10, 0)
+position = Vector2(10, 7)
 target_position = Vector2(0, 10)
 
 [node name="TopCheck" type="RayCast2D" parent="."]
+position = Vector2(0, -3)
 target_position = Vector2(0, -12)
 collision_mask = 4
 
 [node name="TopCheckCooldown" type="Timer" parent="."]
 
 [node name="RayCast2DRight" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
 scale = Vector2(1, 10)
 target_position = Vector2(68, 0)
 collision_mask = 4
 collide_with_areas = true
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
 scale = Vector2(1, 10)
 target_position = Vector2(-68, 0)
 collision_mask = 4
@@ -486,7 +491,8 @@ collision_layer = 129
 collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_tq37w")
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_td638")
 
 [node name="ItemSpawnPoint" type="Marker2D" parent="."]
 
@@ -495,6 +501,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="JumpChecker" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
 target_position = Vector2(0, 10)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]

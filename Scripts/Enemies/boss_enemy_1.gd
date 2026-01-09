@@ -45,7 +45,6 @@ func pre_shoot():
 func shoot():
 	super.shoot()
 
-
 func _on_stage_3_timer_timeout() -> void:
 	shoot()
 	$stage_3_timer.stop()

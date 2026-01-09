@@ -156,7 +156,7 @@ func _correct_sprite() -> void:
 			flippedSprite = true
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if can_move:
+	if speed != 0:
 		sprite.play("Walking")
 	else:
 		sprite.play("Idle")
