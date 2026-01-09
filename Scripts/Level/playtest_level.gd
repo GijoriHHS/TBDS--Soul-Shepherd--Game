@@ -4,6 +4,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var obstacles: Node2D = $Obstacles
+	print(obstacles)
 	CheckPointManager.register_root_obstacle(obstacles)
 
 
