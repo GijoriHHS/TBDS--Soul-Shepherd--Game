@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c34kdnga4axvp" path="res://Scenes/Obstacles/obstacle_falling_tiles.tscn" id="12_pxvf2"]
 [ext_resource type="PackedScene" uid="uid://d2jbqn300os54" path="res://Scenes/Obstacles/obstacle_spike.tscn" id="13_4ha1g"]
 [ext_resource type="PackedScene" uid="uid://cl45lm0hg20kf" path="res://Scenes/Items/soul.tscn" id="14_4ha1g"]
-[ext_resource type="SpriteFrames" uid="uid://1pu7u640aosc" path="res://Resources/Wisps/Fire_Wisp.tres" id="15_qgpry"]
+[ext_resource type="SpriteFrames" uid="uid://cgtj4wt3ql8r1" path="res://Resources/Wisps/Fire_Wisp.tres" id="15_qgpry"]
 [ext_resource type="SpriteFrames" uid="uid://dg0vx2sffi824" path="res://Resources/Wisps/Green_Wisp.tres" id="16_v8s0u"]
 [ext_resource type="PackedScene" uid="uid://dm61xmst0522o" path="res://Scenes/Items/magic_bamboo.tscn" id="16_wr53j"]
 [ext_resource type="Texture2D" uid="uid://c8dol58rb8t5j" path="res://Assets/Sprites/Magic Bamboo/+5 hp magic bamboo.png" id="17_3urri"]
@@ -553,7 +553,7 @@ layer_1/tile_data = PackedInt32Array(983110, 65536, 5, 983111, 65536, 5, 983112,
 [node name="CameraMain" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 zoom = Vector2(2, 2)
 limit_left = 0
-limit_right = 3820
+limit_right = 5000
 script = ExtResource("4_v8vj6")
 player = NodePath("../Player")
 
