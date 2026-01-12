@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://b76woqie8uxl7"]
+[gd_scene load_steps=67 format=3 uid="uid://b76woqie8uxl7"]
 
 [ext_resource type="Script" uid="uid://bkmtjfc44s6bw" path="res://Scripts/Enemies/final_boss.gd" id="1_td638"]
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_td638"]
@@ -419,10 +419,24 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_td638"]
+radius = 60.0
+
 [node name="Final_boss" type="CharacterBody2D" node_paths=PackedStringArray("shootPoint") groups=["Enemy"]]
 collision_mask = 5
 script = ExtResource("1_td638")
+jump_speed = null
 shootPoint = NodePath("CollisionShape2D")
+groundPosOffset = null
+walk_speed = null
+sprint_speed = null
+dir = null
+playerInRange = null
+playerOnTop = null
+flippedSprite = null
+shotOffset = null
+can_move = null
+can_jump = null
 
 [node name="Health" parent="." instance=ExtResource("2_td638")]
 script = ExtResource("3_1nrsg")
@@ -529,9 +543,23 @@ is_active = false
 [node name="stage_3_timer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="Shockwave" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shockwave"]
+position = Vector2(0, 8.64)
+scale = Vector2(1, 0.12)
+shape = SubResource("CircleShape2D_td638")
+disabled = true
+
+[node name="WalkTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="hp_changed" from="Health" to="." method="_on_health_hp_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="in_range_shoot_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="TopCheckCooldown" to="." method="_on_top_check_cooldown_timeout"]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="stage_3_timer" to="." method="_on_stage_3_timer_timeout"]
+[connection signal="body_entered" from="Shockwave" to="." method="_on_shockwave_body_entered"]
+[connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]
