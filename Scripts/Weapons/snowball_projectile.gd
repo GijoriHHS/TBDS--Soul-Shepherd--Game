@@ -1,8 +1,8 @@
 extends CharacterBody2D
-class_name Snowball_Projectile
+class_name Projectile
 
 @export var speed : float = 100.0
-var sprite : Sprite2D
+var sprite : AnimatedSprite2D
 var direction : float
 var spawnpos : Vector2
 var turn_on_area : Array[int]
@@ -13,7 +13,7 @@ var turn_on_body : Array[int]
 var boss_stage : int
 
 func _ready() -> void:
-	sprite = $Sprite2D
+	sprite = $AnimatedSprite2D
 	direction = -1 if sprite.flip_h else 1
 	global_position = spawnpos
 	for num in turn_on_area:
