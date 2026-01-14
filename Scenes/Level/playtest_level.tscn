@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dhoq3sp0l7yob"]
+[gd_scene load_steps=46 format=3 uid="uid://dhoq3sp0l7yob"]
 
 [ext_resource type="Script" uid="uid://byn1je7flnjo3" path="res://Scripts/Central/game_manager.gd" id="1_d3t52"]
 [ext_resource type="Texture2D" uid="uid://dfdfu6o1j3apv" path="res://Assets/Sprites/Playtest1.png" id="1_o8n5m"]
