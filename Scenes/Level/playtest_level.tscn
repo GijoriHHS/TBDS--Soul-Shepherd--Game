@@ -626,6 +626,8 @@ position = Vector2(-139, -48)
 
 [node name="obstacle_spike" parent="Obstacles/spikes" instance=ExtResource("31_1nbn6")]
 position = Vector2(233, 187)
+is_enabled = null
+is_triggered = null
 
 [node name="MagicBamboo" type="Node2D" parent="Obstacles"]
 z_index = 4
