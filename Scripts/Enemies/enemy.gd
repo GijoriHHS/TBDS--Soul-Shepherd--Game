@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name enemy
 
 @onready var main = get_tree().get_root().get_node("Level")
-@onready var projectile = load("res://Scenes/Weapons/enemy_hat_projectile.tscn")
+@onready var projectile = load("res://Scenes/Weapons/projectile.tscn")
 @export var shootPoint : Node2D
 @export var groundPosOffset : float = 10
 
@@ -50,6 +50,7 @@ func _ready() -> void:
 	hp_bar.max_value = health.hp
 	hp_bar.value = health.hp
 
+
 func _process(_delta: float) -> void:
 	_correct_sprite()
 	ground.position.x = groundPosOffset if dir > 0 else groundPosOffset * -1
@@ -57,7 +58,8 @@ func _process(_delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * _delta
 	else:
-		velocity.y += gravity * _delta
+		velocity.y = 0
+
 	
 	if old_hp != health.hp:
 		label.text = "HP: " + str(health.hp)
@@ -118,7 +120,7 @@ func shoot():
 	speed = 0
 	sprite.play("Attack_shoot")
 	latest_hat = projectile.instantiate()
-	latest_hat.sprite = sprite
+	#latest_hat.sprite = sprite
 	latest_hat.spawnpos = shootPoint.global_position
 	if dir == 1:
 		latest_hat.spawnpos.x += shotOffset

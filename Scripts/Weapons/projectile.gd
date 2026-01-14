@@ -10,6 +10,7 @@ var turn_on_body : Array[int]
 @onready var despawn: Timer = $Despawn
 @onready var area_2d: Area2D = $Area2D
 @onready var parry: AudioStreamPlayer2D = $Parry
+var boss_stage : int
 
 func _ready() -> void:
 	sprite = $Sprite2D
