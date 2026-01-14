@@ -1,17 +1,17 @@
-[gd_scene load_steps=37 format=3 uid="uid://t6qqa47vckdt"]
+[gd_scene load_steps=37 format=3 uid="uid://bkb1hbs8mvgj2"]
 
-[ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="1_3xw0u"]
-[ext_resource type="Script" uid="uid://deu01mnl471p" path="res://Scripts/Enemies/husk_enemy.gd" id="1_m8kdi"]
-[ext_resource type="Shader" uid="uid://o6ancnl5jgcr" path="res://Shaders/Blink.gdshader" id="2_kapy6"]
-[ext_resource type="Script" uid="uid://dlgatnu5tx5lj" path="res://Scripts/Enemies/health_enemy.gd" id="3_tq37w"]
-[ext_resource type="FontFile" uid="uid://x2dwsfc3en6q" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_6hc3a"]
-[ext_resource type="Texture2D" uid="uid://cw7w05q12u5bv" path="res://Assets/Sprites/husk.png" id="4_tq37w"]
-[ext_resource type="PackedScene" uid="uid://dm61xmst0522o" path="res://Scenes/Items/magic_bamboo.tscn" id="7_adlby"]
-[ext_resource type="Texture2D" uid="uid://utw0u8msxwh0" path="res://Assets/Sprites/Magic Bamboo/+25 hp magic bamboo.png" id="8_pub4n"]
+[ext_resource type="Script" uid="uid://bj3o2h06hj6ck" path="res://Scripts/Enemies/enemy.gd" id="1_joiax"]
+[ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_hkrva"]
+[ext_resource type="Script" uid="uid://dlgatnu5tx5lj" path="res://Scripts/Enemies/health_enemy.gd" id="3_s70sf"]
+[ext_resource type="Shader" uid="uid://o6ancnl5jgcr" path="res://Shaders/Blink.gdshader" id="4_bv2jq"]
+[ext_resource type="Texture2D" uid="uid://cw7w05q12u5bv" path="res://Assets/Sprites/husk.png" id="5_ayfse"]
+[ext_resource type="FontFile" uid="uid://x2dwsfc3en6q" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="6_7y3r3"]
+[ext_resource type="PackedScene" uid="uid://dm61xmst0522o" path="res://Scenes/Items/magic_bamboo.tscn" id="7_8drt2"]
+[ext_resource type="Texture2D" uid="uid://utw0u8msxwh0" path="res://Assets/Sprites/Magic Bamboo/+25 hp magic bamboo.png" id="8_g5rad"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6hc3a"]
 resource_local_to_scene = true
-shader = ExtResource("2_kapy6")
+shader = ExtResource("4_bv2jq")
 shader_parameter/blink_color = Color(1, 1, 1, 1)
 shader_parameter/blink_intensity = 0.0
 shader_parameter/damage_active = false
@@ -20,79 +20,79 @@ shader_parameter/shake_intensity = 0.0
 shader_parameter/distortion = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ny6sd"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_adlby"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pub4n"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4xed"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4toe"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(64, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cv1h1"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(80, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o5hv7"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(96, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q14j8"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(112, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15v5j"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(128, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvm7r"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2i0ii"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l31v"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uk263"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1l4s1"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tmc8"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxdsm"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(64, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ovk68"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(80, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3phr"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(96, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cd0bd"]
-atlas = ExtResource("4_tq37w")
+atlas = ExtResource("5_ayfse")
 region = Rect2(112, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wpvyt"]
@@ -209,11 +209,11 @@ corner_radius_bottom_left = 8
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("shootPoint") groups=["Enemy"]]
 collision_layer = 257
 collision_mask = 5
-script = ExtResource("1_m8kdi")
+script = ExtResource("1_joiax")
 shootPoint = NodePath("CollisionShape2D")
 
-[node name="Health" parent="." instance=ExtResource("1_3xw0u")]
-script = ExtResource("3_tq37w")
+[node name="Health" parent="." instance=ExtResource("2_hkrva")]
+script = ExtResource("3_s70sf")
 hp = 50
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -230,7 +230,7 @@ offset_left = -20.0
 offset_top = -26.0
 offset_right = 20.0
 offset_bottom = -3.0
-theme_override_fonts/font = ExtResource("4_6hc3a")
+theme_override_fonts/font = ExtResource("6_7y3r3")
 theme_override_font_sizes/font_size = 8
 text = "HP: 50"
 horizontal_alignment = 1
@@ -293,8 +293,8 @@ show_percentage = false
 visible = false
 z_index = 5
 
-[node name="MagicBamboo" parent="Drops" instance=ExtResource("7_adlby")]
-texture = ExtResource("8_pub4n")
+[node name="MagicBamboo" parent="Drops" instance=ExtResource("7_8drt2")]
+texture = ExtResource("8_g5rad")
 heal_amount = 25
 COLOR = Color(0.7921569, 0.32156864, 0.7882353, 1)
 drop_chance = 100
