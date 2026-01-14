@@ -45,7 +45,7 @@ func _ready() -> void:
 		player = root.get_node("Player")
 	Engine.max_fps = 60
 	speed = walk_speed
-	_on_animated_sprite_2d_animation_finished()
+	_on_animated_sprite_2d_animation_finished("")
 	$Label.set_text("HP: " + str(health.hp))
 	hp_bar.max_value = health.hp
 	hp_bar.value = health.hp
@@ -157,7 +157,7 @@ func _correct_sprite() -> void:
 			$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x * -1
 			flippedSprite = true
 
-func _on_animated_sprite_2d_animation_finished() -> void:
+func _on_animated_sprite_2d_animation_finished(anim_name: String) -> void:
 	if speed != 0:
 		sprite.play("Walking")
 	else:

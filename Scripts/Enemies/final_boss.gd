@@ -8,9 +8,9 @@ class_name final_boss
 @onready var ShockwaveArea : CollisionShape2D = $Shockwave/CollisionShape2D
 @onready var player_hp = load("res://Scripts/Player/General/health.gd")
 var just_jumped: bool = false
-var taken_shockwave_damage : bool
 
 func _ready() -> void:
+	$in_range_shoot_timer.wait_time = 1
 	projectile = load("res://Scenes/Weapons/enemy_hat_projectile.tscn")
 	super._ready()
 	JumpTimer.start()
@@ -55,34 +55,39 @@ func pre_shoot():
 	elif raycastcheckright.is_colliding() and (raycastcheckright.get_collision_point().x - global_position.x <= 20):
 		shoot("punch")
 	else:
-		if randi_range(1,2) == 3:
+		if randi_range(1,2) == 1:
 			can_move = false
 			jump(-200)
 			just_jumped = true
 		else:
+			sprite.play("Clap")
 			shoot("clap")
 
 func shoot(attack: String):
 	if attack == "clap":
 		can_move = false
-		sprite.play("Clap")
+		ShockwaveArea.position.y = 1.97
 		WalkTimer.start(1)
+		if !ShockwaveArea.disabled:
+			ShockwaveArea.set_disabled(true)
+			await get_tree().process_frame
+			ShockwaveArea.set_disabled(false)
+		else:
+			ShockwaveArea.set_disabled(false)
 	elif attack == "ground_attack":
+		ShockwaveArea.position.y = 8.64
 		ShockwaveArea.set_disabled(false)
 	elif attack == "punch":
 		print("punch")
 	
-func _on_animated_sprite_2d_animation_finished() -> void:
+func _on_animated_sprite_2d_animation_finished(anim_name: String) -> void:
 	sprite.play("Idle")
 
 func _on_walk_timer_timeout() -> void:
 	can_move = true
 	ShockwaveArea.set_disabled(true)
-	taken_shockwave_damage = false
 	sprite.play("Idle")
 
 func _on_shockwave_body_entered(body: Node2D) -> void:
-	if !taken_shockwave_damage:
-		if body.name == "Player":
-			player.hp.take_damage(10)
-			taken_shockwave_damage = true
+	if body.name == "Player":
+		player.hp.take_damage(10)
