@@ -593,10 +593,10 @@ tracks/0/path = NodePath("CanvasLayer/Tips:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["The gate has been unlocked."]
+"values": ["You can now unlock the next gate!"]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -654,7 +654,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["The gate has been unlocked."]
+"values": ["You can now unlock the next gate!"]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -1208,7 +1208,7 @@ collision_layer = 0
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Events/Gate_Crystal1/UnlockArea"]
-position = Vector2(0, -30)
+position = Vector2(-1, -27)
 shape = SubResource("RectangleShape2D_1hwo8")
 
 [node name="Gate_Crystal2" type="StaticBody2D" parent="Events"]
