@@ -40,6 +40,7 @@
 [ext_resource type="Script" uid="uid://b7008awu7lly6" path="res://Scenes/Level/next_level.gd" id="31_naxo4"]
 [ext_resource type="PackedScene" path="res://Scenes/Items/scroll.tscn" id="37_qejra"]
 [ext_resource type="Resource" uid="uid://ba42w4pgbrt7k" path="res://Resources/Scroll/TestDialogueScroll.tres" id="38_vie2q"]
+[ext_resource type="Resource" uid="uid://dqr0x3xikciia" path="res://Resources/Scroll/TestScroll2.tres" id="39_vie2q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4l1k"]
 texture = ExtResource("1_o8n5m")
@@ -759,6 +760,11 @@ custom_sprite_frames = ExtResource("30_tqefj")
 z_index = 20
 position = Vector2(122, 152)
 dialogue = ExtResource("38_vie2q")
+
+[node name="Scroll2" parent="Souls" instance=ExtResource("37_qejra")]
+z_index = 20
+position = Vector2(204, 100)
+dialogue = ExtResource("39_vie2q")
 
 [node name="Next_level" type="Area2D" parent="."]
 position = Vector2(3264, -112)
