@@ -42,14 +42,13 @@ func _slowdown_game_time():
 	
 func _on_text_box_finished_displaying(): 
 	can_advance_line = true
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.2).timeout
 	can_close = true
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if not (can_close and is_dialogue_active and can_advance_line):
 		return
 	
-	# Alleen keyboard (device 0) of gamepad (device >= 1) accepteren, skip muis/touch
 	if (event is InputEventKey or 
 		(event is InputEventJoypadButton and event.device >= 0) or 
 		(event is InputEventJoypadMotion and event.device >= 0)) and event.is_pressed():
