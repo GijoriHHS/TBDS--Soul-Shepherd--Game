@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://hfj0hgwiyiqu" path="res://Scripts/Central/event_trigger.gd" id="20_xexco"]
 [ext_resource type="Script" uid="uid://cbirdwbh5p7se" path="res://Scripts/Obstacles/gate_crystal.gd" id="21_ywtrp"]
 [ext_resource type="Script" uid="uid://b7008awu7lly6" path="res://Scenes/Level/next_level.gd" id="22_5jmqk"]
-[ext_resource type="PackedScene" uid="uid://c2qbrpracjsi5" path="res://Scenes/Enemies/husk.tscn" id="23_bccc1"]
+[ext_resource type="PackedScene" uid="uid://t6qqa47vckdt" path="res://Scenes/Enemies/husk.tscn" id="23_bccc1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y8y6m"]
 texture = ExtResource("3_761oq")
@@ -878,12 +878,11 @@ size = Vector2(48, 16)
 position = Vector2(1, 0)
 script = ExtResource("1_4bcqd")
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("stateLabel", "equipLabel", "hpLabel", "gameOverScreen")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("stateLabel", "equipLabel", "gameOverScreen")]
 unique_name_in_owner = true
 script = ExtResource("2_fiy4m")
 stateLabel = NodePath("../CanvasLayer/Current State")
 equipLabel = NodePath("../CanvasLayer/Current Equip")
-hpLabel = NodePath("../CanvasLayer/HP")
 gameOverScreen = NodePath("../CanvasLayer/ColorRect")
 
 [node name="TileMap" type="TileMap" parent="."]

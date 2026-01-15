@@ -1,7 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://c2qbrpracjsi5"]
+[gd_scene load_steps=37 format=3 uid="uid://t6qqa47vckdt"]
 
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="1_3xw0u"]
-[ext_resource type="Script" uid="uid://bj3o2h06hj6ck" path="res://Scripts/Enemies/enemy.gd" id="1_vumo0"]
+[ext_resource type="Script" uid="uid://deu01mnl471p" path="res://Scripts/Enemies/husk_enemy.gd" id="1_m8kdi"]
 [ext_resource type="Shader" uid="uid://o6ancnl5jgcr" path="res://Shaders/Blink.gdshader" id="2_kapy6"]
 [ext_resource type="Script" uid="uid://dlgatnu5tx5lj" path="res://Scripts/Enemies/health_enemy.gd" id="3_tq37w"]
 [ext_resource type="FontFile" uid="uid://x2dwsfc3en6q" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_6hc3a"]
@@ -209,7 +209,7 @@ corner_radius_bottom_left = 8
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("shootPoint") groups=["Enemy"]]
 collision_layer = 257
 collision_mask = 5
-script = ExtResource("1_vumo0")
+script = ExtResource("1_m8kdi")
 shootPoint = NodePath("CollisionShape2D")
 
 [node name="Health" parent="." instance=ExtResource("1_3xw0u")]
@@ -297,7 +297,14 @@ z_index = 5
 texture = ExtResource("8_pub4n")
 heal_amount = 25
 COLOR = Color(0.7921569, 0.32156864, 0.7882353, 1)
-drop_chance = 100
+drop_chance = 50
+is_active = false
+
+[node name="MagicBamboo2" parent="Drops" instance=ExtResource("7_adlby")]
+texture = ExtResource("8_pub4n")
+heal_amount = 25
+COLOR = Color(0.7921569, 0.32156864, 0.7882353, 1)
+drop_chance = 50
 is_active = false
 
 [node name="Tollie" type="Node2D" parent="Drops"]
