@@ -25,6 +25,7 @@ func _process(_delta: float) -> void:
 	if is_on_floor() and !ground.enabled:
 		ground.set_enabled(true)
 	if just_jumped and velocity.y > 0 and !ground.is_colliding():
+		print("asldfjsadf")
 		if gravity != 2000:
 			gravity = 2000
 			sprite.play("Attack_Ground_Slam")
@@ -44,6 +45,8 @@ func _on_jump_timer_timeout() -> void:
 		jump()
 	
 func jump(small_jump_speed = null):
+	print("asdflkjj")
+	print(gravity)
 	if small_jump_speed == null:
 		velocity.y = jump_speed
 	else:
@@ -58,11 +61,13 @@ func pre_shoot():
 		shoot("punch")
 		can_move = false
 	else:
-		if randi_range(1,2) == 1:
+		if true: #randi_range(1,2) == 1:
+			print("skibedi")
 			can_move = false
 			jump(-200)
 			just_jumped = true
 		else:
+			print("clip")
 			sprite.play("Clap")
 			shoot("clap")
 
