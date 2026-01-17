@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://p47ydk5quyq2" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="3_x858q"]
 [ext_resource type="PackedScene" uid="uid://brc3fv7pjl1bv" path="res://Scenes/UI/GameMenus/Options_Menu.tscn" id="4_4yw8f"]
 [ext_resource type="AudioStream" uid="uid://bunfws4ojf6qm" path="res://Assets/Audio/Music/Titletry2 Title Theme.wav" id="5_3tla5"]
-[ext_resource type="Texture2D" uid="uid://kq5hfqfgie2u" path="res://Assets/logo/Transparent logo 2.png" id="6_3tla5"]
+[ext_resource type="Texture2D" uid="uid://cfpijpxo8llju" path="res://Assets/logo/soul_shepherd_title_black_outline.png" id="6_3tla5"]
 [ext_resource type="Texture2D" uid="uid://bt6mdc6kg0ylv" path="res://Assets/Background/overcome_death2.png" id="6_n5ja1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kko6a"]
