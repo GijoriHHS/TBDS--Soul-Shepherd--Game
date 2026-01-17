@@ -27,7 +27,7 @@ func _on_continue_pressed() -> void:
 	if ResourceLoader.exists(scene_path):
 		get_tree().change_scene_to_file(scene_path)
 	else:
-		print("Level %s not found!" % section)
+		get_tree().change_scene_to_file("res://Scenes/Level/Level_0-0.tscn")
 
 
 func _on_options_pressed() -> void:
