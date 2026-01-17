@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bs6hijimb1akk"]
+[gd_scene load_steps=65 format=3 uid="uid://bs6hijimb1akk"]
 
 [ext_resource type="Script" uid="uid://bkmtjfc44s6bw" path="res://Scripts/Enemies/final_boss.gd" id="1_td638"]
 [ext_resource type="PackedScene" uid="uid://cvgjcwqn6k8eu" path="res://Scenes/UI/Overlay/health.tscn" id="2_td638"]
@@ -9,7 +9,8 @@
 [ext_resource type="FontFile" uid="uid://x2dwsfc3en6q" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="6_xmiba"]
 [ext_resource type="PackedScene" uid="uid://dm61xmst0522o" path="res://Scenes/Items/magic_bamboo.tscn" id="7_661cb"]
 [ext_resource type="Texture2D" uid="uid://utw0u8msxwh0" path="res://Assets/Sprites/Magic Bamboo/+25 hp magic bamboo.png" id="8_8nexp"]
-[ext_resource type="PackedScene" uid="uid://by4jaxexqmjti" path="res://Scenes/Effects/ShockwaveEffect.tscn" id="10_1nrsg"]
+[ext_resource type="PackedScene" uid="uid://by4jaxexqmjti" path="res://Scenes/Effects/ShockwaveGroundEffect.tscn" id="10_1nrsg"]
+[ext_resource type="PackedScene" uid="uid://bi88yxnwsasre" path="res://Scenes/Effects/ShockWaveAir.tscn" id="11_jnvov"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6hc3a"]
 resource_local_to_scene = true
@@ -526,7 +527,10 @@ disabled = true
 [node name="WalkTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Shockwave2" parent="." instance=ExtResource("10_1nrsg")]
+[node name="ShockwaveGround" parent="." instance=ExtResource("10_1nrsg")]
+position = Vector2(-1, 15)
+
+[node name="ShockwaveAir" parent="." instance=ExtResource("11_jnvov")]
 
 [connection signal="hp_changed" from="Health" to="." method="_on_health_hp_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -19,13 +19,11 @@ curve = SubResource("Curve_5m0k1")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_searh"]
 particle_flag_disable_z = true
-emission_shape_offset = Vector3(60, 0, 0)
-emission_shape_scale = Vector3(4, 1, 1)
+emission_shape_offset = Vector3(45, 0, 0)
 emission_shape = 3
-emission_box_extents = Vector3(15, 1, 0)
+emission_box_extents = Vector3(45, 1, 0)
 angle_min = -350.0
 angle_max = 350.00003
-direction = Vector3(0, 0, 0)
 spread = 0.0
 initial_velocity_min = 5.0
 initial_velocity_max = 10.0
@@ -35,7 +33,6 @@ orbit_velocity_min = -0.024999905
 orbit_velocity_max = 0.1120001
 radial_velocity_min = -2.2351742e-05
 radial_velocity_max = 24.919977
-gravity = Vector3(0, 0, 0)
 damping_min = 32.087
 damping_max = 51.090004
 damping_curve = SubResource("CurveTexture_1k8nv")
@@ -46,11 +43,12 @@ scale_over_velocity_min = 94.71
 scale_over_velocity_max = 314.63998
 color = Color(0.6786012, 0.4994595, 0, 1)
 
-[node name="Shockwave" type="GPUParticles2D"]
+[node name="ShockwaveGround" type="GPUParticles2D"]
 amount = 40
 sub_emitter = NodePath(".")
 texture = ExtResource("1_5m0k1")
 lifetime = 0.8
 explosiveness = 0.95
 randomness = 0.57
+visibility_rect = Rect2(-87.5, -50, 175, 100)
 process_material = SubResource("ParticleProcessMaterial_searh")
