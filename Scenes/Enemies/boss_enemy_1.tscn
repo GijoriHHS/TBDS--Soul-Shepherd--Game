@@ -280,6 +280,7 @@ process_material = SubResource("ParticleProcessMaterial_dfwqp")
 wait_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
 shape = SubResource("CircleShape2D_3xw0u")
 
 [node name="GroundCheck" type="RayCast2D" parent="."]
@@ -325,18 +326,19 @@ offset_top = -16.0
 offset_right = 6.0
 offset_bottom = -12.0
 theme = SubResource("Theme_v0yt4")
-theme_override_colors/font_color = Color(0, 0.9490196, 0, 1)
+theme_override_colors/font_color = Color(0, 0.94902, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
 theme_override_styles/fill = SubResource("StyleBoxFlat_rkuo3")
 show_percentage = false
 
 [node name="Drops" type="Node2D" parent="."]
+visible = false
 z_index = 5
 
 [node name="MagicBamboo" parent="Drops" instance=ExtResource("7_aesm5")]
 texture = ExtResource("8_styb1")
 heal_amount = 25
-COLOR = Color(0.7921569, 0.32156864, 0.7882353, 1)
+COLOR = Color(0.792157, 0.321569, 0.788235, 1)
 drop_chance = 15
 is_active = false
 

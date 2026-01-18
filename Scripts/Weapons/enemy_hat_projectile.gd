@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Enemy_projectile
 
 @export var speed : float = 100.0
-@export var sprite : AnimatedSprite2D
+@export var sprite : Sprite2D
 var direction : float
 var spawnpos : Vector2
 var turn_on_area : Array[int]

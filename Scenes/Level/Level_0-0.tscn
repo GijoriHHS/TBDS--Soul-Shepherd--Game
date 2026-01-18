@@ -29,7 +29,7 @@
 [ext_resource type="Script" uid="uid://b7008awu7lly6" path="res://Scenes/Level/next_level.gd" id="24_avfl4"]
 [ext_resource type="PackedScene" uid="uid://t6qqa47vckdt" path="res://Scenes/Enemies/husk.tscn" id="25_udpot"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y8y6m"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_whiw2"]
 texture = ExtResource("3_qh7va")
 10:0/0 = 0
 11:0/0 = 0
@@ -250,7 +250,7 @@ texture = ExtResource("3_qh7va")
 11:10/0 = 0
 12:10/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vfbj7"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgn10"]
 texture = ExtResource("4_whiw2")
 7:4/0 = 0
 7:4/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -431,8 +431,8 @@ physics_layer_1/collision_layer = 512
 physics_layer_1/collision_mask = 512
 physics_layer_2/collision_layer = 1024
 physics_layer_2/collision_mask = 1024
-sources/0 = SubResource("TileSetAtlasSource_y8y6m")
-sources/2 = SubResource("TileSetAtlasSource_vfbj7")
+sources/0 = SubResource("TileSetAtlasSource_whiw2")
+sources/2 = SubResource("TileSetAtlasSource_wgn10")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5ljwd"]
 
@@ -880,7 +880,6 @@ _data = {
 size = Vector2(48, 16)
 
 [node name="Level" type="Node2D"]
-position = Vector2(1, 0)
 script = ExtResource("1_qwuc5")
 
 [node name="GameManager" type="Node" parent="."]
@@ -1268,8 +1267,9 @@ COLOR = Color(0, 0.59607846, 0.8627451, 1)
 position = Vector2(3808, 48)
 collision_mask = 4
 script = ExtResource("24_avfl4")
-level_name = "level_1-2"
+level_name = "level_1-1"
 next_level = 1
+next_part = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Next_level"]
 shape = SubResource("RectangleShape2D_1v0ja")
