@@ -7,6 +7,8 @@ var key_scene: PackedScene = preload("res://Scenes/Items/key.tscn")
 var current_active_key
 var keys_per_level: Dictionary = {}  
 
+signal boss_death
+
 func has_key(level_id: LevelID, door_id: DoorID) -> bool:
 	var level_doors = keys_per_level.get(level_id, {})
 	return level_doors.get(door_id, false)
