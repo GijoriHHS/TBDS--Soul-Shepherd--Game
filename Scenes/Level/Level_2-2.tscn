@@ -633,15 +633,15 @@ checkppoint_id = 1
 
 [node name="Area2D3" parent="CheckPoints" instance=ExtResource("5_ov71p")]
 position = Vector2(2191, 135)
-checkppoint_id = 2
+checkppoint_id = 3
 
 [node name="Area2D4" parent="CheckPoints" instance=ExtResource("5_ov71p")]
 position = Vector2(2840, -201)
-checkppoint_id = 3
+checkppoint_id = 4
 
 [node name="Area2D5" parent="CheckPoints" instance=ExtResource("5_ov71p")]
 position = Vector2(1240, 151)
-checkppoint_id = 3
+checkppoint_id = 2
 
 [node name="Start" type="Marker2D" parent="CheckPoints"]
 position = Vector2(75, 219)
@@ -1699,12 +1699,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_n2dxn")
 }
 
-[node name="Key1" type="Area2D" parent="Events" node_paths=PackedStringArray("tip_label")]
+[node name="Key1" type="Area2D" parent="Events"]
 z_index = 5
 position = Vector2(679, -104)
 collision_mask = 4100
 script = ExtResource("20_duqxh")
-tip_label = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Events/Key1"]
 shape = SubResource("RectangleShape2D_qovpi")
@@ -1714,12 +1713,11 @@ texture = ExtResource("3_oxqp5")
 region_enabled = true
 region_rect = Rect2(128, 128, 16, 16)
 
-[node name="Key2" type="Area2D" parent="Events" node_paths=PackedStringArray("tip_label")]
+[node name="Key2" type="Area2D" parent="Events"]
 z_index = 5
 position = Vector2(1808, 496)
 collision_mask = 4100
 script = ExtResource("20_duqxh")
-tip_label = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Events/Key2"]
 shape = SubResource("RectangleShape2D_qovpi")
@@ -1729,12 +1727,11 @@ texture = ExtResource("3_oxqp5")
 region_enabled = true
 region_rect = Rect2(128, 128, 16, 16)
 
-[node name="Key3" type="Area2D" parent="Events" node_paths=PackedStringArray("tip_label")]
+[node name="Key3" type="Area2D" parent="Events"]
 z_index = 5
 position = Vector2(2696, -208)
 collision_mask = 4100
 script = ExtResource("20_duqxh")
-tip_label = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Events/Key3"]
 shape = SubResource("RectangleShape2D_qovpi")
