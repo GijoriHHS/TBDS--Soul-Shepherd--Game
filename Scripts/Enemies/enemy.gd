@@ -11,8 +11,8 @@ class_name enemy
 @onready var label: Label = $Label
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
-@export var walk_speed : int = 40
-@export var sprint_speed : int = 60
+@export var walk_speed : int = 50
+@export var sprint_speed : int = 70
 var speed : int = 0
 @export var dir : int = 1
 var player: CharacterBody2D = null
@@ -33,6 +33,7 @@ var knockback_decay := 10.0
 var projectile_index_number: int
 var latest_hat : Node
 @onready var hp_bar: ProgressBar = $ProgressBar
+var stage: int = 0
 
 
 var old_hp : int
@@ -44,19 +45,24 @@ func _ready() -> void:
 		player = root.get_node("Player")
 	Engine.max_fps = 60
 	speed = walk_speed
-	_on_animated_sprite_2d_animation_finished()
+	_on_animated_sprite_2d_animation_finished("")
 	$Label.set_text("HP: " + str(health.hp))
-	hp_bar.value = health.hp
 	hp_bar.max_value = health.hp
+	hp_bar.value = health.hp
+
 
 func _process(_delta: float) -> void:
+	if !can_move:
+		speed = 0
 	_correct_sprite()
 	ground.position.x = groundPosOffset if dir > 0 else groundPosOffset * -1
 		
 	if not is_on_floor():
 		velocity.y += gravity * _delta
 	else:
-		velocity.y += gravity * _delta
+		#velocity.y = 0
+		pass
+
 	
 	if old_hp != health.hp:
 		label.text = "HP: " + str(health.hp)
@@ -64,7 +70,6 @@ func _process(_delta: float) -> void:
 		
 	if (is_on_wall() or (!ground.is_colliding() and ground.enabled)) and can_move:
 		dir = dir * -1
-		#_correct_sprite()
 
 	if knockback_velocity.length() > 1:
 		velocity.x = knockback_velocity.x
@@ -83,10 +88,8 @@ func _process(_delta: float) -> void:
 			_on_area_2d_body_shape_exited()
 		elif raycastcheckleft.is_colliding():
 			dir = -1
-			#_correct_sprite()
 		elif raycastcheckright.is_colliding():
 			dir = 1
-			#_correct_sprite()
 	elif raycastcheckright.is_colliding() and raycastcheckright.get_collider().name == "Player" and can_move:
 		dir = 1
 		flippedSprite = false
@@ -114,19 +117,20 @@ func _on_health_hp_changed() -> void:
 	hp_bar.value = health.hp
 
 func pre_shoot():
-	shoot()
+	shoot("")
 
-func shoot():
+func shoot(attack: String):
 	speed = 0
 	sprite.play("Attack_shoot")
 	latest_hat = projectile.instantiate()
-	latest_hat.sprite = sprite
+	#latest_hat.sprite = spritem
 	latest_hat.spawnpos = shootPoint.global_position
 	if dir == 1:
 		latest_hat.spawnpos.x += shotOffset
 	elif dir == -1:
 		latest_hat.spawnpos.x -= shotOffset
 	latest_hat.direction = dir
+	latest_hat.boss_stage = stage
 	main.add_child.call_deferred(latest_hat)
 	
 func SetShader_BlinkIntensity(newValue: float):
@@ -136,7 +140,6 @@ func _on_timer_timeout() -> void:
 	pre_shoot()
 
 func _on_area_2d_body_shape_entered() -> void:
-	#_correct_sprite()
 	playerInRange = true
 	speed = sprint_speed
 	can_jump = false
@@ -157,8 +160,8 @@ func _correct_sprite() -> void:
 			$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x * -1
 			flippedSprite = true
 
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if can_move:
+func _on_animated_sprite_2d_animation_finished(anim_name: String) -> void:
+	if speed != 0:
 		sprite.play("Walking")
 	else:
 		sprite.play("Idle")
@@ -171,7 +174,7 @@ func _on_top_check_cooldown_timeout() -> void:
 	_player_on_top()
 
 func _player_on_top() -> void:
-	player.hp.take_damage(10)
+	player.hp.take_damage(30)
 	playerOnTop = true
 	$TopCheckCooldown.start()
 

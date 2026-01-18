@@ -49,7 +49,10 @@ var cooldowns: Dictionary = {
 	ability_list.Dash: 1.0,
 	ability_list.Attack1: 0.5,
 	ability_list.Archery: 0.5,
-	ability_list.WallJump: 0.2
+	ability_list.WallJump: 0.5,
+	ability_list.DoubleJump: 0.5,
+	ability_list.Airgliding: 1.0,
+	ability_list.Wallsliding: 0.5
 }
 
 var active_cooldown_timers = {}
@@ -114,6 +117,7 @@ func load_default_abilities() -> void:
 		ability = get_value_from_ability_name(ability)
 		if ability in default_abilities:
 			unlocked_abilities.append(ability)
+
 
 func get_ability_name_from_value(value: int) -> String:
 	for key in AbilityData.ability_list.keys():

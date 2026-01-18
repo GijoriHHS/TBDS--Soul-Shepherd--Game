@@ -1,10 +1,12 @@
 extends Node
 class_name HP
+const MAX_HP : int = 100
 @export var hp = 100
 @onready var timer: Timer = $Timer
 
 @onready var player_death_sfx: AudioStreamPlayer2D = $PlayerDeathSfx
 @onready var bone_break_sfx: AudioStreamPlayer2D = $BoneBreakSfx
+@onready var particleEffect: CPUParticles2D = get_parent().get_node("BloodParticle")
 
 @onready var player_animated_sprite = get_parent().get_node("AnimatedSprite2D")
 @onready var player_shader_material = player_animated_sprite.material as ShaderMaterial
@@ -12,9 +14,14 @@ class_name HP
 signal hp_changed
 
 enum DamageType { NORMAL, FALL, SWORD, PROJECTILE}
+enum HealType { NORMAL}
 
 func take_damage(dmg : int, damage_type: DamageType = DamageType.NORMAL):
-	UtilsEffect.damage_effect(player_shader_material)
+	#UtilsEffect.damage_effect(player_shader_material)
+	if particleEffect.emitting == true:
+		particleEffect.emitting = false
+		
+	particleEffect.emitting = true
 	
 	hp -= dmg
 	_play_damage_sfx(damage_type)
@@ -47,3 +54,11 @@ func _on_timer_timeout() -> void:
 	#if get_parent().is_in_group("Player"):
 		#var player : Player = get_parent()
 		#CheckPointManager.respawn_player_to_checkpoint.emit(player)
+
+func health_heal(amount : int, heal_type: HealType = HealType.NORMAL):
+	if hp + amount > 100:
+		hp = 100
+	else: 
+		hp += amount
+	$HealingSFX.playing = true
+	$HealingSFX._on_started()

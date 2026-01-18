@@ -25,6 +25,7 @@ func register_camera(camera: CameraMain):
 	camera_main = camera
 
 func register_start(Start: Marker2D):
+	#print(Start)
 	unlocked_checkpoints.append({
 		"id": Start.checkppoint_id,
 		"position": Start.global_position,
@@ -136,10 +137,48 @@ func _respawn_player_to_checkpoint(player: Player):
 	
 	await get_tree().create_timer(.5).timeout
 
+func get_root():
+	return obstacles_root
+
 func reset_obstacles_subtree() -> void:
 	if is_instance_valid(obstacles_root):
+		_disconnect_all_signals_recursive(obstacles_root)
 		obstacles_root.queue_free()
 	
 	obstacles_root = obstacles_packed.instantiate()
 	obstacles_parent.add_child(obstacles_root)
 	obstacles_parent.move_child(obstacles_root, obstacles_index)
+
+func _disconnect_all_signals_recursive(node: Node) -> void:
+	# Get all signals from the node
+	var signal_list = node.get_signal_list()
+	
+	# List of internal Godot signals to skip
+	var internal_signals = [
+		"tree_entered", "tree_exiting", "tree_exited",
+		"ready", "renamed", "child_entered_tree", "child_exiting_tree",
+		"child_order_changed", "replacing_by", "predelete",
+		"script_changed", "property_list_changed"
+	]
+	
+	for signal_info in signal_list:
+		var signal_name = signal_info["name"]
+		
+		# Skip internal Godot lifecycle signals
+		if signal_name in internal_signals:
+			continue
+		
+		# Get all connections for this signal
+		var connections = node.get_signal_connection_list(signal_name)
+		
+		for connection in connections:
+			var callable = connection["callable"]
+			# Check if connection exists before disconnecting
+			if node.is_connected(signal_name, callable):
+				node.disconnect(signal_name, callable)
+	
+	# Recursively process all children
+	for child in node.get_children():
+		_disconnect_all_signals_recursive(child)
+
+	
