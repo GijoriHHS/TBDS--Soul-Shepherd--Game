@@ -59,6 +59,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				SaveData.save_contents["found_scroll_dialogue"] = []
 			SaveData.save_contents["found_scroll_dialogue"].append(scroll_contents)
 			SaveData.save()
+			SaveData.saving.emit()
 		self.queue_free()
 
 		
