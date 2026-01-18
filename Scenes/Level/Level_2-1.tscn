@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://j6du3niuxs2r"]
+[gd_scene load_steps=49 format=3 uid="uid://j6du3niuxs2r"]
 
 [ext_resource type="Script" uid="uid://c2jeph0pjh467" path="res://Scripts/Level/playtest_level.gd" id="1_a337h"]
 [ext_resource type="Script" uid="uid://byn1je7flnjo3" path="res://Scripts/Central/game_manager.gd" id="2_tcjxv"]
@@ -22,7 +22,6 @@
 [ext_resource type="FontFile" uid="uid://p47ydk5quyq2" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="18_qgbq7"]
 [ext_resource type="Script" uid="uid://bpkjqkjnq8o6g" path="res://Scripts/Player/General/killzone.gd" id="18_vpnas"]
 [ext_resource type="PackedScene" uid="uid://c34kdnga4axvp" path="res://Scenes/Obstacles/obstacle_falling_tiles.tscn" id="19_78fjt"]
-[ext_resource type="PackedScene" uid="uid://d2jbqn300os54" path="res://Scenes/Obstacles/obstacle_spike.tscn" id="20_jqrle"]
 [ext_resource type="PackedScene" uid="uid://dm61xmst0522o" path="res://Scenes/Items/magic_bamboo.tscn" id="21_fo8ia"]
 [ext_resource type="Texture2D" uid="uid://c8dol58rb8t5j" path="res://Assets/Sprites/Magic Bamboo/+5 hp magic bamboo.png" id="22_c21fn"]
 [ext_resource type="AudioStream" uid="uid://cbtn1bitrynwi" path="res://Assets/Audio/Music/sample.wav" id="23_hsbfp"]
@@ -886,12 +885,6 @@ position = Vector2(-16, 0)
 
 [node name="obstacle_falling_tiles4" parent="Obstacles/falling_tiles2" instance=ExtResource("19_78fjt")]
 position = Vector2(16, 0)
-
-[node name="spikes" type="Node2D" parent="Obstacles"]
-
-[node name="obstacle_spike" parent="Obstacles/spikes" instance=ExtResource("20_jqrle")]
-z_index = 4
-position = Vector2(2416, 448)
 
 [node name="MagicBamboo" type="Node2D" parent="Obstacles"]
 z_index = 4
