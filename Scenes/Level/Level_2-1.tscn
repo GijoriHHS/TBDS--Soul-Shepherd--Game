@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://j6du3niuxs2r"]
+[gd_scene load_steps=50 format=3 uid="uid://j6du3niuxs2r"]
 
 [ext_resource type="Script" uid="uid://c2jeph0pjh467" path="res://Scripts/Level/playtest_level.gd" id="1_a337h"]
 [ext_resource type="Script" uid="uid://byn1je7flnjo3" path="res://Scripts/Central/game_manager.gd" id="2_tcjxv"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://cl45lm0hg20kf" path="res://Scenes/Items/soul.tscn" id="27_imhjm"]
 [ext_resource type="SpriteFrames" uid="uid://cgtj4wt3ql8r1" path="res://Resources/Wisps/Fire_Wisp.tres" id="28_demn2"]
 [ext_resource type="PackedScene" uid="uid://t6qqa47vckdt" path="res://Scenes/Enemies/husk.tscn" id="29_8n4ft"]
+[ext_resource type="PackedScene" uid="uid://cy60eohui7ya1" path="res://Scenes/Background/parralax_background_2-1.tscn" id="33_hoehn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b4qox"]
 texture = ExtResource("3_hrj5t")
@@ -837,7 +838,7 @@ offset_bottom = 72.0
 theme_override_fonts/font = ExtResource("18_qgbq7")
 theme_override_font_sizes/font_size = 20
 text = "Current Level: 
-1-3"
+2-1"
 
 [node name="CameraMain" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 zoom = Vector2(4, 4)
@@ -1040,6 +1041,9 @@ scale = Vector2(2, 2)
 collision_layer = 256
 walk_speed = 100
 sprint_speed = 100
+
+[node name="ParralaxBackground" parent="." instance=ExtResource("33_hoehn")]
+position = Vector2(1, 314)
 
 [connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
 [connection signal="body_entered" from="Next_level" to="Next_level" method="_on_body_entered"]
