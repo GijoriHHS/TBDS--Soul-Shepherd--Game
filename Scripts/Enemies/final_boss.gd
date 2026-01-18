@@ -12,13 +12,11 @@ var just_jumped: bool = false
 func _ready() -> void:
 	health.hp_changed.connect(_boss_hit)
 	$in_range_shoot_timer.wait_time = 1
-	projectile = load("res://Scenes/Weapons/enemy_hat_projectile.tscn")
+	projectile = load("res://Scenes/Weapons/boss_enemy_projectile.tscn")
 	super._ready()
 	JumpTimer.start()
 	speed = 0
-	stage = 1
-	if stage > 1:
-		health.hp = 200
+	health.hp = 200
 
 func _process(_delta: float) -> void:
 	super._process(_delta)
@@ -66,7 +64,6 @@ func pre_shoot():
 		else:
 			sprite.stop()
 			sprite.play("Clap")
-			print("sprite: " + str(sprite.get_animation()))
 			shoot("clap")
 
 func shoot(attack: String):
@@ -80,9 +77,13 @@ func shoot(attack: String):
 			ShockwaveArea.set_disabled(false)
 		else:
 			ShockwaveArea.set_disabled(false)
+		$ShockwaveAirLeft.set_emitting(true)
+		$ShockwaveAirRight.set_emitting(true)
 	elif attack == "ground_attack":
 		ShockwaveArea.position.y = 8.64
 		ShockwaveArea.set_disabled(false)
+		$ShockwaveGroundLeft.set_emitting(true)
+		$ShockwaveGroundRight.set_emitting(true)
 	elif attack == "punch":
 		sprite.play("Attack_punch")
 		WalkTimer.start(1)
@@ -115,7 +116,7 @@ func _on_walk_timer_timeout() -> void:
 
 func _on_shockwave_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		player.hp.take_damage(10)
+		player.hp.take_damage(30)
 		
 func _boss_hit() -> void:
 	shoot("projectile")

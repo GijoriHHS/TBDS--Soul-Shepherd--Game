@@ -1,8 +1,8 @@
 extends CharacterBody2D
-class_name Enemy_projectile
+class_name Boss_enemy_projectile
 
 @export var speed : float = 100.0
-@export var sprite : Sprite2D
+@export var sprite : AnimatedSprite2D
 var direction : float
 var spawnpos : Vector2
 var turn_on_area : Array[int]
@@ -16,7 +16,7 @@ var control_point: Vector2
 @export var control_point_offset := Vector2(50, -25)
 var t := 0.0
 @export var duration := 1.5
-@onready var enemy_hat = load("res://Scenes/Weapons/enemy_hat_projectile.tscn")
+@onready var enemy_hat = load("res://Scenes/Weapons/boss_enemy_projectile.tscn")
 @onready var main = get_tree().get_root().get_node("Level")
 var is_first: bool = true
 var first_time: bool = true
