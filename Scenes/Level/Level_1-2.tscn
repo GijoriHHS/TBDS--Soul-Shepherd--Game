@@ -999,8 +999,9 @@ COLOR = Color(0, 0.59607846, 0.8627451, 1)
 position = Vector2(10392, 48)
 collision_mask = 4
 script = ExtResource("20_76nua")
-level_name = "level_2_1"
-next_part = 1
+level_name = "level_1-3"
+next_level = 1
+next_part = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Next_level"]
 shape = SubResource("RectangleShape2D_miuwv")
