@@ -7,7 +7,7 @@ func _ready() -> void:
 	CheckPointManager.register_start(start)
 	var obstacles: Node2D = $Obstacles
 	add_carried_abilities()
-	#CheckPointManager.register_root_obstacle(obstacles)
+	CheckPointManager.register_root_obstacle(obstacles)
 
 
 

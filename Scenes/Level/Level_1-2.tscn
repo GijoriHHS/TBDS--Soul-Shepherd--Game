@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://gwyk1dfn0jtx"]
+[gd_scene load_steps=45 format=3 uid="uid://gwyk1dfn0jtx"]
 
 [ext_resource type="Script" uid="uid://byn1je7flnjo3" path="res://Scripts/Central/game_manager.gd" id="1_1a5qi"]
 [ext_resource type="Script" uid="uid://c2jeph0pjh467" path="res://Scripts/Level/playtest_level.gd" id="1_w71j4"]
@@ -29,8 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://b7ugr2cytodl8" path="res://Assets/Background/forest_background.png" id="22_1uwwi"]
 [ext_resource type="PackedScene" uid="uid://cl45lm0hg20kf" path="res://Scenes/Items/soul.tscn" id="22_llcl8"]
 [ext_resource type="PackedScene" uid="uid://d2jbqn300os54" path="res://Scenes/Obstacles/obstacle_spike.tscn" id="22_w8ssc"]
-[ext_resource type="SpriteFrames" uid="uid://cgtj4wt3ql8r1" path="res://Resources/Wisps/Fire_Wisp.tres" id="23_w71j4"]
-[ext_resource type="SpriteFrames" uid="uid://dg0vx2sffi824" path="res://Resources/Wisps/Green_Wisp.tres" id="24_3r3yc"]
 [ext_resource type="SpriteFrames" uid="uid://btqrxjedotkrq" path="res://Resources/Wisps/Water_Wisp.tres" id="25_qftv3"]
 [ext_resource type="PackedScene" uid="uid://dm61xmst0522o" path="res://Scenes/Items/magic_bamboo.tscn" id="26_3fxnq"]
 [ext_resource type="Texture2D" uid="uid://c8dol58rb8t5j" path="res://Assets/Sprites/Magic Bamboo/+5 hp magic bamboo.png" id="27_6ilrh"]
@@ -1046,24 +1044,13 @@ shape = SubResource("RectangleShape2D_miuwv")
 
 [node name="Souls" type="Node2D" parent="."]
 
-[node name="Dash" parent="Souls" instance=ExtResource("22_llcl8")]
-position = Vector2(144, 234)
-scale = Vector2(0.765, 0.765)
-ability = 7
-custom_sprite_frames = ExtResource("23_w71j4")
-
-[node name="Glide" parent="Souls" instance=ExtResource("22_llcl8")]
-position = Vector2(703, 168)
-scale = Vector2(0.765, 0.765)
-custom_sprite_frames = ExtResource("24_3r3yc")
-
 [node name="Double" parent="Souls" instance=ExtResource("22_llcl8")]
 position = Vector2(1823, 488)
 scale = Vector2(0.765, 0.765)
 ability = 9
 custom_sprite_frames = ExtResource("25_qftv3")
 
-[node name="Double2" parent="Souls" instance=ExtResource("22_llcl8")]
+[node name="Wallslide" parent="Souls" instance=ExtResource("22_llcl8")]
 position = Vector2(9128, 248)
 scale = Vector2(0.765, 0.765)
 ability = 8
