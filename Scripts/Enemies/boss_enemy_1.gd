@@ -13,13 +13,14 @@ func _ready() -> void:
 	speed = 0
 	stage = 1
 	health.hp = 250
+	health.hp_changed.connect(_boss_hit)
 
 
 func _process(_delta: float) -> void:
 	super._process(_delta)
 	if is_on_floor() and !ground.enabled:
 		ground.set_enabled(true)
-	if just_jumped and velocity.y == 0:
+	if just_jumped and velocity.y > 0 and !ground.is_colliding():
 		shoot("")
 		just_jumped = false
 		if stage > 2:
@@ -47,8 +48,16 @@ func pre_shoot():
 	just_jumped = true
 
 func shoot(attack: String):
+	if global_position.x - player.global_position.x > 0:
+		dir = -1
+	else:
+		dir = 1
 	super.shoot("")
 
 func _on_stage_3_timer_timeout() -> void:
 	shoot("")
 	$stage_3_timer.stop()
+
+func _boss_hit() -> void:
+	#await get_tree().create_timer(0.5).timeout
+	pre_shoot()
