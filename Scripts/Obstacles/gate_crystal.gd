@@ -16,5 +16,6 @@ func open_door() -> void:
 		KeyManager.remove_following_key()
 		queue_free()
 
-func _on_unlock_area_body_entered(_body: Node2D) -> void:
-	open_door()
+func _on_unlock_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		open_door()
