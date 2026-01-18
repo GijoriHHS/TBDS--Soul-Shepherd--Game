@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn8a3x4q0yekn"]
+
+[ext_resource type="Script" uid="uid://cstgtmfhmy3fb" path="res://Scripts/Obstacles/camera_drag_zone.gd" id="1_yyopy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlhm6"]
+size = Vector2(20, 100)
+
+[node name="CameraDragZone" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_yyopy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nlhm6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
