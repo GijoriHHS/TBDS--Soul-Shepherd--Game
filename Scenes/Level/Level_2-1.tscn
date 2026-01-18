@@ -1,12 +1,13 @@
-[gd_scene load_steps=58 format=3 uid="uid://j6du3niuxs2r"]
+[gd_scene load_steps=60 format=3 uid="uid://j6du3niuxs2r"]
 
 [ext_resource type="Script" uid="uid://c2jeph0pjh467" path="res://Scripts/Level/playtest_level.gd" id="1_a337h"]
+[ext_resource type="Resource" uid="uid://ch7yv6txyd3tq" path="res://Resources/Dialogue/2-1-start-dialogue.tres" id="2_65b1w"]
 [ext_resource type="Script" uid="uid://byn1je7flnjo3" path="res://Scripts/Central/game_manager.gd" id="2_tcjxv"]
 [ext_resource type="Texture2D" uid="uid://dfdfu6o1j3apv" path="res://Assets/Sprites/Playtest1.png" id="3_hrj5t"]
 [ext_resource type="Texture2D" uid="uid://c3jf58yvjljmy" path="res://Assets/Sprites/tileset2.png" id="4_hoehn"]
 [ext_resource type="Texture2D" uid="uid://j1w6x4hpn3ou" path="res://Assets/Icons/Sung Chin Woo Icon.png" id="4_wdtcg"]
 [ext_resource type="PackedScene" uid="uid://c45jpc3kaflr4" path="res://Scenes/CheckPoints/CheckPoint.tscn" id="5_hoehn"]
-[ext_resource type="Shader" path="res://Shaders/water_shader_vertical_waves.gdshader" id="6_hoehn"]
+[ext_resource type="Shader" uid="uid://b4k5pl844vedq" path="res://Shaders/water_shader_vertical_waves.gdshader" id="6_hoehn"]
 [ext_resource type="Script" uid="uid://dtfsguwdnfr7m" path="res://Scripts/CheckPoints/start.gd" id="6_qgbq7"]
 [ext_resource type="PackedScene" uid="uid://c5ongupm07qh3" path="res://Scenes/Player/player.tscn" id="7_as8vh"]
 [ext_resource type="Script" uid="uid://ce43l01wboarg" path="res://Scripts/UI/Overlay/canvas_layer.gd" id="8_k5ql6"]
@@ -25,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://c34kdnga4axvp" path="res://Scenes/Obstacles/obstacle_falling_tiles.tscn" id="19_78fjt"]
 [ext_resource type="PackedScene" uid="uid://dm61xmst0522o" path="res://Scenes/Items/magic_bamboo.tscn" id="21_fo8ia"]
 [ext_resource type="Texture2D" uid="uid://c8dol58rb8t5j" path="res://Assets/Sprites/Magic Bamboo/+5 hp magic bamboo.png" id="22_c21fn"]
+[ext_resource type="PackedScene" uid="uid://ndkp1vfqmr4g" path="res://Scenes/Dialogue/DialogueUI.tscn" id="22_s4fgd"]
 [ext_resource type="Script" uid="uid://b7008awu7lly6" path="res://Scenes/Level/next_level.gd" id="24_pqc52"]
 [ext_resource type="Script" uid="uid://hfj0hgwiyiqu" path="res://Scripts/Central/event_trigger.gd" id="25_tr82u"]
 [ext_resource type="AudioStream" uid="uid://crqxhwi0bk28r" path="res://Assets/Audio/Music/2-1 Spelunkin'.wav" id="26_51upf"]
@@ -1099,6 +1101,7 @@ size = Vector2(96.5, 90.25)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_a337h")
+dialogue = ExtResource("2_65b1w")
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -1264,6 +1267,9 @@ theme_override_fonts/font = ExtResource("18_qgbq7")
 theme_override_font_sizes/font_size = 20
 text = "Current Level: 
 2-1"
+
+[node name="DialogueUI" parent="." instance=ExtResource("22_s4fgd")]
+visible = false
 
 [node name="CameraMain" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 zoom = Vector2(3, 3)
