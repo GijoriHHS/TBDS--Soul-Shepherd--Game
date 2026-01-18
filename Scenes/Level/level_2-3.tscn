@@ -1055,6 +1055,7 @@ position = Vector2(3416, -1019)
 material = SubResource("ShaderMaterial_7jbgu")
 
 [node name="MagicBamboo" parent="Enemies/Enemy17/Drops" index="0"]
+heal_amount = 20
 drop_chance = 10
 
 [node name="Enemy18" parent="Enemies" instance=ExtResource("25_4ah0m")]
