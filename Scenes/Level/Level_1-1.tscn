@@ -990,7 +990,6 @@ unique_name_in_owner = true
 script = ExtResource("2_fiy4m")
 
 [node name="Player" parent="." instance=ExtResource("7_6skth")]
-z_index = 10
 position = Vector2(16, 217)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
