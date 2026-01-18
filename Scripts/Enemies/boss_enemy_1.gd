@@ -64,5 +64,6 @@ func _boss_hit() -> void:
 	pre_shoot()
 
 func _on_npc_died():
+	print(dialogue)
 	if dialogue:
 		DialogueManager.start_dialogue(dialogue)

@@ -24,6 +24,8 @@ func take_damage(dmg : int):
 		timer.start()
 	elif(hp <= 0):
 		_on_death_drops()
+		if get_parent().has_method("_on_npc_died"):
+			get_parent()._on_npc_died()
 		#drop_item()
 		get_parent().queue_free()
 
