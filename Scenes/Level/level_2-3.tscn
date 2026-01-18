@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://df7x13ignki5d"]
+[gd_scene load_steps=58 format=3 uid="uid://df7x13ignki5d"]
 
 [ext_resource type="Script" uid="uid://dhm65txe15dn0" path="res://Scenes/Level/level_2_3.gd" id="1_3yx86"]
 [ext_resource type="Texture2D" uid="uid://c3jf58yvjljmy" path="res://Assets/Sprites/tileset2.png" id="2_0swme"]
@@ -877,7 +877,7 @@ position = Vector2(-1, -17)
 z_index = 5
 position = Vector2(-383, -148)
 texture = ExtResource("17_y2nwt")
-heal_amount = 5
+heal_amount = 10
 COLOR = Color(0, 0.59607846, 0.8627451, 1)
 
 [node name="Souls" type="Node2D" parent="."]
@@ -956,6 +956,7 @@ position = Vector2(2344, -734)
 material = SubResource("ShaderMaterial_p4xu6")
 
 [node name="MagicBamboo" parent="Enemies/Enemy3/Drops" index="0"]
+heal_amount = 20
 drop_chance = 5
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource("25_4ah0m")]
@@ -968,6 +969,7 @@ position = Vector2(2986, -1401)
 material = SubResource("ShaderMaterial_1glto")
 
 [node name="MagicBamboo" parent="Enemies/Enemy5/Drops" index="0"]
+heal_amount = 20
 drop_chance = 15
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource("25_4ah0m")]
@@ -1040,6 +1042,7 @@ position = Vector2(3082, -826)
 material = SubResource("ShaderMaterial_wudwi")
 
 [node name="MagicBamboo" parent="Enemies/Enemy15/Drops" index="0"]
+heal_amount = 20
 drop_chance = 7
 
 [node name="Enemy16" parent="Enemies" instance=ExtResource("25_4ah0m")]
