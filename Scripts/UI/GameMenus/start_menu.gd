@@ -52,9 +52,10 @@ func _on_continue_pressed() -> void:
 		return
 
 	if ResourceLoader.exists(scene_path):
-		get_tree().change_scene_to_file(scene_path)
+		get_tree().change_scene_to_file.bind(scene_path).call_deferred()
 	else:
-		get_tree().change_scene_to_file("res://Scenes/Level/Level_0-0.tscn")
+		get_tree().change_scene_to_file.bind("res://Scenes/Level/Level_0-0.tscn").call_deferred()
+
 
 
 func _on_options_pressed() -> void:
@@ -86,7 +87,7 @@ func regain_menu_focus():
 		
 		
 func _on_game_start_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Level/Level_0-0.tscn")
+	get_tree().change_scene_to_file.bind("res://Scenes/Level/Level_0-0.tscn").call_deferred()
 	#get_tree().change_scene_to_file("res://Scenes/Level/playtest2.tscn")d
 	Engine.time_scale = 1
 
