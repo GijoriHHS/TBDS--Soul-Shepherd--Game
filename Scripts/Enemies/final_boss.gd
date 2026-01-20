@@ -12,12 +12,13 @@ var just_jumped: bool = false
 
 func _ready() -> void:
 	health.hp_changed.connect(_boss_hit)
+	knockback_strength = 50.0
 	$in_range_shoot_timer.wait_time = 1
 	projectile = load("res://Scenes/Weapons/boss_enemy_projectile.tscn")
+	health.hp = 200
 	super._ready()
 	JumpTimer.start()
 	speed = 0
-	health.hp = 200
 
 func _process(_delta: float) -> void:
 	super._process(_delta)
@@ -36,7 +37,7 @@ func _process(_delta: float) -> void:
 		sprite.play("Walking")
 	elif speed == 0 and ground.is_colliding() and !sprite.is_playing():
 		sprite.play("Idle")
-
+		
 func _on_jump_timer_timeout() -> void:
 	$JumpChecker.position.x = dir*speed
 	if can_jump and $JumpChecker.is_colliding():
@@ -120,7 +121,8 @@ func _on_shockwave_body_entered(body: Node2D) -> void:
 		player.hp.take_damage(30)
 		
 func _boss_hit() -> void:
-	shoot("projectile")
+	if !raycastcheckleft.is_colliding() and !raycastcheckright.is_colliding():
+		shoot("projectile")
 	
 func _on_npc_died():
 	KeyManager.boss_death.emit()

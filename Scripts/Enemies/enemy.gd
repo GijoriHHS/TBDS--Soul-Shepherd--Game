@@ -5,12 +5,11 @@ class_name enemy
 @onready var main = get_tree().get_root().get_node("Level")
 @onready var projectile = load("res://Scenes/Weapons/projectile.tscn")
 @export var shootPoint : Node2D
-@export var groundPosOffset : float = 10
 
 @onready var health: HP_Enemy = $Health
 @onready var label: Label = $Label
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+@onready var gpu_particles_2d: CPUParticles2D = $BloodParticle
 @export var walk_speed : int = 50
 @export var sprint_speed : int = 70
 var speed : int = 0
@@ -27,13 +26,14 @@ var player: CharacterBody2D = null
 @onready var raycastcheckright: RayCast2D = $RayCast2DRight
 @onready var raycastcheckleft: RayCast2D = $RayCast2DLeft
 var knockback_velocity: Vector2 = Vector2.ZERO
-var knockback_strength := 150.0
+var knockback_strength := 100.0
 var knockback_decay := 10.0
 @export var can_jump: bool
 var projectile_index_number: int
 var latest_hat : Node
 @onready var hp_bar: ProgressBar = $ProgressBar
 var stage: int = 0
+@onready var groundPosOffset : float = ground.position.x
 
 
 var old_hp : int
@@ -63,7 +63,6 @@ func _process(_delta: float) -> void:
 		#velocity.y = 0
 		pass
 
-	
 	if old_hp != health.hp:
 		label.text = "HP: " + str(health.hp)
 		old_hp = health.hp
