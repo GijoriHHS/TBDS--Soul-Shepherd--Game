@@ -6,15 +6,14 @@ class_name boss_enemy_1
 @export var jump_speed: int = -125.0
 @onready var JumpTimer : Timer = $JumpTimer
 var just_jumped: bool = false
-var just_pre_shot: bool = false
 
 func _ready() -> void:
 	projectile = load("res://Scenes/Weapons/enemy_hat_projectile.tscn")
-	health.hp = 250
 	super._ready()
 	JumpTimer.start()
 	speed = 0
 	stage = 1
+	health.hp = 250
 	health.hp_changed.connect(_boss_hit)
 
 
@@ -27,21 +26,11 @@ func _process(_delta: float) -> void:
 		just_jumped = false
 		if stage > 2:
 			$stage_3_timer.start()
-	if just_pre_shot:
-		shoot("")
-		just_pre_shot = false
-		if stage > 2:
-			$stage_3_timer.start()
-		$in_range_shoot_timer.wait_time = 1.5
 	if health.hp <= 200 and health.hp > 100 and stage != 2:
 		stage = 2
 	if health.hp <= 100 and stage != 3:
 		stage = 3
-	if ground.is_colliding() and ground.get_collider().name == "Player":
-		jump()
-		speed = walk_speed
-	if !raycastcheckleft.is_colliding() and !raycastcheckright.is_colliding() and !ground.is_colliding():
-		JumpTimer.stop()
+	
 
 func _on_jump_timer_timeout() -> void:
 	$JumpChecker.position.x = dir*speed
@@ -56,18 +45,8 @@ func jump(small_jump_speed = null):
 	ground.set_enabled(false)
 
 func pre_shoot():
-	if $JumpChecker.is_colliding():
-		if raycastcheckleft.is_colliding() and (raycastcheckleft.get_collision_point().x - global_position.x <= -20):
-			jump(-100)
-			just_jumped = true
-		elif raycastcheckright.is_colliding() and (raycastcheckright.get_collision_point().x - global_position.x >= 20):
-			jump(-100)
-			just_jumped = true
-		else:
-			just_pre_shot = true
-	else:
-		just_pre_shot = true
-
+	jump(-100)
+	just_jumped = true
 
 func shoot(attack: String):
 	if global_position.x - player.global_position.x > 0:
@@ -81,8 +60,8 @@ func _on_stage_3_timer_timeout() -> void:
 	$stage_3_timer.stop()
 
 func _boss_hit() -> void:
-	if !raycastcheckleft.is_colliding() and !raycastcheckright.is_colliding():
-		pre_shoot()
+	#await get_tree().create_timer(0.5).timeout
+	pre_shoot()
 
 func _on_npc_died():
 	KeyManager.boss_death.emit()
