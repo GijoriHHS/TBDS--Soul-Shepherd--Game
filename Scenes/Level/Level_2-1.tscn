@@ -1483,7 +1483,7 @@ z_index = 7
 position = Vector2(1656, -174)
 
 [node name="ParralaxBackground" parent="." instance=ExtResource("36_x1o57")]
-position = Vector2(1, 314)
+position = Vector2(1, 324)
 
 [node name="Scrolls" type="Node2D" parent="."]
 
