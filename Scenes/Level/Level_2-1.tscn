@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://j6du3niuxs2r"]
+[gd_scene load_steps=60 format=3 uid="uid://bbm4fj6ylh6dk"]
 
 [ext_resource type="Script" uid="uid://c2jeph0pjh467" path="res://Scripts/Level/playtest_level.gd" id="1_b4reu"]
 [ext_resource type="Resource" uid="uid://ch7yv6txyd3tq" path="res://Resources/Dialogue/2-1-start-dialogue.tres" id="2_iq1np"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfdfu6o1j3apv" path="res://Assets/Sprites/Playtest1.png" id="4_lvgjw"]
 [ext_resource type="Texture2D" uid="uid://c3jf58yvjljmy" path="res://Assets/Sprites/tileset2.png" id="5_xlknf"]
 [ext_resource type="Texture2D" uid="uid://j1w6x4hpn3ou" path="res://Assets/Icons/Sung Chin Woo Icon.png" id="6_w8tj1"]
-[ext_resource type="Shader" uid="uid://b4k5pl844vedq" path="res://Shaders/water_shader_vertical_waves.gdshader" id="7_1uqqb"]
+[ext_resource type="Shader" path="res://Shaders/water_shader_vertical_waves.gdshader" id="7_1uqqb"]
 [ext_resource type="PackedScene" uid="uid://c45jpc3kaflr4" path="res://Scenes/CheckPoints/CheckPoint.tscn" id="8_la7aj"]
 [ext_resource type="Script" uid="uid://dtfsguwdnfr7m" path="res://Scripts/CheckPoints/start.gd" id="9_ct3gw"]
 [ext_resource type="PackedScene" uid="uid://c5ongupm07qh3" path="res://Scenes/Player/player.tscn" id="10_j2mfv"]
@@ -1097,9 +1097,9 @@ size = Vector2(200, 20)
 size = Vector2(16, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1inx"]
-size = Vector2(96.5, 90.25)
+size = Vector2(116.250015, 90.25)
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 script = ExtResource("1_b4reu")
 dialogue = ExtResource("2_iq1np")
 
@@ -1429,7 +1429,7 @@ collision_layer = 0
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Events/Gate_Crystal1/UnlockArea"]
-position = Vector2(0, -30)
+position = Vector2(9.875, -30)
 shape = SubResource("RectangleShape2D_j1inx")
 
 [node name="Souls" type="Node2D" parent="."]
