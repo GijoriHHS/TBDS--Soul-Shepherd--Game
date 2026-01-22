@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://lahfkubql7vo"]
+[gd_scene load_steps=61 format=3 uid="uid://lahfkubql7vo"]
 
 [ext_resource type="Script" uid="uid://beypopj8ttlnq" path="res://Scripts/Level/playtest_2.gd" id="1_3bhc2"]
 [ext_resource type="Texture2D" uid="uid://goes5l2sfyvw" path="res://Assets/Sprites/Tileset1.png" id="2_06l72"]
@@ -19,8 +19,10 @@
 [ext_resource type="PackedScene" uid="uid://bpp47tnrfdrab" path="res://Scenes/UI/Components/player_hud.tscn" id="17_botao"]
 [ext_resource type="FontFile" uid="uid://p47ydk5quyq2" path="res://Assets/Tutorial Open Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="18_r1nat"]
 [ext_resource type="Script" uid="uid://b2b6rmyyluckx" path="res://Scripts/Player/General/camera_2d.gd" id="19_h4eji"]
-[ext_resource type="PackedScene" uid="uid://5jrffwap8tjk" path="res://Scenes/Background/parralax_background.tscn" id="20_ljx1q"]
+[ext_resource type="Texture2D" uid="uid://cp8w704xccmt3" path="res://Assets/Background/bamboo_background.png" id="20_xexco"]
 [ext_resource type="PackedScene" uid="uid://d3ww40qkxw5eq" path="res://Scenes/Dialogue/dialogue_interact.tscn" id="21_h65ym"]
+[ext_resource type="Texture2D" uid="uid://bvglohh8et0el" path="res://Assets/Background/bamboo2_background.png" id="21_ywtrp"]
+[ext_resource type="Texture2D" uid="uid://b7ugr2cytodl8" path="res://Assets/Background/forest_background.png" id="22_5jmqk"]
 [ext_resource type="Resource" uid="uid://dgfnxjhqxasj7" path="res://Resources/Dialogue/FriendlyMonk1.tres" id="22_unx8f"]
 [ext_resource type="Texture2D" uid="uid://bpawmr3tt1vu8" path="res://Assets/Sprites/Dialogue Sprites/monk_sitting_sprite.png" id="23_v3vmg"]
 [ext_resource type="PackedScene" uid="uid://ndkp1vfqmr4g" path="res://Scenes/Dialogue/DialogueUI.tscn" id="24_16yup"]
@@ -1127,10 +1129,41 @@ base_offset = Vector2(30, 30)
 ground_cam_offset = -50.0
 right_cam_offset = -60.0
 
-[node name="ParralaxBackground" parent="." instance=ExtResource("20_ljx1q")]
+[node name="ParralaxBackground" type="Node2D" parent="."]
 z_index = 1
 position = Vector2(0, 324)
-scale = Vector2(1.05, 1.05)
+
+[node name="Parallax2D" type="Parallax2D" parent="ParralaxBackground"]
+z_index = 1
+scroll_scale = Vector2(0.05, 0.001)
+repeat_size = Vector2(352, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="ParralaxBackground/Parallax2D"]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("20_xexco")
+
+[node name="Parallax2D2" type="Parallax2D" parent="ParralaxBackground"]
+z_index = 2
+scroll_scale = Vector2(0.1, 0.001)
+repeat_size = Vector2(352, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="ParralaxBackground/Parallax2D2"]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("21_ywtrp")
+offset = Vector2(17.195, 0)
+
+[node name="Parallax2D3" type="Parallax2D" parent="ParralaxBackground"]
+z_index = 3
+scroll_scale = Vector2(0.2, 0.001)
+repeat_size = Vector2(352, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="ParralaxBackground/Parallax2D3"]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("22_5jmqk")
+offset = Vector2(17.195, 0)
 
 [node name="DialogueInteract" parent="." instance=ExtResource("21_h65ym")]
 z_index = 5
