@@ -269,7 +269,7 @@ z_index = 5
 texture = ExtResource("8_m8kdi")
 heal_amount = 10
 COLOR = Color(0.792157, 0.321569, 0.788235, 1)
-drop_chance = 35
+drop_chance = 25
 is_active = false
 
 [node name="AttackTimer" type="Timer" parent="."]

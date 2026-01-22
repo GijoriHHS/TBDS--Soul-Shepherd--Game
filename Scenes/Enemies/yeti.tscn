@@ -359,9 +359,9 @@ z_index = 5
 
 [node name="MagicBamboo" parent="Drops" instance=ExtResource("7_vcnys")]
 texture = ExtResource("8_lsqej")
-heal_amount = 25
+heal_amount = 5
 COLOR = Color(0.792157, 0.321569, 0.788235, 1)
-drop_chance = 75
+drop_chance = 33
 is_active = false
 
 [node name="Tollie" type="Node2D" parent="Drops"]
