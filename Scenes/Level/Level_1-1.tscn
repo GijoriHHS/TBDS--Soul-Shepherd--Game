@@ -1295,7 +1295,7 @@ player_ref = NodePath("../Player")
 
 [node name="Level1Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("27_wudrg")
-volume_db = -50.0
+volume_db = -30.0
 autoplay = true
 bus = &"Music"
 
