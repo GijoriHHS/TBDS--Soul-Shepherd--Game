@@ -2204,7 +2204,7 @@ position = Vector2(-3, -12)
 shape = SubResource("RectangleShape2D_v2jrc")
 
 [node name="ParralaxBackground" parent="." instance=ExtResource("39_pixuu")]
-position = Vector2(0, 322)
+position = Vector2(0, 325)
 
 [node name="Scrolls" type="Node2D" parent="."]
 
