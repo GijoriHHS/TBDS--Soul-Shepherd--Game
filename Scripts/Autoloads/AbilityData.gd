@@ -74,7 +74,7 @@ const INFO: Dictionary = {
 		"description": "Press '%s' to perform a SWING ATTACK!" 
 	},
 	ability_list.Archery: {
-		"name": "Bamboo Hat Throw",
+		"name": "Hat Throw",
 		"description": "Press '%s' to throw your hat for a RANGED ATTACK!"
 	},
 	ability_list.Dash: {

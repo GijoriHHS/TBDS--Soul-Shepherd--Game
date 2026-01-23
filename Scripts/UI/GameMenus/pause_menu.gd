@@ -25,7 +25,7 @@ func _on_continue_pressed() -> void:
 	canvas_layer.pauseMenu()
 
 func _on_quit_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/UI/GameMenus/Start_Menu.tscn")
+	get_tree().change_scene_to_file.bind("res://Scenes/UI/GameMenus/Start_Menu.tscn").call_deferred()
 	AbilityData.reset_abilities()
 	#get_tree().set_pause(false)
 	
