@@ -2139,7 +2139,7 @@ region_rect = Rect2(128, 128, 16, 16)
 z_index = 5
 position = Vector2(1048, 127)
 script = ExtResource("38_2y3r1")
-level_id = 4
+level_id = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Events/Gate_Crystal1"]
 shape = SubResource("RectangleShape2D_l63tk")
@@ -2162,7 +2162,7 @@ z_index = 5
 position = Vector2(1880, 128)
 script = ExtResource("38_2y3r1")
 door_id = 1
-level_id = 4
+level_id = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Events/Gate_Crystal2"]
 shape = SubResource("RectangleShape2D_l63tk")
@@ -2185,7 +2185,7 @@ z_index = 5
 position = Vector2(3608, -288)
 script = ExtResource("38_2y3r1")
 door_id = 2
-level_id = 4
+level_id = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Events/Gate_Crystal3"]
 shape = SubResource("RectangleShape2D_l63tk")
